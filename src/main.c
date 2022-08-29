@@ -39,8 +39,10 @@ void main()
     uart_puts("\n");
     uart_puts("MyBareOS> ");
 
+    //Function draw an image. 
     void draw_image()
     {
+        //Call function framebf_init to initial 
         framebf_init(physicalWidth, physicalHeight, virtualWidth, virtualHeight);
         for (int j = 0; j < 177; j++)
         {
