@@ -53,6 +53,8 @@ void main()
         }
     }
 
+
+    //Function display video.
     void draw_video()
     {
         int countFrame = 0;
