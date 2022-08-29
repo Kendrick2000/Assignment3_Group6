@@ -57,6 +57,7 @@ void main()
     //Function display video.
     void draw_video()
     {
+        //ahushduhajhsdkhakfdkjabwk
         int countFrame = 0;
         framebf_init(phWidth, phHeight, virWidth, virHeight);
         while (countFrame < 5)
