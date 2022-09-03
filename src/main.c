@@ -64,16 +64,28 @@ void main()
             }
         }
     }
+    void draw_paddle(int x, int y)
+    {
+        // framebf_init(pixelBallPhysicalWidth, pixelBallPhysicalHeight, pixelBallVirtualWidth, pixelBallVirtualHeight);
+        for (int j = 0; j < 24; j++)
+        {
+            y++;
+            for (int i = 0; i < 127; i++)
+            {
+                drawPixelARGB32(i + x, y, paddle[j * 127 + i]);
+            }
+        }
+    }
 
     void draw_greenTile(int x, int y)
     {
         // framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
-        for (int j = 0; j < 29; j++)
+        for (int j = 0; j < 30; j++)
         {
             y++;
-            for (int i = 0; i < 123; i++)
+            for (int i = 0; i < 150; i++)
             {
-                drawPixelARGB32(i + x, y, greenTile[j * 123 + i]);
+                drawPixelARGB32(i + x, y, greentile[j * 150 + i]);
             }
         }
     }
@@ -81,12 +93,12 @@ void main()
     void draw_blueTile(int x, int y)
     {
         // framebf_init(blueTilePhysicalWidth, blueTilePhysicalHeight, blueTileVirtualWidth, blueTileVirtualHeight);
-        for (int j = 0; j < 29; j++)
+        for (int j = 0; j < 30; j++)
         {
             y++;
-            for (int i = 0; i < 123; i++)
+            for (int i = 0; i < 150; i++)
             {
-                drawPixelARGB32(i + x, y, bluetile[j * 123 + i]);
+                drawPixelARGB32(i + x, y, bluetile[j * 150 + i]);
             }
         }
     }
@@ -94,12 +106,12 @@ void main()
     void draw_yellowTile(int x, int y)
     {
         // framebf_init(yellowTilePhysicalWidth, yellowTilePhysicalHeight, yellowTitleVirtualWidth, yellowTileVirtualHeight);
-        for (int j = 0; j < 29; j++)
+        for (int j = 0; j < 30; j++)
         {
             y++;
-            for (int i = 0; i < 123; i++)
+            for (int i = 0; i < 150; i++)
             {
-                drawPixelARGB32(i + x, y, yellowtile[j * 123 + i]);
+                drawPixelARGB32(i + x, y, yellowtile[j * 150 + i]);
             }
         }
     }
@@ -107,12 +119,12 @@ void main()
     void draw_redTile(int x, int y)
     {
         // framebf_init(redTilePhysicalWidth, redTilePhysicalHeight, redTileVirtualWidth, redTileVirtualHeight);
-        for (int j = 0; j < 29; j++)
+        for (int j = 0; j < 30; j++)
         {
             y++;
-            for (int i = 0; i < 123; i++)
+            for (int i = 0; i < 150; i++)
             {
-                drawPixelARGB32(i + x, y, redtile[j * 123 + i]);
+                drawPixelARGB32(i + x, y, redtile[j * 150 + i]);
             }
         }
     }
@@ -120,45 +132,46 @@ void main()
     void draw_game()
     {
         // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
-        for (int x = 50; x < 470; x += 173)
+        for (int x = 90; x < 900; x += 170)
         {
-            for (int y = 50; y < 254; y += 29)
+            for (int y = 50; y < 280; y += 32)
             {
                 if (y == 50)
                 {
                     draw_yellowTile(x, y);
                 }
-                else if (y == 79)
+                else if (y == 82)
                 {
                     draw_redTile(x, y);
                 }
-                else if (y == 108)
+                else if (y == 114)
                 {
                     draw_blueTile(x, y);
                 }
-                else if (y == 137)
+                else if (y == 146)
                 {
                     draw_greenTile(x, y);
                 }
-                else if (y == 166)
+                else if (y == 178)
                 {
                     draw_yellowTile(x, y);
                 }
-                else if (y == 195)
+                else if (y == 210)
                 {
                     draw_blueTile(x, y);
                 }
-                else if (y == 224)
+                else if (y == 242)
                 {
                     draw_greenTile(x, y);
                 }
-                else if (y == 253)
+                else if (y == 274)
                 {
                     draw_redTile(x, y);
                 }
             }
         }
-        draw_pixelBall(500,500);
+        draw_pixelBall(500,650);
+        draw_paddle(450,700);
     }
 
     void draw_video()
