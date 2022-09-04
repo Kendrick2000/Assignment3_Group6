@@ -13,6 +13,7 @@ void main()
 
     uart_init();
 
+    //GitHub is crazy
     // say welcome message
     uart_puts("ooooooooooo ooooooooooo ooooooooooo ooooooooooo   ooooooo         o88  ooooooo     ooooooo\n");
     uart_puts(" 888    88   888    88   888    88  88  888  88 o88     888     o8888 888    88o o888  o888o\n");
@@ -35,6 +36,11 @@ void main()
     uart_puts("Developed by Truong Phu Khang - S3814172.\n");
 
     framebf_init();
+    
+    drawString(50,10,"Nguyen Phuong Uyen-s3751882",0x009FE2BF);
+    drawString(50,25,"Khang Truong-s3751882",0x00AA0000);
+    drawString(50,40,"Daniil Shlee-s3751882",0x0000BB00);
+    drawString(50,55,"Kiet Park-s3751882",0x00AA0000);
 
     // Print cursor onto terminal screen
     uart_puts("\n");
