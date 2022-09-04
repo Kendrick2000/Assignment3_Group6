@@ -13,6 +13,7 @@ void main()
 
     uart_init();
 
+    //GitHub is crazy
     // say welcome message
     uart_puts("ooooooooooo ooooooooooo ooooooooooo ooooooooooo   ooooooo         o88  ooooooo     ooooooo\n");
     uart_puts(" 888    88   888    88   888    88  88  888  88 o88     888     o8888 888    88o o888  o888o\n");
