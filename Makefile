@@ -7,7 +7,11 @@ OFILES = $(CFILES:$(SRC_DIR)/%.c=$(OBJECT_DIR)/%.o)
 
 GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 LDFLAGS = -nostdlib
+=======
+LDFLAGS = -nostdlib 
+>>>>>>> Stashed changes
 =======
 LDFLAGS = -nostdlib 
 >>>>>>> Stashed changes
