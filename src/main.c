@@ -36,6 +36,11 @@ void main()
     uart_puts("Developed by Truong Phu Khang - S3814172.\n");
 
     framebf_init();
+    
+    drawString(50,10,"Nguyen Phuong Uyen-s3751882",0x009FE2BF);
+    drawString(50,25,"Khang Truong-s3751882",0x00AA0000);
+    drawString(50,40,"Daniil Shlee-s3751882",0x0000BB00);
+    drawString(50,55,"Kiet Park-s3751882",0x00AA0000);
 
     // Print cursor onto terminal screen
     uart_puts("\n");
