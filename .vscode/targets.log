@@ -9,9 +9,13 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
  
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # Make data base, printed on Thu Sep 01 22:37:50 2022
 =======
 # Make data base, printed on Sun Sep 04 17:05:26 2022
+>>>>>>> Stashed changes
+=======
+# Make data base, printed on Sun Sep 04 17:23:27 2022
 >>>>>>> Stashed changes
 
 # Variables
@@ -45,16 +49,23 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 ONEDRIVE = C:\Users\Uyen Nguyen\OneDrive
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 # environment
 QSYS_ROOTDIR = C:\intelFPGA_lite\18.1\quartus\sopc_builder\bin
 # environment
 PUBLIC = C:\Users\Public
+<<<<<<< Updated upstream
 # environment
 =======
 # environment
 QSYS_ROOTDIR = C:\intelFPGA_lite\18.1\quartus\sopc_builder\bin
 # environment
 PUBLIC = C:\Users\Public
+# environment
+>>>>>>> Stashed changes
+=======
 # environment
 >>>>>>> Stashed changes
 PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
@@ -76,6 +87,7 @@ PROGRAMDATA = C:\ProgramData
 VSCODE_CWD = D:\Users\Uyen Nguyen\AppData\Local\Microsoft VS Code
 # environment
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 PATH = C:\Program Files (x86)\WinAVR 20100110\bin;C:\Program Files (x86)\WinAVR 20100110\utils\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\MinGW\bin;D:\Users\Uyen Nguyen\Downloads\bin;D:\Users\Uyen Nguyen\Schoolwork\Matlab\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\nodejs\;C:\Program Files (x86)\dotnet\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\GitHubDesktop\bin;D:\Users\Uyen Nguyen\Downloads\modelsim_ase\win32aloem;D:\Users\Uyen Nguyen\AppData\Local\Microsoft VS Code\bin;C:\Users\Uyen Nguyen\AppData\Roaming\npm;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;C:\Program Files (x86)\gcc-arm-10.3-2021.07-mingw-w64-i686-aarch64-none-elf\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\qemu;
 # environment
 NIDAQMXSWITCHDIR = C:\Program Files (x86)\National Instruments\NI-DAQ\Switch\
@@ -91,17 +103,28 @@ USERPROFILE = C:\Users\Uyen Nguyen
 =======
 PATH = C:\Program Files (x 
 86)\WinAVR 20100110\bin;C:\Program Files (x86)\WinAVR 20100110\utils\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\MinGW\bin;D:\Users\Uyen Nguyen\Downloads\bin;D:\Users\Uyen Nguyen\Schoolwork\Matlab\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\nodejs\;C:\Program Files (x86)\dotnet\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\GitHubDesktop\bin;D:\Users\Uyen Nguyen\Downloads\modelsim_ase\win32aloem;D:\Users\Uyen Nguyen\AppData\Local\Microsoft VS Code\bin;C:\Users\Uyen Nguyen\AppData\Roaming\npm;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;C:\Program Files (x86)\gcc-arm-10.3-2021.07-mingw-w64-i686-aarch64-none-elf\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\qemu;
+=======
+PATH = C:\Program Files (x86)\WinAVR 20100110\bin;C:\Program Files (x86)\WinAVR 20100110\utils\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\MinGW\bin;D:\Users\Uyen Nguyen\Downloads\bin;D:\Users\Uyen Nguyen\Schoolwork\Matlab\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\nodejs\;C:\Program Files (x86)\dotnet\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\GitHubDesktop\bin;D:\Users\Uyen Nguyen\Downloads\modelsim_ase\win32aloem;D:\Users\Uyen Nguyen\AppData\Local\Microsoft VS Code\bin;C:\Users\Uyen Nguyen\AppData\Roaming\npm;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;C:\Program Files (x86)\gcc-arm-10.3-2021.07-mingw-w64-i686-aarch64-none-elf\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\qemu;
+>>>>>>> Stashed changes
 # environment
 NIDAQMXSWITCHDIR = C:\Program Files (x86)\National Instruments\NI-DAQ\Switch\
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
+<<<<<<< Updated upstream
 NIEXTCCOMPILERSUPP = C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\
+=======
+NIEXTCCOMPILERSUPP = C:\Program F 
+iles (x86)\National Instruments\Shared\ExternalCompilerSupport\C\
+>>>>>>> Stashed changes
 # environment
 PROCESSOR_ARCHITECTURE = x86
 # environment
 USERPROFILE = C:\Users\Uyen Nguyen
 # environment
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 ALLUSERSPROFILE = C:\ProgramData
 # environment
@@ -112,9 +135,13 @@ NUMBER_OF_PROCESSORS = 4
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from `makefile', line 9)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 LDFLAGS = -nostdlib
 =======
 LDFLAGS = -nostdlib -nostartfiles
+>>>>>>> Stashed changes
+=======
+LDFLAGS = -nostdlib 
 >>>>>>> Stashed changes
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives
@@ -122,7 +149,11 @@ LDFLAGS = -nostdlib -nostartfiles
 %F = $(notdir $%)
 # environment
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15536_RWJBRBIAHJMFFMVY
+=======
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_17512_EGHAEORLNVRIXPNQ
+>>>>>>> Stashed changes
 =======
 CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_17512_EGHAEORLNVRIXPNQ
 >>>>>>> Stashed changes
@@ -136,6 +167,7 @@ DRIVERDATA = C:\Windows\System32\Drivers\DriverData
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 AVR32_HOME = C:\Program Files (x86)\WinAVR 20100110
+<<<<<<< Updated upstream
 # environment
 USERNAME = Uyen Nguyen
 # environment
@@ -143,13 +175,27 @@ MGLS_LICENSE_FILE = 1717@sglprdsstlic01.rmit.edu.vn
 <<<<<<< Updated upstream
 # environment
 KMP_DUPLICATE_LIB_OK = TRUE
+=======
+>>>>>>> Stashed changes
+# environment
+USERNAME = Uyen Nguyen
+# environment
+<<<<<<< Updated upstream
+HOME = C:\Users\Uyen Nguyen\AppData\Roaming\SPB_Data
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\Uyen Nguyen\AppData\Roaming\Code\CachedData\e4503b30fc78200f846c62cf8091b76ff5547662
+=======
+# environment
+KMP_DUPLICATE_LIB_OK = TRUE
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = C:\Users\Uyen Nguyen\AppData\Roaming\SPB_Data
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\Uyen Nguyen\AppData\Roaming\Code\CachedData\e4503b30fc78200f846c62cf8091b76ff5547662
+VSCODE_CODE_CACHE_PATH = C:\Users\Uyen Nguyen\AppData\Roaming\Code\CachedData\784b0177c56c607789f9638da7b6bf3230d47a8c
+>>>>>>> Stashed changes
 =======
+MGLS_LICENSE_FILE = 1717@sglprdsstlic01.rmit.edu.vn
 # environment
 KMP_DUPLICATE_LIB_OK = TRUE
 # environment
@@ -199,7 +245,11 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
 OS = Windows_NT
 # environment
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 VSCODE_IPC_HOOK = \\.\pipe\517ef9b32b3ccddb640778aa351b4db2-1.70.2-main-sock
+=======
+VSCODE_IPC_HOOK = \\.\pipe\517ef9b32b3ccddb640778aa351b4db2-1.71.0-main-sock
+>>>>>>> Stashed changes
 =======
 VSCODE_IPC_HOOK = \\.\pipe\517ef9b32b3ccddb640778aa351b4db2-1.71.0-main-sock
 >>>>>>> Stashed changes
@@ -258,16 +308,22 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # envi 
 ronment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
 VSCODE_PID = 15536
 =======
+=======
+>>>>>>> Stashed changes
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
 VSCODE_PID = 17512
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 # environment
 USERDOMAIN_ROAMINGPROFILE = LYNN-LAPTOP
@@ -280,6 +336,7 @@ USERDOMAIN_ROAMINGPROFILE = LYNN-LAPTOP
 
 # Directories
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 # . (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6, mtime 1661966116): 11 files, no impossibilities.
 # ./src (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6/src, mtime 1661852933): 19 files, no impossibilities.
@@ -294,6 +351,15 @@ USERDOMAIN_ROAMINGPROFILE = LYNN-LAPTOP
 # C:\Program Files (x86)\WinAVR 20100110\bin (key C:/Program Files (x86)/WinAVR 20100110/bin, mtime 1571999078): 75 files, no impossibilities.
 # C:\Program Files (x86)\WinAVR 20100110\utils\bin (key C:/Program Files (x86)/WinAVR 20100110/utils/bin, mtime 1571999094): 99 files, no impossibilities so far.
 # src (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6/src, mtime 1662285869): 21 files, no impossibilities.
+
+# 227 files, no impossibilities in 5 directories.
+>>>>>>> Stashed changes
+=======
+# . (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6, mtime 1662286952): 11 files, no impossibilities.
+# ./src (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6/src, mtime 1662286527): 21 files, no impossibilities.
+# C:\Program Files (x86)\WinAVR 20100110\bin (key C:/Program Files (x86)/WinAVR 20100110/bin, mtime 1571999078): 75 files, no impossibilities.
+# C:\Program Files (x86)\WinAVR 20100110\utils\bin (key C:/Program Files (x86)/WinAVR 20100110/utils/bin, mtime 1571999094): 99 files, no impossibilities so far.
+# src (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6/src, mtime 1662286527): 21 files, no impossibilities.
 
 # 227 files, no impossibilities in 5 directories.
 >>>>>>> Stashed changes
@@ -313,9 +379,13 @@ object/uart.o: src/uart.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `uart'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #  Last modified 2022-08-30 16:48:53
 =======
 #  Last modified 2022-09-04 17:03:40
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:15:27
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -376,6 +446,7 @@ test: all run
 
 # Not a target:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 makefile:
 #  Implicit rule search has been done.
 #  Last modified 2022-09-01 00:11:13
@@ -383,6 +454,11 @@ makefile:
 src/timer.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-09-04 17:03:40
+=======
+src/timer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-09-04 17:15:27
+>>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -391,7 +467,11 @@ src/timer.c:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
+<<<<<<< Updated upstream
 #  Last modified 2022-09-04 17:03:40
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:22:44
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -414,9 +494,13 @@ object/mbox.o: src/mbox.c
 src/main.c:
 #  Implicit rule search has been done.
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #  Last modified 2022-09-01 00:15:05
 =======
 #  Last modified 2022-09-04 17:04:29
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:22:10
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -445,9 +529,13 @@ object/printf.o: src/printf.c
 src/uart.c:
 #  Implicit rule search has been done.
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #  Last modified 2022-08-30 16:48:53
 =======
 #  Last modified 2022-09-04 17:03:40
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:15:27
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -460,9 +548,13 @@ run:
 #  File has not been updated.
 #  commands to execute (from `makefile', line 27):
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial null -serial stdio
 =======
 	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial null -serial stdio
+>>>>>>> Stashed changes
+=======
+	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial null -serial stdio
 >>>>>>> Stashed changes
 	
 
@@ -470,9 +562,13 @@ object/framebf.o: src/framebf.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `framebf'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #  Last modified 2022-08-31 17:04:49
 =======
 #  Last modified 2022-09-04 17:03:40
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:15:26
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -493,7 +589,11 @@ clean:
 object/timer.o: src/timer.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `timer'
+<<<<<<< Updated upstream
 #  Last modified 2022-09-04 17:03:40
+=======
+#  Last modified 2022-09-04 17:15:27
+>>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -514,9 +614,13 @@ src/boot.S:
 kernel8.img: object/boot.o object/framebf.o object/main.o object/mbox.o object/printf.o object/timer.o object/uart.o
 #  Implicit rule search has not been done.
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #  Last modified 2022-09-01 00:15:16
 =======
 #  Last modified 2022-09-04 17:04:29
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:22:32
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -531,9 +635,13 @@ object/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #  Last modified 2022-09-01 00:15:16
 =======
 #  Last modified 2022-09-04 17:04:29
+>>>>>>> Stashed changes
+=======
+#  Last modified 2022-09-04 17:22:18
 >>>>>>> Stashed changes
 #  File has been updated.
 #  Successfully updated.
@@ -554,7 +662,11 @@ src/mbox.c:
 
 # files hash-table stats:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # Load=20/1024=2%, Rehash=0, Collisions=0/57=0%
+=======
+# Load=22/1024=2%, Rehash=0, Collisions=0/63=0%
+>>>>>>> Stashed changes
 =======
 # Load=22/1024=2%, Rehash=0, Collisions=0/63=0%
 >>>>>>> Stashed changes
@@ -567,12 +679,17 @@ src/mbox.c:
 # # of strings in strcache: 1
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
-# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+# str 
+cache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 # Finished Make data base on Thu Sep 01 22:37:50 2022
 =======
 # Finished Make data base on Sun Sep 04 17:05:26 2022
+>>>>>>> Stashed changes
+=======
+# Finished Make data base on Sun Sep 04 17:23:27 2022
 >>>>>>> Stashed changes
 
  

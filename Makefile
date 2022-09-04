@@ -6,7 +6,11 @@ CFILES = $(wildcard $(SRC_DIR)/*.c)
 OFILES = $(CFILES:$(SRC_DIR)/%.c=$(OBJECT_DIR)/%.o)
 
 GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib
+<<<<<<< Updated upstream
 LDFLAGS = -nostdlib
+=======
+LDFLAGS = -nostdlib 
+>>>>>>> Stashed changes
 
 all: kernel8.img #run
 

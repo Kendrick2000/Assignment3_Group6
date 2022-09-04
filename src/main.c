@@ -79,7 +79,11 @@ void main()
 
     void draw_greenTile(int x, int y)
     {
+<<<<<<< Updated upstream
         // framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
+=======
+        //framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
+>>>>>>> Stashed changes
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -92,7 +96,11 @@ void main()
 
     void draw_blueTile(int x, int y)
     {
+<<<<<<< Updated upstream
         // framebf_init(blueTilePhysicalWidth, blueTilePhysicalHeight, blueTileVirtualWidth, blueTileVirtualHeight);
+=======
+        //framebf_init(blueTilePhysicalWidth, blueTilePhysicalHeight, blueTileVirtualWidth, blueTileVirtualHeight);
+>>>>>>> Stashed changes
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -105,7 +113,11 @@ void main()
 
     void draw_yellowTile(int x, int y)
     {
+<<<<<<< Updated upstream
         // framebf_init(yellowTilePhysicalWidth, yellowTilePhysicalHeight, yellowTitleVirtualWidth, yellowTileVirtualHeight);
+=======
+        //framebf_init(yellowTilePhysicalWidth, yellowTilePhysicalHeight, yellowTitleVirtualWidth, yellowTileVirtualHeight);
+>>>>>>> Stashed changes
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -118,13 +130,32 @@ void main()
 
     void draw_redTile(int x, int y)
     {
+<<<<<<< Updated upstream
         // framebf_init(redTilePhysicalWidth, redTilePhysicalHeight, redTileVirtualWidth, redTileVirtualHeight);
+=======
+        //framebf_init(redTilePhysicalWidth, redTilePhysicalHeight, redTileVirtualWidth, redTileVirtualHeight);
+>>>>>>> Stashed changes
         for (int j = 0; j < 30; j++)
         {
             y++;
             for (int i = 0; i < 150; i++)
             {
                 drawPixelARGB32(i + x, y, redtile[j * 150 + i]);
+<<<<<<< Updated upstream
+=======
+            }
+        }
+    }
+
+    void draw_paddle(int x, int y)
+    {
+        for (int j = 0; j < 24; j++)
+        {
+            y++;
+            for (int i = 0; i < 127; i++)
+            {
+                drawPixelARGB32(i + x, y, paddle[j * 127 + i]);
+>>>>>>> Stashed changes
             }
         }
     }
@@ -134,11 +165,51 @@ void main()
         // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
         for (int x = 90; x < 900; x += 170)
         {
+<<<<<<< Updated upstream
             for (int y = 50; y < 280; y += 32)
             {
                 if (y == 50)
                 {
                     draw_yellowTile(x, y);
+=======
+
+            for (int x = 50; x < 800; x += 173)
+            {
+                for (int y = 50; y < 275; y += 32)
+                {
+                    if (y == 50)
+                    {
+                        draw_yellowTile(x, y);
+                    }
+                    else if (y == 82)
+                    {
+                        draw_redTile(x, y);
+                    }
+                    else if (y == 114)
+                    {
+                        draw_blueTile(x, y);
+                    }
+                    else if (y == 146)
+                    {
+                        draw_greenTile(x, y);
+                    }
+                    else if (y == 178)
+                    {
+                        draw_yellowTile(x, y);
+                    }
+                    else if (y == 210)
+                    {
+                        draw_blueTile(x, y);
+                    }
+                    else if (y == 242)
+                    {
+                        draw_greenTile(x, y);
+                    }
+                    else if (y == 274)
+                    {
+                        draw_redTile(x, y);
+                    }
+>>>>>>> Stashed changes
                 }
                 else if (y == 82)
                 {
