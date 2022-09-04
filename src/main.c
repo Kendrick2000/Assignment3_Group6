@@ -141,18 +141,6 @@ void main()
         }
     }
 
-    void draw_paddle(int x, int y)
-    {
-        for (int j = 0; j < 24; j++)
-        {
-            y++;
-            for (int i = 0; i < 127; i++)
-            {
-                drawPixelARGB32(i + x, y, paddle[j * 127 + i]);
-            }
-        }
-    }
-
     void draw_game()
     {
         // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
