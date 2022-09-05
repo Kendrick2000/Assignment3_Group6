@@ -138,7 +138,7 @@ void main()
         int barX = 500, barFlag = 0, count = 0;
         int ballX = 0, ballY = 0;
         int traceX = 0, traceY = 0;
-        int oldX = 0, oldY = 0;
+        int direction = 0;
         char str[10000];
         draw_paddle(barX, 700);
         ballY = 736;
@@ -195,7 +195,7 @@ void main()
                 traceY = ballY + 51;
                 draw_pixelBall(ballX, ballY);
 
-                if ()
+                if ((955 - ballX > 477) && (736 - ballY > 368))
                 {
                     ballX++;
                     ballY++;
@@ -209,7 +209,7 @@ void main()
                         drawPixelARGB32(traceX - 51, i, 0x00000000);
                     }
                 }
-                else if ()
+                else if ((736 - ballY < 368) && (955 - ballX < 477))
                 {
                     ballX--;
                     ballY--;
@@ -223,7 +223,7 @@ void main()
                         drawPixelARGB32(traceX, i, 0x00000000);
                     }
                 }
-                else if ()
+                else if ((955 - ballX > 477) && (736 - ballY < 368))
                 {
                     ballX++;
                     ballY--;
@@ -237,7 +237,7 @@ void main()
                         drawPixelARGB32(traceX - 51, i, 0x00000000);
                     }
                 }
-                else if ()
+                else if ((736 - ballY > 368) && (955 - ballX < 477))
                 {
                     ballX--;
                     ballY++;
