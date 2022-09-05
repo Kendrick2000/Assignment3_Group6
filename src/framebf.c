@@ -115,7 +115,13 @@ void drawPixelARGB32(int x, int y, unsigned int attr)
  //Access 32-bit together 
  *((unsigned int*)(fb + offs)) = attr; 
 } 
- 
+
+void drawPixel(int x, int y, unsigned char attr)
+{
+    int offs = (y * pitch) + (x * 4);
+    *((unsigned int*)(fb + offs)) = vgapal[attr & 0x0f];
+}
+
  
 void drawRectARGB32(int x1, int y1, int x2, int y2, unsigned int attr, int fill) 
 { 
@@ -139,7 +145,7 @@ void drawChar(unsigned char ch, int x, int y, unsigned char attr)
 	    unsigned char mask = 1 << j;
 	    unsigned char col = (*glyph & mask) ? attr & 0x0f : (attr & 0xf0) >> 4;
 
-	    drawPixelARGB32(x+j, y+i, col);
+	    drawPixel(x+j, y+i, col);
 	}
 	glyph += FONT_BPL;
     }

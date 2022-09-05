@@ -12,8 +12,8 @@ void main()
     int count = 0;
 
     uart_init();
+    framebf_init();
 
-    //GitHub is crazy
     // say welcome message
     uart_puts("ooooooooooo ooooooooooo ooooooooooo ooooooooooo   ooooooo         o88  ooooooo     ooooooo\n");
     uart_puts(" 888    88   888    88   888    88  88  888  88 o88     888     o8888 888    88o o888  o888o\n");
@@ -35,13 +35,11 @@ void main()
     uart_puts("\n");
     uart_puts("Developed by Truong Phu Khang - S3814172.\n");
 
-    framebf_init();
+    drawString(100,100,"Nguyen Phuong Uyen-s3751882",0x009FE2BF);
+    // drawString(100,100,"Khang Truong-s3751882",0x00AA0000);
+    // drawString(100,100,"Daniil Shlee-s3751882",0x0000BB00);
+    // drawString(100,100,"Kiet Park-s3751882",0x00AA0000);
     
-    drawString(50,10,"Nguyen Phuong Uyen-s3751882",0x009FE2BF);
-    drawString(50,25,"Khang Truong-s3751882",0x00AA0000);
-    drawString(50,40,"Daniil Shlee-s3751882",0x0000BB00);
-    drawString(50,55,"Kiet Park-s3751882",0x00AA0000);
-
     // Print cursor onto terminal screen
     uart_puts("\n");
     uart_puts("MyBareOS> ");
@@ -85,7 +83,7 @@ void main()
 
     void draw_greenTile(int x, int y)
     {
-        //framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
+        // framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -98,7 +96,7 @@ void main()
 
     void draw_blueTile(int x, int y)
     {
-        //framebf_init(blueTilePhysicalWidth, blueTilePhysicalHeight, blueTileVirtualWidth, blueTileVirtualHeight);
+        // framebf_init(blueTilePhysicalWidth, blueTilePhysicalHeight, blueTileVirtualWidth, blueTileVirtualHeight);
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -111,7 +109,7 @@ void main()
 
     void draw_yellowTile(int x, int y)
     {
-        //framebf_init(yellowTilePhysicalWidth, yellowTilePhysicalHeight, yellowTitleVirtualWidth, yellowTileVirtualHeight);
+        // framebf_init(yellowTilePhysicalWidth, yellowTilePhysicalHeight, yellowTitleVirtualWidth, yellowTileVirtualHeight);
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -124,7 +122,7 @@ void main()
 
     void draw_redTile(int x, int y)
     {
-        //framebf_init(redTilePhysicalWidth, redTilePhysicalHeight, redTileVirtualWidth, redTileVirtualHeight);
+        // framebf_init(redTilePhysicalWidth, redTilePhysicalHeight, redTileVirtualWidth, redTileVirtualHeight);
         for (int j = 0; j < 30; j++)
         {
             y++;
@@ -135,61 +133,170 @@ void main()
         }
     }
 
-    void draw_paddle(int x, int y)
-    {
-        for (int j = 0; j < 24; j++)
-        {
-            y++;
-            for (int i = 0; i < 127; i++)
-            {
-                drawPixelARGB32(i + x, y, paddle[j * 127 + i]);
-            }
-        }
-    }
-
     void draw_game()
     {
-        // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
-        for (int x = 90; x < 900; x += 170)
+        int barX = 500, barFlag = 0, count = 0;
+        int ballX = 950, ballY = 500;
+        int traceX = 0, traceY = 0;
+        char str[10000];
+        draw_paddle(barX, 700);
+        drawString(100,100,"Hello world!",0x0f);
+        // ballY = 736;
+        // ballX = 1024;
+        // draw_pixelBall(traceX, traceY);
+        while (1)
         {
-            for (int y = 50; y < 280; y += 32)
+            // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
+            for (int x = 90; x < 900; x += 170)
             {
-                if (y == 50)
+                for (int y = 50; y < 280; y += 32)
                 {
-                    draw_yellowTile(x, y);
-                }
-                else if (y == 82)
-                {
-                    draw_redTile(x, y);
-                }
-                else if (y == 114)
-                {
-                    draw_blueTile(x, y);
-                }
-                else if (y == 146)
-                {
-                    draw_greenTile(x, y);
-                }
-                else if (y == 178)
-                {
-                    draw_yellowTile(x, y);
-                }
-                else if (y == 210)
-                {
-                    draw_blueTile(x, y);
-                }
-                else if (y == 242)
-                {
-                    draw_greenTile(x, y);
-                }
-                else if (y == 274)
-                {
-                    draw_redTile(x, y);
+                    if (y == 50)
+                    {
+                        draw_yellowTile(x, y);
+                    }
+                    else if (y == 82)
+                    {
+                        draw_redTile(x, y);
+                    }
+                    else if (y == 114)
+                    {
+                        draw_blueTile(x, y);
+                    }
+                    else if (y == 146)
+                    {
+                        draw_greenTile(x, y);
+                    }
+                    else if (y == 178)
+                    {
+                        draw_yellowTile(x, y);
+                    }
+                    else if (y == 210)
+                    {
+                        draw_blueTile(x, y);
+                    }
+                    else if (y == 242)
+                    {
+                        draw_greenTile(x, y);
+                    }
+                    else if (y == 274)
+                    {
+                        draw_redTile(x, y);
+                    }
                 }
             }
+            // draw_pixelBall(500, 650);
+            // draw_paddle(450, 700);
+
+            // Cover trace for ball movement.
+            //  Moving Down.
+            //   if (ballY <= 736 && ballX <= 1024)
+            //   {
+            //       traceY = ballY;
+            //       ballY++;
+            //       draw_pixelBall(ballX, ballY);
+            //       // ballX--;
+            //       for (int i = ballX; i < ballX + 51; i++)
+            //       {
+            //           drawPixelARGB32(i, traceY, 0x00000000);
+            //       }
+            //       wait_msec(10000);
+            //   }
+            //   else
+            //   {
+            //       ballY = 0;
+            //   }
+
+            // Moving Up.
+            // if (ballY >= 0)
+            // {
+            //     traceY = ballY + 51;
+            //     ballY--;
+            //     draw_pixelBall(ballX, ballY);
+            //     for (int i = ballX; i < ballX + 51; i++)
+            //     {
+            //         drawPixelARGB32(i, traceY, 0x00000000);
+            //     }
+            //     wait_msec(10000);
+            // }
+            // else
+            // {
+            //     ballY = 736;
+            // }
+
+            // Moving from left - right.
+            // if (ballX <= 950)
+            // {
+            //     traceX = ballX;
+            //     ballX++;
+            //     draw_pixelBall(ballX, ballY);
+            //     for (int i = ballY; i < ballY + 51; i++)
+            //     {
+            //         drawPixelARGB32(traceX, i, 0x00000000);
+            //     }
+            // }
+            // else
+            // {
+            //     ballX = 0;
+            // }
+
+            // Moving from right - left
+            if (ballX >= 0)
+            {
+                traceX = ballX + 51;
+                ballX--;
+                draw_pixelBall(ballX, ballY);
+                for (int i = ballY; i < ballY + 51; i++)
+                {
+                    drawPixelARGB32(traceX, i, 0x00000000);
+                }
+            }
+            else
+            {
+                ballX = 950;
+            }
+
+            str[count] = getUart();
+            if (str[count] == 'd')
+            {
+                if (barX <= 1000)
+                {
+                    for (int j = 700; j < 725; j++)
+                    {
+                        for (int i = barX; i < barX + 100; i++)
+                        {
+                            drawPixelARGB32(i, j, 0x00000000);
+                        }
+                    }
+
+                    barX += 100;
+                    draw_paddle(barX, 700);
+                }
+            }
+
+            if (str[count] == 'a')
+            {
+                if (barX > 0)
+                {
+                    for (int j = 700; j < 725; j++)
+                    {
+                        for (int i = barX + 127; i > barX - 100; i--)
+                        {
+                            drawPixelARGB32(i, j, 0x00000000);
+                        }
+                    }
+                    barX -= 100;
+                    draw_paddle(barX, 700);
+                }
+            }
+
+            if (str[count] == 'c')
+            {
+                break;
+            }
+
+            count++;
         }
-        draw_pixelBall(500,650);
-        draw_paddle(450,700);
     }
 
     void draw_video()
