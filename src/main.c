@@ -141,8 +141,8 @@ void main()
         int direction = 0;
         char str[10000];
         draw_paddle(barX, 700);
-        ballY = 736;
-        ballX = 0;
+        ballY = 650;
+        ballX = 500;
 
         // draw_pixelBall(traceX, traceY);
         while (!getUart())
@@ -195,7 +195,7 @@ void main()
                 traceY = ballY + 51;
                 draw_pixelBall(ballX, ballY);
 
-                if ((955 - ballX > 477) && (736 - ballY > 368))
+                if ((ballX >= 0 && ballY >= 0))
                 {
                     ballX++;
                     ballY++;
@@ -209,7 +209,7 @@ void main()
                         drawPixelARGB32(traceX - 51, i, 0x00000000);
                     }
                 }
-                else if ((736 - ballY < 368) && (955 - ballX < 477))
+                else if ((ballX <= 955 && ballY <= 736))
                 {
                     ballX--;
                     ballY--;
@@ -223,7 +223,7 @@ void main()
                         drawPixelARGB32(traceX, i, 0x00000000);
                     }
                 }
-                else if ((955 - ballX > 477) && (736 - ballY < 368))
+                else if ((ballX >= 0 && ballY <= 736))
                 {
                     ballX++;
                     ballY--;
@@ -237,7 +237,7 @@ void main()
                         drawPixelARGB32(traceX - 51, i, 0x00000000);
                     }
                 }
-                else if ((736 - ballY > 368) && (955 - ballX < 477))
+                else if ((ballX <= 955 && ballY >= 0))
                 {
                     ballX--;
                     ballY++;
