@@ -283,12 +283,17 @@ void main()
                     }
                 }
 
-                printf("X: %d ", ballX);
-                uart_puts(" ");
-                printf("Y: %d ", ballY);
-                uart_puts("\n");
+                // printf("X: %d ", ballX);
+                // uart_puts(" ");
+                // printf("Y: %d ", ballY);
+                // uart_puts("\n");
                 wait_msec(4000);
-
+            }
+            else if(ballX > 900)
+            {
+                ballX = 500;
+                ballY = 650;
+                direction = 0;
             }
 
             str[count] = getUart();
