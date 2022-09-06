@@ -136,16 +136,14 @@ void main()
     void draw_game()
     {
         int barX = 500, barFlag = 0, count = 0;
-        int ballX = 0, ballY = 0;
+        int ballX = 500, ballY = 650;
         int traceX = 0, traceY = 0;
         int direction = 0;
         char str[10000];
         draw_paddle(barX, 700);
-        ballY = 650;
-        ballX = 500;
 
         // draw_pixelBall(traceX, traceY);
-        while (!getUart())
+        while (1)
         {
             // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
             // for (int x = 90; x < 900; x += 170)
@@ -189,13 +187,38 @@ void main()
             // draw_pixelBall(500, 650);
             // draw_paddle(450, 700);
 
-            if ((ballX <= 955 && ballX >= 0) && (ballY <= 736 && ballY >= 0))
+            if ((ballX <= 955 && ballX >= 0) && (ballY <= 900 && ballY >= 0))
             {
                 traceX = ballX + 51;
                 traceY = ballY + 51;
                 draw_pixelBall(ballX, ballY);
 
-                if ((ballX >= 0 && ballY >= 0))
+                if (((ballX == 0) && (900 - ballY < 450)) || (direction == 3))
+                {
+                    direction = 3;
+                }
+                else if (((ballX == 0) && (900 - ballY > 450)) || (direction == 1))
+                {
+                    direction = 1;
+                }
+                else if (((ballY == 0) && (955 - ballX < 477)) || (direction == 2))
+                {
+                    direction = 2;
+                }
+                else if (((ballY == 0) && (955 - ballX > 477)) || (direction == 1))
+                {
+                    direction = 1;
+                }
+                else if (((ballX == 955) && (900 - ballY < 450)) || (direction == 2))
+                {
+                    direction = 2;
+                }
+                else if (((ballX == 955) && (900 - ballY > 450)) || (direction == 4))
+                {
+                    direction = 4;
+                }
+
+                if (direction == 1)
                 {
                     ballX++;
                     ballY++;
@@ -209,7 +232,7 @@ void main()
                         drawPixelARGB32(traceX - 51, i, 0x00000000);
                     }
                 }
-                else if ((ballX <= 955 && ballY <= 736))
+                else if (direction == 2)
                 {
                     ballX--;
                     ballY--;
@@ -223,7 +246,7 @@ void main()
                         drawPixelARGB32(traceX, i, 0x00000000);
                     }
                 }
-                else if ((ballX >= 0 && ballY <= 736))
+                else if (direction == 3)
                 {
                     ballX++;
                     ballY--;
@@ -237,7 +260,7 @@ void main()
                         drawPixelARGB32(traceX - 51, i, 0x00000000);
                     }
                 }
-                else if ((ballX <= 955 && ballY >= 0))
+                else if (direction == 4)
                 {
                     ballX--;
                     ballY++;
@@ -260,12 +283,12 @@ void main()
                     }
                 }
 
+                printf("X: %d ", ballX);
+                uart_puts(" ");
+                printf("Y: %d ", ballY);
+                uart_puts("\n");
                 wait_msec(4000);
-            }
-            else if (ballY > 736)
-            {
-                ballX = 500;
-                ballY = 650;
+
             }
 
             str[count] = getUart();
