@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Sep  6 18:50:08 2022
+# Make data base, printed on Wed Sep  7 08:18:26 2022
 
 # Variables
 
@@ -38,7 +38,6 @@ _ = /usr/bin/make
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
- 
 # makefile (from `Makefile', line 5)
 CFILES = $(wildcard $(SRC_DIR)/*.c)
 # environment
@@ -46,7 +45,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:/opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/hl/pr335lpj58g7j_cbhgv48rn00000gn/T/vscode-ipc-b306aae1-9cfc-452d-a2cb-8391abf2263e.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/hl/pr335lpj58g7j_cbhgv48rn00000gn/T/vscode-ipc-d70633f1-ac72-4332-92fb-c049287eb182.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -60,7 +59,7 @@ LDFLAGS = -nostdlib -nostartfiles
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.iZjdxLgN6I/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LebtHcGbtI/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -158,7 +157,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 17855
+VSCODE_PID = 5929
 # variable set hash-table stats:
 # Load=73/1024=7%, Rehash=0, Collisions=2/106=2%
 
@@ -168,9 +167,9 @@ VSCODE_PID = 17855
 
 # Directories
 
-# . (device 16777234, inode 6415319): 11 files, no impossibilities.
-# ./src (device 16777234, inode 6415490): 22 files, no impossibilities.
-# src (device 16777234, inode 6415490): 22 files, no impossibilities.
+# . (device 16777232, inode 6415319): 11 files, no impossibilities.
+# ./src (device 16777232, inode 6415490): 22 files, no impossibilities.
+# src (device 16777232, inode 6415490): 22 files, no impossibilities.
 
 # 55 files, no impossibilities in 3 directories.
 
@@ -259,6 +258,7 @@ src/timer.c:
 src/framebf.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-09-05 09:34:21
+ 
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -279,7 +279,7 @@ object/mbox.o: src/mbox.c
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-06 18:49:46
+#  Last modified 2022-09-06 21:50:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -336,7 +336,6 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 #  commands to execute (from `Makefile', line 24):
 	rm *.img .\build\kernel8.elf .\build\*.o
 	
@@ -364,7 +363,7 @@ object/timer.o: src/timer.c
 
 kernel8.img: object/boot.o object/framebf.o object/main.o object/mbox.o object/printf.o object/timer.o object/uart.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-09-06 18:49:46
+#  Last modified 2022-09-06 21:50:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -377,7 +376,7 @@ kernel8.img: object/boot.o object/framebf.o object/main.o object/mbox.o object/p
 object/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-09-06 18:49:46
+#  Last modified 2022-09-06 21:50:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -408,6 +407,6 @@ src/mbox.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Sep  6 18:50:08 2022
+# Finished Make data base on Wed Sep  7 08:18:26 2022
 
  

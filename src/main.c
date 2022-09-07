@@ -193,7 +193,7 @@ void main()
                 traceY = ballY + 51;
                 draw_pixelBall(ballX, ballY);
 
-                if (((ballY == 0) && (955 - ballX < 477)) || (direction == 4))
+                if (((ballY == 0) && (955 - ballX <= 477)) || (direction == 4))
                 {
                     direction = 4;
                 }
@@ -201,29 +201,32 @@ void main()
                 {
                     direction = 1;
                 }
-                else if (((ballX == 0) && (900 - ballY > 450)) || (direction == 1))
-                {
-                    direction = 1;
-                }
-                else if (((ballX == 0) && (900 - ballY < 450)) || (direction == 3))
+                else if (((ballX == 0) && (736 - ballY > 368)) || (direction == 3))
                 {
                     direction = 3;
                 }
-                else if (((ballX == 955) && (900 - ballY > 450)) || (direction == 2))
+                else if (((ballX == 0) && (736 - ballY <= 368)) || (direction == 1))
+                {
+                    direction = 1;
+                }
+                else if (((ballX == 955) && (736 - ballY > 368)) || (direction == 2))
                 {
                     direction = 2;
                 }
-                else if (((ballX == 955) && (900 - ballY < 450)) || (direction == 4))
+                else if (((ballX == 955) && (736 - ballY <= 368)) || (direction == 4))
                 {
                     direction = 4;
                 }
-                
-                
 
                 if (direction == 1)
                 {
                     ballX++;
                     ballY++;
+                    if (ballX == 955 || ballY == 736)
+                    {
+                        direction = 0;
+                    }
+                    
                     for (int i = ballX; i < ballX + 51; i++)
                     {
                         drawPixelARGB32(i, traceY - 51, 0x00000000);
@@ -238,6 +241,11 @@ void main()
                 {
                     ballX--;
                     ballY--;
+                    if (ballX == 0 || ballY == 0)
+                    {
+                        direction = 0;
+                    }
+                    
                     for (int i = ballX; i < ballX + 51; i++)
                     {
                         drawPixelARGB32(i, traceY, 0x00000000);
@@ -252,6 +260,11 @@ void main()
                 {
                     ballX++;
                     ballY--;
+                    if (ballX == 955 || ballY == 0)
+                    {
+                        direction = 0;
+                    }
+                    
                     for (int i = ballX; i < ballX + 51; i++)
                     {
                         drawPixelARGB32(i, traceY, 0x00000000);
@@ -266,6 +279,11 @@ void main()
                 {
                     ballX--;
                     ballY++;
+                    if (ballX == 0 || ballY == 736)
+                    {
+                        direction = 0;
+                    }
+                    
                     for (int i = ballX; i < ballX + 51; i++)
                     {
                         drawPixelARGB32(i, traceY - 51, 0x00000000);
@@ -286,10 +304,12 @@ void main()
                     }
                 }
 
-                printf("X: %d ", ballX);
-                uart_puts(" ");
-                printf("Y: %d ", ballY);
-                uart_puts("\n");
+                // printf("X: %d ", ballX);
+                // uart_puts(" ");
+                // printf("Y: %d ", ballY);
+                // uart_puts("\n");
+                // printf("Direction: %d ", direction);
+                // uart_puts("\n");
                 wait_msec(4000);
             }
             else
