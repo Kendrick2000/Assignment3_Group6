@@ -1,8 +1,8 @@
-int physicalWidth = 284;
+/*int physicalWidth = 284;
 int physicalHeight = 177;
 int virtualWidth = 284;
 int virtualHeight = 177;
-
+*/
 void draw_image();
 
 unsigned int image[] = {

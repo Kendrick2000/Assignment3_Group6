@@ -57,3 +57,4 @@ extern volatile unsigned int mbox[36];
  
 /* Function Prototypes */ 
 int mbox_call(unsigned int buffer_addr, unsigned char channel); 
+void setScreenSize(char *array);
