@@ -93,44 +93,44 @@ void main()
             drawString32x32(800,10,"Score: ",0x00E74C3C);
             drawString32x32(930,10,score + " ",0x00E74C3C);
             // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
-            // for (int x = 90; x < 900; x += 170)
-            // {
-            //     for (int y = 50; y < 280; y += 32)
-            //     {
-            //         if (y == 50)
-            //         {
-            //             draw_yellowTile(x, y);
-            //         }
-            //         else if (y == 82)
-            //         {
-            //             draw_redTile(x, y);
-            //         }
-            //         else if (y == 114)
-            //         {
-            //             draw_blueTile(x, y);
-            //         }
-            //         else if (y == 146)
-            //         {
-            //             draw_greenTile(x, y);
-            //         }
-            //         else if (y == 178)
-            //         {
-            //             draw_yellowTile(x, y);
-            //         }
-            //         else if (y == 210)
-            //         {
-            //             draw_blueTile(x, y);
-            //         }
-            //         else if (y == 242)
-            //         {
-            //             draw_greenTile(x, y);
-            //         }
-            //         else if (y == 274)
-            //         {
-            //             draw_redTile(x, y);
-            //         }
-            //     }
-            // }
+            for (int x = 90; x < 900; x += 170)
+            {
+                for (int y = 50; y < 280; y += 32)
+                {
+                    if (y == 50)
+                    {
+                        draw_yellowTile(x, y);
+                    }
+                    else if (y == 82)
+                    {
+                        draw_redTile(x, y);
+                    }
+                    else if (y == 114)
+                    {
+                        draw_blueTile(x, y);
+                    }
+                    else if (y == 146)
+                    {
+                        draw_greenTile(x, y);
+                    }
+                    else if (y == 178)
+                    {
+                        draw_yellowTile(x, y);
+                    }
+                    else if (y == 210)
+                    {
+                        draw_blueTile(x, y);
+                    }
+                    else if (y == 242)
+                    {
+                        draw_greenTile(x, y);
+                    }
+                    else if (y == 274)
+                    {
+                        draw_redTile(x, y);
+                    }
+                }
+            }
             // draw_pixelBall(500, 650);
             // draw_paddle(450, 700);
 

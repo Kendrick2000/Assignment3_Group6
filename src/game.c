@@ -1,3 +1,4 @@
+
 #include "uart.h"
 #include "game.h"
 
@@ -323,7 +324,8 @@ struct Sprite {
     int direction;
 };
 
+
 void collision_check(struct Sprite sprite) {
-    
+   
 
 }
