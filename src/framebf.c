@@ -83,14 +83,14 @@ void framebf_init()
  
         // Access frame buffer as 1 byte per each address 
         fb = (unsigned char *)((unsigned long)mbox[28]); 
-        uart_puts("Got allocated Frame Buffer at RAM physical address: "); 
+        /*uart_puts("Got allocated Frame Buffer at RAM physical address: "); 
         uart_hex(mbox[28]); 
         uart_puts("\n"); 
  
         uart_puts("Frame Buffer Size (bytes): "); 
         uart_dec(mbox[29]); 
         uart_puts("\n"); 
- 
+        */
         width = mbox[5];      // Actual physical width 
         height = mbox[6];      // Actual physical height 
         pitch = mbox[33];       // Number of bytes per line 
@@ -164,4 +164,103 @@ void drawString(int x, int y, char *s, unsigned char attr)
        }
        s++;
     }
+}
+void drawChar32x32(unsigned char ch, int x, int y, unsigned char attr)
+{
+    unsigned char *glyph = (unsigned char *)&font + (ch < FONT_NUMGLYPHS ? ch : 0) * FONT_BPG;
+
+    for (int i=0;i<FONT_HEIGHT;i++) {
+	for (int j=0;j<FONT_WIDTH;j++) {
+	    unsigned char mask = 1 << j;
+	    unsigned char col = (*glyph & mask) ? attr & 0x0f : 0x00;
+
+	    drawPixel(x+2*j, y+2*i, col);
+        drawPixel(x+2*j, y+2*i + 1, col);
+       	drawPixel(x+2*j +1, y+2*i, col);
+       	drawPixel(x+2*j+1, y+2*i+1, col);
+	}
+	glyph += FONT_BPL;
+    }
+}
+
+void drawString32x32(int x, int y, char *s, unsigned char attr)
+{
+    while (*s) {
+       if (*s == '\r') {
+          x = 0;
+       } else if(*s == '\n') {
+          x = 0; y += FONT_HEIGHT*2;
+       } else {
+	  drawChar32x32(*s, x, y, attr);
+          x += FONT_WIDTH*2;
+       }
+       s++;
+    }
+}
+
+void drawCharLarge(unsigned char ch, int x, int y, unsigned char attr)
+{
+    unsigned char *glyph = (unsigned char *)&font + (ch < FONT_NUMGLYPHS ? ch : 0) * FONT_BPG;
+
+    for (int i=0;i<FONT_HEIGHT;i++) {
+	for (int j=0;j<FONT_WIDTH;j++) {
+	    unsigned char mask = 1 << j;
+	    unsigned char col = (*glyph & mask) ? attr & 0x0f : 0x00;
+
+	    drawPixel(x+8*j, y+8*i, col);
+        drawPixel(x+8*j, y+8*i + 1, col);
+       	drawPixel(x+8*j +1, y+8*i, col);
+       	drawPixel(x+8*j+1, y+8*i+1, col);
+	}
+	glyph += FONT_BPL;
+    }
+}
+
+void drawStringLarge(int x, int y, char *s, unsigned char attr)
+{
+    while (*s) {
+       if (*s == '\r') {
+          x = 0;
+       } else if(*s == '\n') {
+          x = 0; y += FONT_HEIGHT*8;
+       } else {
+	  drawCharLarge(*s, x, y, attr);
+          x += FONT_WIDTH*8;
+       }
+       s++;
+    }
+}
+
+void framebf_blank() {
+    mbox[0] = 8 * 4;        // Message Buffer Size in bytes (8 elements * 4 bytes (32 bit) each)
+    mbox[1] = MBOX_REQUEST; // Message Request Code (this is a request message)
+    mbox[2] = 0x00040005;   // TAG Identifier: Frame buffer blank screen.
+    mbox[3] = 32;           // Value buffer size in bytes (max of request and response lengths)
+    mbox[4] = 0;            // REQUEST CODE = 0
+    mbox[5] = 4;            // RESPOND LENGTH = 4
+    mbox[6] = 0;            // clear output buffer (response data are mbox[5] & mbox[6])
+    mbox[7] = MBOX_TAG_LAST;
+
+    if (mbox_call(ADDR(mbox), MBOX_CH_PROP))
+    {
+        uart_puts("Clear screen");
+        uart_puts("\n");
+    } 
+}
+
+void framebf_release() {
+    mbox[0] = 8 * 4;        // Message Buffer Size in bytes (8 elements * 4 bytes (32 bit) each)
+    mbox[1] = MBOX_REQUEST; // Message Request Code (this is a request message)
+    mbox[2] = 0x00048001;   // TAG Identifier: Frame buffer release.
+    mbox[3] = 0;           // Value buffer size in bytes (max of request and response lengths)
+    mbox[4] = 0;            // REQUEST CODE = 0
+    mbox[5] = 0;            // RESPOND LENGTH = 4
+    mbox[6] = 0;            // clear output buffer (response data are mbox[5] & mbox[6])
+    mbox[7] = MBOX_TAG_LAST;
+
+    if (mbox_call(ADDR(mbox), MBOX_CH_PROP))
+    {
+        uart_puts("Frame buffer release");
+        uart_puts("\n");
+    } 
 }
