@@ -6,7 +6,7 @@ CFILES = $(wildcard $(SRC_DIR)/*.c)
 OFILES = $(CFILES:$(SRC_DIR)/%.c=$(OBJECT_DIR)/%.o)
 
 GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib
-LDFLAGS = -nostdlib -nostartfiles
+LDFLAGS = -nostdlib 
 
 all: kernel8.img #run
 
@@ -24,6 +24,6 @@ clean:
 	rm *.img .\build\kernel8.elf .\build\*.o
 
 run:
-	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial null -serial stdio
+	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial null -serial stdio
 
 test: all run

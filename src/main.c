@@ -10,36 +10,52 @@
 void main()
 {
     int count = 0;
+    int score = 0;
 
     uart_init();
     framebf_init();
 
     // say welcome message
-    uart_puts("ooooooooooo ooooooooooo ooooooooooo ooooooooooo   ooooooo         o88  ooooooo     ooooooo\n");
-    uart_puts(" 888    88   888    88   888    88  88  888  88 o88     888     o8888 888    88o o888  o888o\n");
-    uart_puts(" 888ooo8     888ooo8     888ooo8        888           o888    o88 888  888oo8888 888  8  888\n");
-    uart_puts(" 888    oo   888    oo   888    oo      888        o888   o o888oo888oo     888  888o8  o888\n");
-    uart_puts("o888ooo8888 o888ooo8888 o888ooo8888    o888o    o8888oooo88      o888o   o888      88ooo88\n");
-    uart_puts("\n");
-    uart_puts("oooo     oooo ooooooooooo ooooo         oooooooo8   ooooooo  oooo     oooo ooooooooooo   ooooooooooo   ooooooo\n");
-    uart_puts(" 88   8   88   888    88   888        o888     88 o888   888o 8888o   888   888    88    88  888  88 o888   888o\n");
-    uart_puts("  88 888 88    888ooo8     888        888         888     888 88 888o8 88   888ooo8          888     888     888\n");
-    uart_puts("   888 888     888    oo   888      o 888o     oo 888o   o888 88  888  88   888    oo        888     888o   o888\n");
-    uart_puts("    8   8     o888ooo8888 o888ooooo88  888oooo88    88ooo88  o88o  8  o88o o888ooo8888      o888o      88ooo88\n");
-    uart_puts("\n");
-    uart_puts("oooooooooo      o      oooooooooo  ooooooooooo       ooooooo    oooooooo8\n");
-    uart_puts(" 888    888    888      888    888  888    88      o888   888o 888\n");
-    uart_puts(" 888oooo88    8  88     888oooo88   888ooo8        888     888  888oooooo\n");
-    uart_puts(" 888    888  8oooo88    888  88o    888    oo      888o   o888         888\n");
-    uart_puts("o888ooo888 o88o  o888o o888o  88o8 o888ooo8888       88ooo88   o88oooo888\n");
-    uart_puts("\n");
-    uart_puts("Developed by Truong Phu Khang - S3814172.\n");
-
-    drawString(100,100,"Nguyen Phuong Uyen-s3751882",0x009FE2BF);
-    // drawString(100,100,"Khang Truong-s3751882",0x00AA0000);
-    // drawString(100,100,"Daniil Shlee-s3751882",0x0000BB00);
-    // drawString(100,100,"Kiet Park-s3751882",0x00AA0000);
+    uart_puts("\nEEET2490 - Embedded System: Operating System and Interfacing \n\n");
+    uart_puts("######## ######## ######## ########   #######  ##         #######    #####   \n"
+              "##       ##       ##          ##     ##     ## ##    ##  ##     ##  ##   ##  \n"
+              "##       ##       ##          ##            ## ##    ##  ##     ## ##     ## \n"
+              "######   ######   ######      ##      #######  ##    ##   ######## ##     ## \n"
+              "##       ##       ##          ##     ##        #########        ## ##     ## \n"
+              "##       ##       ##          ##     ##              ##  ##     ##  ##   ##  \n"
+              "##       ##       ##          ##     ##              ##  ##     ##  ##   ##  \n"
+              "######## ######## ########    ##     #########       ##   #######    #####   \n"
+              "\n\n"
+              "########     ###    ########  ########     #######   ######                 \n"
+              "##     ##   ## ##   ##     ## ##          ##     ## ##    ##                \n"
+              "##     ##  ##   ##  ##     ## ##          ##     ## ##                      \n"
+              "########  ##     ## ########  ######      ##     ##  ######                 \n"
+              "##     ## ######### ##   ##   ##          ##     ##       ##                \n"
+              "##     ## ##     ## ##    ##  ##          ##     ## ##    ##                \n"
+              "########  ##     ## ##     ## ########     #######   ######                 \n"
+              "\n\n");
     
+    drawStringLarge(50,20,"EEET2490",0x003498DB);
+    drawStringLarge(50,100,"Bare OS",0x003498DB);
+    
+    drawString32x32(50,200,"Uyen Nguyen - s3751882",0x003498DB);
+    drawString32x32(50,220,"Khang Truong - s3751882",0x00AF601A);
+    drawString32x32(50,240,"Daniil Shlee - s3751882",0x00BB8FCE);
+    drawString32x32(50,260,"Kiet Park - s3751882",0x00E74C3C);
+
+    wait_msec(3000000);
+
+    drawStringLarge(50,20,"EEET2490",0x0);
+    drawStringLarge(50,100,"Bare OS",0x0);
+
+    drawString32x32(50,200,"Uyen Nguyen - s3751882",0x0);
+    drawString32x32(50,220,"Khang Truong - s3751882",0x0);
+    drawString32x32(50,240,"Daniil Shlee - s3751882",0x0);
+    drawString32x32(50,260,"Kiet Park - s3751882",0x0);
+
+    framebf_release();
+    framebf_init();
+
     // Print cursor onto terminal screen
     uart_puts("\n");
     uart_puts("MyBareOS> ");
@@ -64,7 +80,9 @@ void main()
             y++;
             for (int i = 0; i < 50; i++)
             {
-                drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);
+                if (pixelball[j*50+i] != 0x00)
+                    drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);
+                
             }
         }
     }
@@ -146,6 +164,9 @@ void main()
         // draw_pixelBall(traceX, traceY);
         while (1)
         {
+            drawString32x32(800,10,"Score: ",0x00E74C3C);
+            drawString32x32(930,10,score,0x00E74C3C);
+
             // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
             for (int x = 90; x < 900; x += 170)
             {
@@ -241,19 +262,23 @@ void main()
             // }
 
             // Moving from right - left
-            if (ballX >= 0)
-            {
+            if (ballX >= 0) {
                 traceX = ballX + 51;
-                ballX--;
+                traceY = ballY + 51;
+                ballX--; ballY--;
                 draw_pixelBall(ballX, ballY);
                 for (int i = ballY; i < ballY + 51; i++)
                 {
-                    drawPixelARGB32(traceX, i, 0x00000000);
+                    for (int j = ballX; j < ballX + 51; j++) {
+                        drawPixelARGB32(traceX, i, 0x00000000);
+                        drawPixelARGB32(j, traceY, 0x00000000);
+                    }
                 }
             }
             else
             {
                 ballX = 950;
+                ballY = 700;
             }
 
             str[count] = getUart();
