@@ -8,8 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Wed Sep 07 15:30:04 2022
-
+# Make data base, printed on Wed Sep 07 15:30:04 202
 # Variables
 
 # automatic
@@ -69,8 +68,8 @@ PATH = C:\Program Files (x
 NIDAQMXSWITCHDIR = C:\Program Files (x86)\National Instruments\NI-DAQ\Switch\
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
-# environment
-NIEXTCCOMPILERSUPP = C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\
+# environmen
+NIEXTCCOMPILERSUPP = C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C
 # environment
 PROCESSOR_ARCHITECTURE = x86
 # environment
@@ -290,7 +289,7 @@ src/printf.c:
 
 # Not a target:
 src/framebf.c:
-#  Implicit rule search has been done.
+#  Implicit rule search has been don
 #  Last modified 2022-09-07 15:25:12
 #  File has been updated.
 #  Successfully updated.
@@ -313,8 +312,8 @@ src/timer.c:
 
 # Not a target:
 makefile:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 15:29:04
+#  Implicit rule search has been done
+#  Last modified 2022-09-07 15:29:0
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
