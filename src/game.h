@@ -3,6 +3,7 @@ int pixelBallPhysicalHeight = 50;
 int pixelBallVirtualWidth = 50;
 int pixelBallVirtualHeight = 50;
 
+void collision_check();
 void draw_pixelBall();
 
 unsigned int pokeball[] = {
