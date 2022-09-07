@@ -187,7 +187,7 @@ void main()
             // draw_pixelBall(500, 650);
             // draw_paddle(450, 700);
 
-            if ((ballX <= 955 && ballX >= 0) && (ballY <= 900 && ballY >= 0))
+            if ((ballX <= 955 && ballX >= 0) && (ballY <= 786 && ballY >= 0))
             {
                 traceX = ballX + 51;
                 traceY = ballY + 51;
@@ -222,7 +222,7 @@ void main()
                 {
                     ballX++;
                     ballY++;
-                    if (ballX == 955 || ballY == 736)
+                    if (ballX == 955)
                     {
                         direction = 0;
                     }
@@ -279,7 +279,7 @@ void main()
                 {
                     ballX--;
                     ballY++;
-                    if (ballX == 0 || ballY == 736)
+                    if (ballX == 0)
                     {
                         direction = 0;
                     }
@@ -307,6 +307,7 @@ void main()
                 // printf("X: %d ", ballX);
                 // uart_puts(" ");
                 // printf("Y: %d ", ballY);
+                // printf("count: %d", count);
                 // uart_puts("\n");
                 // printf("Direction: %d ", direction);
                 // uart_puts("\n");
@@ -335,6 +336,7 @@ void main()
                     barX += 100;
                     draw_paddle(barX, 700);
                 }
+                count++;
             }
 
             if (str[count] == 'a')
@@ -351,14 +353,14 @@ void main()
                     barX -= 100;
                     draw_paddle(barX, 700);
                 }
+                count++;
             }
 
             if (str[count] == 'c')
             {
+                count++;
                 break;
             }
-
-            count++;
         }
     }
 
