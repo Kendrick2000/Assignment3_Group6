@@ -91,7 +91,7 @@ void main()
         while (1)
         {
             drawString32x32(800,10,"Score: ",0x00E74C3C);
-            drawString32x32(930,10,score + " ",0x00E74C3C);
+            drawString32x32(930,10,score + "0",0x00E74C3C);
             // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
             for (int x = 90; x < 900; x += 170)
             {

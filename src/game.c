@@ -247,8 +247,17 @@ void draw_pixelBall(int x, int y)
         for (int i = 0; i < 50; i++)
         {
             //drawPixelARGB32(i + x, y, pokeball[j * 50 + i]);
-            if (pokeball[j * 50 + i] != 0x00)
+             if (pokeball[j * 50 + i] != 0x00){
                 drawPixelARGB32(i + x, y, pokeball[j * 50 + i]);
+            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[j * 50 + i + 7] != 0x00)){
+                drawPixelARGB32(i + x, y, 0x00000000);
+            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[j * 50 + i - 7] != 0x00)){
+                drawPixelARGB32(i + x, y, 0x00000000);
+            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[(j - 1) * 50 + i] != 0x00)){
+                drawPixelARGB32(i + x, y, 0x00000000);
+            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[(j + 1) * 50 + i] != 0x00)){
+                drawPixelARGB32(i + x, y, 0x00000000);
+            }
         }
     }
 }
