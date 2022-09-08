@@ -324,8 +324,23 @@ struct Sprite {
     int direction;
 };
 
+void del_tile(int x, int y) {
+    for (int i = x; i < (x+150); i++) {
+        for (int j = y; j < (y+30); j++) {
+            drawPixelARGB32(i,j,0x00);
+        }
+    }
+}
 
 void collision_check(struct Sprite sprite) {
-   
-
+    int divident = sprite.x/170; 
+    int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
+    for (int i = 0; i < 8; i++) {  
+        if (sprite.y == ytile_down[i]) {    
+            while (divident < 5) {
+                del_tile((90+170*divident),ytile_down[i]-30);
+                sprite.direction = divident;
+            }
+        }       
+    }
 }
