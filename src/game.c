@@ -332,7 +332,7 @@ void del_tile(int x, int y) {
     }
 }
 
-void collision_check(struct Sprite sprite) {
+void collision_tile(struct Sprite sprite) {
     int divident = sprite.x/170; 
     int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
     for (int i = 0; i < 8; i++) {  
