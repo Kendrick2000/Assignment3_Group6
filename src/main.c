@@ -11,6 +11,9 @@ void main()
 {
     int count = 0;
     int score = 0;
+    
+    struct Sprite ball;
+    struct Sprite paddle;
 
     uart_puts("\nEEET2490 - Embedded System: Operating System and Interfacing \n\n");
     uart_puts("######## ######## ######## ########   #######  ##         #######    #####   \n"
