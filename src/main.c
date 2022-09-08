@@ -235,7 +235,7 @@ void main()
             str[count] = getUart();
             if (str[count] != '\0'){
                 if (str[count] == 'd'){
-                    if( barX <= 955){
+                    if( barX <= 900){
                         move_paddle(str, barX);
                         barX+=100;
                         draw_paddle(barX,700);
