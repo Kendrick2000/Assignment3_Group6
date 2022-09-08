@@ -7,10 +7,14 @@
 #include "largeImage.h"
 #include "game.h"
 
+
 void main()
 {
     int count = 0;
     int score = 0;
+
+    uart_init();
+    framebf_init();
 
     uart_puts("\nEEET2490 - Embedded System: Operating System and Interfacing \n\n");
     uart_puts("######## ######## ######## ########   #######  ##         #######    #####   \n"
@@ -71,11 +75,21 @@ void main()
 
     
 
-    void collisionWithPaddle(int ballX, int ballY, int paddleX, int paddleY)
+    int collisionWithPaddle(int ballX, int ballY, int paddleX, int direction)
     {
-        if ((ballY == 700) && ((ballX >= paddleX) && (ballX <= paddleX + 127)))
+        int dir = 0;
+        dir = direction;
+        if ((ballY + 50 == 700) && ((ballX >= paddleX) && (ballX <= paddleX + 127)))
         {
+            // uart_puts("Hello from collision");
+            // uart_puts("\n");
+            if(((ballX >= paddleX) && (ballX <= paddleX + 30))){
+                dir = 2;
+            }else if(((ballX <= paddleX + 127) && (ballX >= paddleX + 97))){
+                dir = 3;
+            }
         }
+        return dir;
     }
 
     void draw_game()
@@ -85,6 +99,7 @@ void main()
         int traceX = 0, traceY = 0;
         int direction = 0;
         char str[10000];
+        draw_background();
         draw_paddle(barX, 700);
 
         // draw_pixelBall(traceX, traceY);
@@ -139,7 +154,9 @@ void main()
                 traceX = ballX + 51;
                 traceY = ballY + 51;
                 draw_pixelBall(ballX, ballY);
-
+                direction = collisionWithPaddle(ballX, ballY, barX, direction);
+                // printf(" %d %d d%d ", ballX, ballY,direction);
+                // printf("\n");
                 if (((ballY == 0) && (955 - ballX <= 477)) || (direction == 4))
                 {
                     direction = 4;
@@ -173,16 +190,6 @@ void main()
                     {
                         direction = 0;
                     }
-
-                    for (int i = ballX; i < ballX + 51; i++)
-                    {
-                        drawPixelARGB32(i, traceY - 51, 0x00000000);
-                    }
-
-                    for (int i = ballY; i < ballY + 51; i++)
-                    {
-                        drawPixelARGB32(traceX - 51, i, 0x00000000);
-                    }
                 }
                 else if (direction == 2)
                 {
@@ -191,16 +198,6 @@ void main()
                     if (ballX == 0 || ballY == 0)
                     {
                         direction = 0;
-                    }
-
-                    for (int i = ballX; i < ballX + 51; i++)
-                    {
-                        drawPixelARGB32(i, traceY, 0x00000000);
-                    }
-
-                    for (int i = ballY; i < ballY + 51; i++)
-                    {
-                        drawPixelARGB32(traceX, i, 0x00000000);
                     }
                 }
                 else if (direction == 3)
@@ -211,16 +208,6 @@ void main()
                     {
                         direction = 0;
                     }
-
-                    for (int i = ballX; i < ballX + 51; i++)
-                    {
-                        drawPixelARGB32(i, traceY, 0x00000000);
-                    }
-
-                    for (int i = ballY; i < ballY + 51; i++)
-                    {
-                        drawPixelARGB32(traceX - 51, i, 0x00000000);
-                    }
                 }
                 else if (direction == 4)
                 {
@@ -230,34 +217,12 @@ void main()
                     {
                         direction = 0;
                     }
-
-                    for (int i = ballX; i < ballX + 51; i++)
-                    {
-                        drawPixelARGB32(i, traceY - 51, 0x00000000);
-                    }
-
-                    for (int i = ballY; i < ballY + 51; i++)
-                    {
-                        drawPixelARGB32(traceX, i, 0x00000000);
-                    }
                 }
                 else
                 {
                     // ballX-=5;
                     ballY--;
-                    for (int i = ballX; i < ballX + 51; i++)
-                    {
-                        drawPixelARGB32(i, traceY, 0x00000000);
-                    }
                 }
-
-                // printf("X: %d ", ballX);
-                // uart_puts(" ");
-                // printf("Y: %d ", ballY);
-                // printf("count: %d", count);
-                // uart_puts("\n");
-                // printf("Direction: %d ", direction);
-                // uart_puts("\n");
                 wait_msec(4000);
             }
             else
@@ -268,39 +233,23 @@ void main()
             }
 
             str[count] = getUart();
-            if (str[count] == 'd')
-            {
-                if (barX <= 1000)
-                {
-                    for (int j = 700; j < 725; j++)
-                    {
-                        for (int i = barX; i < barX + 100; i++)
-                        {
-                            drawPixelARGB32(i, j, 0x00000000);
-                        }
+            if (str[count] != '\0'){
+                if (str[count] == 'd'){
+                    if( barX <= 955){
+                        move_paddle(str, barX);
+                        barX+=100;
+                        draw_paddle(barX,700);
+                        
                     }
-
-                    barX += 100;
-                    draw_paddle(barX, 700);
                 }
-                count++;
-            }
 
-            if (str[count] == 'a')
-            {
-                if (barX > 0)
-                {
-                    for (int j = 700; j < 725; j++)
-                    {
-                        for (int i = barX + 127; i > barX - 100; i--)
-                        {
-                            drawPixelARGB32(i, j, 0x00000000);
-                        }
+                if (str[count] == 'a'){
+                    if(barX >= 0){
+                        move_paddle(str, barX);
+                        barX-=100;
+                        draw_paddle(barX,700);
                     }
-                    barX -= 100;
-                    draw_paddle(barX, 700);
                 }
-                count++;
             }
 
             if (str[count] == 'c')

@@ -1,6 +1,6 @@
-
 #include "uart.h"
 #include "game.h"
+#include "background.h"
 
 #define BCK_WIDTH 1024
 #define BCK_HEIGHT 768
@@ -10,7 +10,7 @@ int pixelBallPhysicalHeight = 50;
 int pixelBallVirtualWidth = 50;
 int pixelBallVirtualHeight = 50;
 
-unsigned int pokeball[] = {
+unsigned int pixelball[] = {
     // '293475056_378971537763684_425998926909292209_n', 50x50px
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
@@ -249,18 +249,22 @@ void draw_pixelBall(int x, int y)
         y++;
         for (int i = 0; i < 50; i++)
         {
-            //drawPixelARGB32(i + x, y, pokeball[j * 50 + i]);
-             if (pokeball[j * 50 + i] != 0x00){
-                drawPixelARGB32(i + x, y, pokeball[j * 50 + i]);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[j * 50 + i + 7] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[j * 50 + i - 7] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[(j - 1) * 50 + i] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[(j + 1) * 50 + i] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
+            if (pixelball[j * 50 + i] != 0x00){
+                // drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x]);
+                drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);               
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 15] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 15] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[(j - 1) * 50 + i] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[(j + 1) * 50 + i] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
             }
+            else if (pixelball[j * 50 + i] == 0x00) {
+                i++;
+            }
+            // drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);
         }
     }
 }
@@ -276,7 +280,36 @@ void draw_paddle(int x, int y)
         }
     }
 }
+void move_paddle(char* str, int barX){
+    int count = 0;
+    if (str[0] == 'd')
+    {
+        for (int j = 700; j < 725; j++)
+        {
+            for (int i = barX; i < barX + 200; i++)
+            {
+                drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
+                // printf("Hello from for loop draw background");
+            }
+        }
+        // printf("%d ", barX);
+        // draw_paddle(barX, 700);
+    }
 
+    if (str[0] == 'a')
+    {
+        for (int j = 700; j < 725; j++)
+        {
+            for (int i = barX + 127; i > barX + 27; i--)
+            {
+                drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
+                // printf("Hello from for loop draw background");
+            }
+        }
+        // printf("%d ", barX);
+        // draw_paddle(barX, 700);
+    }
+}
 void draw_greenTile(int x, int y)
 {
     // framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
@@ -329,13 +362,12 @@ void draw_redTile(int x, int y)
     }
 }
 
-void draw_background(int x, int y) {
+void draw_background(){
     for (int j = 0; j < 768; j++)
     {
-        y++;
         for (int i = 0; i < 1024; i++)
         {
-            drawPixelARGB32(i + x, y, bkg_img[j * 1024 + i]);
+            drawPixelARGB32(i, j, bkg_img[j * 1024 + i]);
         }
     }
 }
@@ -365,9 +397,9 @@ void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
         int xoffs = x + offsetX;
         int yoffs = y + offsetY;
 
-        if (sprite[i]!=0x00) {                                                  //(bar fully black pixels)...
-            drawPixelARGB32(xoffs,yoffs,background[(yoffs*BCK_WIDTH)+xoffs]);   //Draw that pixel on the framebuffer
-        }             
+        // if (sprite[i]!=0x00) {                                                  //(bar fully black pixels)...
+        //     drawPixelARGB32(xoffs,yoffs,background[(yoffs*BCK_WIDTH)+xoffs]);   //Draw that pixel on the framebuffer
+        // }             
         offsetX++;                                                              //After drawing, step to the pixel to the right      
         if ((i%spr_width == 0) && (i != 0)) {                                       //IF the horizontal offset = horisontal size of the image, then
             offsetY += 1;                                                       //Step DOWN the pixel row                        
