@@ -4,5 +4,7 @@ void draw_blueTile();
 void draw_yellowTile();
 void draw_redTile();
 void draw_paddle(int x, int y);
+void draw_background(int x, int y);
 void collision_tile();
 void del_tile(int x, int y);
+void eraseSprite(int x, int y, int spr_width, int spr_height, int* background);

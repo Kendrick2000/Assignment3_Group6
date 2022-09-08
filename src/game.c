@@ -2,6 +2,9 @@
 #include "uart.h"
 #include "game.h"
 
+#define BCK_WIDTH 1024
+#define BCK_HEIGHT 768
+
 int pixelBallPhysicalWidth = 50;
 int pixelBallPhysicalHeight = 50;
 int pixelBallVirtualWidth = 50;
@@ -326,6 +329,16 @@ void draw_redTile(int x, int y)
     }
 }
 
+void draw_background(int x, int y) {
+    for (int j = 0; j < 768; j++)
+    {
+        y++;
+        for (int i = 0; i < 1024; i++)
+        {
+            drawPixelARGB32(i + x, y, bkg_img[j * 1024 + i]);
+        }
+    }
+}
 
 struct Sprite {
     int x;
@@ -341,8 +354,31 @@ void del_tile(int x, int y) {
     }
 }
 
+void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
+    int totalPixels = spr_width * spr_height;
+    //int topLeftX = x-(spr_width/2); //Top left corner of the sprite, x-coord
+    //int topLeftY = y-(spr_height/2); //Top left corner of the sprite, y-coord. RPI follows the "Downwards Y-axis is positive" convention. I.e. to go up on the screen, you SUBTRACT from y coord values.
+    int offsetX = 0;                                                        //X- Offset of the sprite pixel cunting from top left corner
+    int offsetY = 0;
+
+    for (int i = 0; i < (totalPixels); i++) {                                   //For every pixel of the image,       
+        int xoffs = x + offsetX;
+        int yoffs = y + offsetY;
+
+        if (sprite[i]!=0x00) {                                                  //(bar fully black pixels)...
+            drawPixelARGB32(xoffs,yoffs,background[(yoffs*BCK_WIDTH)+xoffs]);   //Draw that pixel on the framebuffer
+        }             
+        offsetX++;                                                              //After drawing, step to the pixel to the right      
+        if ((i%spr_width == 0) && (i != 0)) {                                       //IF the horizontal offset = horisontal size of the image, then
+            offsetY += 1;                                                       //Step DOWN the pixel row                        
+            offsetX = 0;                                                        //Reset the horizontal offset (back to x=0 in the image)
+        }       
+    }
+}
+
+
 void collision_tile(struct Sprite sprite) {
-    int divident = sprite.x/170; 
+    int divident = (sprite.x+25)/170; 
     int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
     for (int i = 0; i < 8; i++) {  
         if (sprite.y == ytile_down[i]) {    
