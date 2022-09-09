@@ -252,9 +252,9 @@ void draw_pixelBall(int x, int y)
             if (pixelball[j * 50 + i] != 0x00){
                 // drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x]);
                 drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);               
-            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 15] != 0x00)){
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 6] != 0x00)){
                 drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
-            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 15] != 0x00)){
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 6] != 0x00)){
                 drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
             }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[(j - 1) * 50 + i] != 0x00)){
                 drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
@@ -372,21 +372,15 @@ void draw_background(){
     }
 }
 
-struct Sprite {
-    int x;
-    int y;
-    int direction;
-};
-
 void del_tile(int x, int y) {
     for (int i = x; i < (x+150); i++) {
-        for (int j = y; j < (y+30); j++) {
-            drawPixelARGB32(i,j,0x00);
+        for (int j = y; j < (y+32); j++) {
+            drawPixelARGB32(i,j,bkg_img[j * 1024 + i + x]);
         }
     }
 }
 
-void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
+void eraseSprite(int x, int y, int spr_width, int spr_height) {
     int totalPixels = spr_width * spr_height;
     //int topLeftX = x-(spr_width/2); //Top left corner of the sprite, x-coord
     //int topLeftY = y-(spr_height/2); //Top left corner of the sprite, y-coord. RPI follows the "Downwards Y-axis is positive" convention. I.e. to go up on the screen, you SUBTRACT from y coord values.
@@ -409,15 +403,15 @@ void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
 }
 
 
-void collision_tile(struct Sprite sprite) {
-    int divident = (sprite.x+25)/170; 
-    int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
-    for (int i = 0; i < 8; i++) {  
-        if (sprite.y == ytile_down[i]) {    
-            while (divident < 5) {
-                del_tile((90+170*divident),ytile_down[i]-30);
-                sprite.direction = divident;
-            }
-        }       
-    }
-}
+// void collision_tile(Sprite sprite) {
+//     int divident = (sprite.x+25)/170; 
+//     int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
+//     for (int i = 0; i < 8; i++) {  
+//         if (sprite.y == ytile_down[i]) {    
+//             while (divident < 5) {
+//                 del_tile((90+170*divident),ytile_down[i]-30);
+//                 sprite.direction = divident;
+//             }
+//         }       
+//    
+// }

@@ -6,12 +6,20 @@
 #include "video.h"
 #include "largeImage.h"
 #include "game.h"
+#include "timer.h"
+
+struct Sprite {
+    int x;
+    int y;
+    int direction;
+};
 
 
 void main()
 {
     int count = 0;
     int score = 0;
+    struct Sprite tiles[40];
 
     uart_init();
     framebf_init();
@@ -92,12 +100,61 @@ void main()
         return dir;
     }
 
+    void deleteTileCoordinate(int position){
+        int tempX[40], tempY[40];
+        int count = 0;
+        for (int i = 0; i < 40; i++){
+            if(i == position){
+                i++;
+            }else{
+                tempX[count] = tiles[i].x;
+                tempY[count] = tiles[i].y;
+                tiles[count].x = tempX[count];
+                tiles[count].y = tempY[count];
+                count++;
+            }
+        }
+    }
+
+    int detectCollision(int x, int y, int direction){
+        int count = 0;
+        //struct Sprite tiles[40];
+        int distanceX = 0, distanceY = 0;
+        int isCollision = 0;
+        int dir = 0;
+        dir = direction;
+        for(int i = 0; i < 40; i++){
+           if ((y >= (tiles[i].y + 32)) && (y <= (tiles[i].y + 32))){
+               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 51) >= tiles[i].x) && ((x + 51) <= tiles[i].x))){
+                   del_tile(tiles[i].x, tiles[i].y);
+                   deleteTileCoordinate(i);
+                   dir = 1;
+               }
+           }else if (((y + 50) >= tiles[i].y) && ((y + 50) <= tiles[i].y)){
+               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 51) >= tiles[i].x) && ((x + 51) <= tiles[i].x))){
+                   del_tile(tiles[i].x, tiles[i].y);
+                   deleteTileCoordinate(i);
+                   dir = 3;
+               }
+           }else if(((x + 50) == tiles[i].x) || (x == tiles[i].x) || ((x + 50) == tiles[i].x + 127) || (x == tiles[i].x)){
+               if(((tiles[i].y >= y) && (tiles[i].y <= y + 50))){
+                   del_tile(tiles[i].x, tiles[i].y);
+                   deleteTileCoordinate(i);
+                   dir = 4;
+               }
+           }
+        }
+        return dir;
+    }
+
     void draw_game()
     {
         int barX = 500, barFlag = 0, count = 0;
         int ballX = 500, ballY = 650;
         int traceX = 0, traceY = 0;
         int direction = 0;
+        int i = 0; 
+        int isCollision = 0, isInitial = 0;
         char str[10000];
         draw_background();
         draw_paddle(barX, 700);
@@ -108,43 +165,70 @@ void main()
             drawString32x32(800,10,"Score: ",0x00E74C3C);
             drawString32x32(930,10,score + "0",0x00E74C3C);
             // framebf_init(gamePhysicalWidth, gamePhysicalHeight, gameVirtualWidth, gameVirtualHeight);
-            for (int x = 90; x < 900; x += 170)
-            {
-                for (int y = 50; y < 280; y += 32)
+            if(isInitial == 0){
+                for (int x = 90; x < 900; x += 170)
                 {
-                    if (y == 50)
+                    for (int y = 50; y < 280; y += 32)
                     {
-                        draw_yellowTile(x, y);
-                    }
-                    else if (y == 82)
-                    {
-                        draw_redTile(x, y);
-                    }
-                    else if (y == 114)
-                    {
-                        draw_blueTile(x, y);
-                    }
-                    else if (y == 146)
-                    {
-                        draw_greenTile(x, y);
-                    }
-                    else if (y == 178)
-                    {
-                        draw_yellowTile(x, y);
-                    }
-                    else if (y == 210)
-                    {
-                        draw_blueTile(x, y);
-                    }
-                    else if (y == 242)
-                    {
-                        draw_greenTile(x, y);
-                    }
-                    else if (y == 274)
-                    {
-                        draw_redTile(x, y);
+                        if (y == 50)
+                        {
+                            draw_yellowTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 82)
+                        {
+                            draw_redTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 114)
+                        {
+                            draw_blueTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 146)
+                        {
+                            draw_greenTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 178)
+                        {
+                            draw_yellowTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 210)
+                        {
+                            draw_blueTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 242)
+                        {
+                            draw_greenTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 274)
+                        {
+                            draw_redTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
                     }
                 }
+                isInitial = 1;
             }
             // draw_pixelBall(500, 650);
             // draw_paddle(450, 700);
@@ -223,7 +307,9 @@ void main()
                     // ballX-=5;
                     ballY--;
                 }
-                wait_msec(4000);
+                direction = detectCollision(ballX, ballY, direction);
+                // isCollision = detectCollision(ballX, ballY);                
+                wait_msec(4000); 
             }
             else
             {
