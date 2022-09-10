@@ -252,6 +252,26 @@ void draw_pixelBall(int x, int y)
             if (pixelball[j * 50 + i] != 0x00){
                 // drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x]);
                 drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);               
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 1] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 1] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 2] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 2] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 3] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 3] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 4] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 4] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 5] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 5] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
             }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 6] != 0x00)){
                 drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
             }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 6] != 0x00)){
