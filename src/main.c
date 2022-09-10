@@ -125,13 +125,13 @@ void main()
         dir = direction;
         for(int i = 0; i < 40; i++){
            if ((y >= (tiles[i].y + 32)) && (y <= (tiles[i].y + 32))){
-               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 51) >= tiles[i].x) && ((x + 51) <= tiles[i].x))){
+               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 51) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
                    del_tile(tiles[i].x, tiles[i].y);
                    deleteTileCoordinate(i);
                    dir = 1;
                }
            }else if (((y + 50) >= tiles[i].y) && ((y + 50) <= tiles[i].y)){
-               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 51) >= tiles[i].x) && ((x + 51) <= tiles[i].x))){
+               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
                    del_tile(tiles[i].x, tiles[i].y);
                    deleteTileCoordinate(i);
                    dir = 3;
