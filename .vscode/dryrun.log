@@ -1,8 +1,8 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make.exe: Entering directory `d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6'
+
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/kendrick/Documents/Embedded 3/Assignment3_Group6'
 aarch64-none-elf-gcc -Wall -O2 -ffreestanding -nostdinc -nostdlib -c src/boot.S -o object/boot.o
 aarch64-none-elf-gcc  -c src/framebf.c -o object/framebf.o
- 
 aarch64-none-elf-gcc  -c src/game.c -o object/game.o
 aarch64-none-elf-gcc  -c src/main.c -o object/main.o
 aarch64-none-elf-gcc  -c src/mbox.c -o object/mbox.o
@@ -11,5 +11,5 @@ aarch64-none-elf-gcc  -c src/timer.c -o object/timer.o
 aarch64-none-elf-gcc  -c src/uart.c -o object/uart.o
 aarch64-none-elf-ld -nostdlib ./object/boot.o ./object/framebf.o ./object/game.o ./object/main.o ./object/mbox.o ./object/printf.o ./object/timer.o ./object/uart.o -T ./src/link.ld -o ./object/kernel8.elf
 aarch64-none-elf-objcopy -O binary ./object/kernel8.elf kernel8.img
-make.exe: Leaving directory `d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6'
+make: Leaving directory `/Users/kendrick/Documents/Embedded 3/Assignment3_Group6'
  

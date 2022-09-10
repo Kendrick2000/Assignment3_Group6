@@ -1,6 +1,6 @@
-
 #include "uart.h"
 #include "game.h"
+#include "background.h"
 
 #define BCK_WIDTH 1024
 #define BCK_HEIGHT 768
@@ -10,7 +10,7 @@ int pixelBallPhysicalHeight = 50;
 int pixelBallVirtualWidth = 50;
 int pixelBallVirtualHeight = 50;
 
-unsigned int pokeball[] = {
+unsigned int pixelball[] = {
     // '293475056_378971537763684_425998926909292209_n', 50x50px
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
@@ -303,18 +303,42 @@ void draw_pixelBall(int x, int y)
         y++;
         for (int i = 0; i < 50; i++)
         {
-            //drawPixelARGB32(i + x, y, pokeball[j * 50 + i]);
-             if (pokeball[j * 50 + i] != 0x00){
-                drawPixelARGB32(i + x, y, pokeball[j * 50 + i]);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[j * 50 + i + 7] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[j * 50 + i - 7] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[(j - 1) * 50 + i] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
-            }else if((pokeball[j * 50 + i] == 0x00) && (pokeball[(j + 1) * 50 + i] != 0x00)){
-                drawPixelARGB32(i + x, y, 0x00000000);
+            if (pixelball[j * 50 + i] != 0x00){
+                // drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x]);
+                drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);               
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 1] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 1] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 2] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 2] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 3] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 3] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 4] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 4] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 5] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 5] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i + 6] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[j * 50 + i - 6] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[(j - 1) * 50 + i] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
+            }else if((pixelball[j * 50 + i] == 0x00) && (pixelball[(j + 1) * 50 + i] != 0x00)){
+                drawPixelARGB32(i + x, y, bkg_img[y * 1024 + x + i]);
             }
+            else if (pixelball[j * 50 + i] == 0x00) {
+                i++;
+            }
+            // drawPixelARGB32(i + x, y, pixelball[j * 50 + i]);
         }
     }
 }
@@ -330,7 +354,36 @@ void draw_paddle(int x, int y)
         }
     }
 }
+void move_paddle(char* str, int barX){
+    int count = 0;
+    if (str[0] == 'd')
+    {
+        for (int j = 700; j < 725; j++)
+        {
+            for (int i = barX; i < barX + 200; i++)
+            {
+                drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
+                // printf("Hello from for loop draw background");
+            }
+        }
+        // printf("%d ", barX);
+        // draw_paddle(barX, 700);
+    }
 
+    if (str[0] == 'a')
+    {
+        for (int j = 700; j < 725; j++)
+        {
+            for (int i = barX + 127; i > barX + 27; i--)
+            {
+                drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
+                // printf("Hello from for loop draw background");
+            }
+        }
+        // printf("%d ", barX);
+        // draw_paddle(barX, 700);
+    }
+}
 void draw_greenTile(int x, int y)
 {
     // framebf_init(greenTilePhysicalWidth, greenTilePhysicalHeight, greenTileVirtualWidth, greenTileVirtualHeight);
@@ -383,62 +436,26 @@ void draw_redTile(int x, int y)
     }
 }
 
-void draw_background(int x, int y) {
+void draw_background(){
     for (int j = 0; j < 768; j++)
     {
-        y++;
         for (int i = 0; i < 1024; i++)
         {
-            drawPixelARGB32(i + x, y, bkg_img[j * 1024 + i]);
+            drawPixelARGB32(i, j, bkg_img[j * 1024 + i]);
         }
     }
 }
-
-struct Sprite {
-    int x;
-    int y;
-    int direction;
-};
 
 void del_tile(int x, int y) {
     for (int i = x; i < (x+150); i++) {
-        for (int j = y; j < (y+30); j++) {
-            drawPixelARGB32(i,j,0x00);
+        for (int j = y; j < (y+32); j++) {
+            drawPixelARGB32(i,j,bkg_img[j * 1024 + i + x]);
         }
     }
 }
 
-void drawSpriteARGB32(int* sprite, int x, int y) 
-{ 
-        //DANIIL SHLEE. V 1.0. 30/08/2022
-        // int topLeftX = x-(hRes/2); //Top left corner of the sprite, x-coord
-        // int topLeftY = y-(vRes/2); //Top left corner of the sprite, y-coord. RPI follows the "Downwards Y-axis is positive" convention. I.e. to go up on the screen, you SUBTRACT from y coord values.
-        int offsetX = 0; //X- Offset of the sprite pixel cunting from top left corner
-        int offsetY = 0;
-    
-    for (int i = 0; i < (x*y); i++)                                           //For every pixel of the image,
-    {
-        
-        if (sprite[i]!=0x00)                                                        //(bar fully black pixels)...
-        {
-            drawPixelARGB32(x+offsetX,y+offsetY,sprite[i]);           //Draw that pixel on the framebuffer
-        }
-        
-        
-        offsetX++;                                                                  //After drawing, step to the pixel to the right 
-        
-        if ((i%x==0) && (i!=0))                                                  //IF the horizontal offset = horisontal size of the image, then
-        {
-            offsetY+=1;                                                             //Step DOWN the pixel row                        
-            offsetX=0;                                                              //Reset the horizontal offset (back to x=0 in the image)
-        }
-        
-    }
+void eraseSprite(int x, int y, int spr_width, int spr_height) {
 
-}
-
-
-void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
     int totalPixels = spr_width * spr_height;
     //int topLeftX = x-(spr_width/2); //Top left corner of the sprite, x-coord
     //int topLeftY = y-(spr_height/2); //Top left corner of the sprite, y-coord. RPI follows the "Downwards Y-axis is positive" convention. I.e. to go up on the screen, you SUBTRACT from y coord values.
@@ -449,7 +466,7 @@ void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
         int xoffs = x + offsetX;
         int yoffs = y + offsetY;
 
-        drawPixelARGB32(xoffs,yoffs,background[(yoffs*BCK_WIDTH)+xoffs]);   //Draw that pixel on the framebuffer
+
         // if (sprite[i]!=0x00) {                                                  //(bar fully black pixels)...
         //     drawPixelARGB32(xoffs,yoffs,background[(yoffs*BCK_WIDTH)+xoffs]);   //Draw that pixel on the framebuffer
         // }             
@@ -462,15 +479,15 @@ void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
 }
 
 
-void collision_tile(struct Sprite sprite) {
-    int divident = (sprite.x+25)/170; 
-    int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
-    for (int i = 0; i < 8; i++) {  
-        if (sprite.y == ytile_down[i]) {    
-            while (divident < 5) {
-                del_tile((90+170*divident),ytile_down[i]-30);
-                sprite.direction = divident;
-            }
-        }       
-    }
-}
+// void collision_tile(Sprite sprite) {
+//     int divident = (sprite.x+25)/170; 
+//     int ytile_down[] = {80,112,144,176,208,240,272,304};     // List of down side y coordinates of the tiles
+//     for (int i = 0; i < 8; i++) {  
+//         if (sprite.y == ytile_down[i]) {    
+//             while (divident < 5) {
+//                 del_tile((90+170*divident),ytile_down[i]-30);
+//                 sprite.direction = divident;
+//             }
+//         }       
+//    
+// }
