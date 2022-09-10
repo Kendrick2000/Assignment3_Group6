@@ -30,5 +30,4 @@ void gme_destroyObject(int inGameObjectListID);
 void gme_renderObjects();
 void gme_motionUpdate();
 void gme_eraseObjects(int* background);
-
-int gme_collision();
+void gme_collision(int inGameObjectsListID);

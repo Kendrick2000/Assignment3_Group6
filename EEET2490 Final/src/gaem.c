@@ -142,15 +142,17 @@ void gme_motionUpdate()
 
 }
 
-int gme_collision(int inGameObjectListID){
+void gme_collision(int inGameObjectListID){
     if((inGameObjects->cBox_x2>=inGameObjects->cBox_y1>=inGameObjects->cBox_x1 || inGameObjects->cBox_x2>=inGameObjects->cBox_y2>=inGameObjects->cBox_x1) || //bottom corner rectangle collision
     (inGameObjects->cBox_x2>=inGameObjects->cBox_y1==inGameObjects->cBox_y2 || inGameObjects->cBox_y2>=inGameObjects->cBox_x1 >= inGameObjects->cBox_x2 ) ||  //right corner rectangle collision
     (inGameObjects->cBox_x1>=inGameObjects->cBox_y2==inGameObjects->cBox_y1)|| inGameObjects->cBox_y1>=inGameObjects->cBox_x2 >= inGameObjects->cBox_x1 || //left corner rectangle collision
     (inGameObjects->cBox_y1>=inGameObjects->cBox_x1<=inGameObjects->cBox_y2 || inGameObjects->cBox_y2>=inGameObjects->cBox_x2>=inGameObjects->cBox_y2) //top corner rectangle 
-    )
-
-    {
-        void gme_destroyObject(int inGameObjectListID);
+    ){
+     gme_destroyObject(inGameObjectListID);
     }
+}    
 
+void gme_Bounce(int inGameObjectListID){
+    inGameObjects->velocityX = inGameObjects->velocityX;
+    inGameObjects->velocityY = -inGameObjects->velocityY;
 }
