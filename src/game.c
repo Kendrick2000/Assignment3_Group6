@@ -408,6 +408,36 @@ void del_tile(int x, int y) {
     }
 }
 
+void drawSpriteARGB32(int* sprite, int x, int y) 
+{ 
+        //DANIIL SHLEE. V 1.0. 30/08/2022
+        // int topLeftX = x-(hRes/2); //Top left corner of the sprite, x-coord
+        // int topLeftY = y-(vRes/2); //Top left corner of the sprite, y-coord. RPI follows the "Downwards Y-axis is positive" convention. I.e. to go up on the screen, you SUBTRACT from y coord values.
+        int offsetX = 0; //X- Offset of the sprite pixel cunting from top left corner
+        int offsetY = 0;
+    
+    for (int i = 0; i < (x*y); i++)                                           //For every pixel of the image,
+    {
+        
+        if (sprite[i]!=0x00)                                                        //(bar fully black pixels)...
+        {
+            drawPixelARGB32(x+offsetX,y+offsetY,sprite[i]);           //Draw that pixel on the framebuffer
+        }
+        
+        
+        offsetX++;                                                                  //After drawing, step to the pixel to the right 
+        
+        if ((i%x==0) && (i!=0))                                                  //IF the horizontal offset = horisontal size of the image, then
+        {
+            offsetY+=1;                                                             //Step DOWN the pixel row                        
+            offsetX=0;                                                              //Reset the horizontal offset (back to x=0 in the image)
+        }
+        
+    }
+
+}
+
+
 void eraseSprite(int x, int y, int spr_width, int spr_height, int* background) {
     int totalPixels = spr_width * spr_height;
     //int topLeftX = x-(spr_width/2); //Top left corner of the sprite, x-coord
