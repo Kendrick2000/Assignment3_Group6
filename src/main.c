@@ -51,7 +51,7 @@ void main()
     drawString32x32(50, 240, "Daniil Shlee - s3751882", 0x00BB8FCE);
     drawString32x32(50, 260, "Kiet Park - s3751882", 0x00E74C3C);
 
-    wait_msec(3000000);
+    wait_msec(1500000);
 
     // Delete font letters by writing them again in black
     drawStringLarge(50, 20, "EEET2490", 0x0);
@@ -87,13 +87,17 @@ void main()
     {
         int dir = 0;
         dir = direction;
-        if ((ballY + 50 == 700) && ((ballX >= paddleX) && (ballX <= paddleX + 127)))
+        if ((ballY + 50 == 700) && (((ballX+25) >= paddleX) && ((ballX+25) <= paddleX + 127)))
         {
             // uart_puts("Hello from collision");
             // uart_puts("\n");
-            if(((ballX >= paddleX) && (ballX <= paddleX + 30))){
+            if((((ballX+25) >= paddleX) && ((ballX+25) <= paddleX + 30))){
                 dir = 2;
-            }else if(((ballX <= paddleX + 127) && (ballX >= paddleX + 97))){
+            }
+            else if(((ballX <= paddleX + 97) && ((ballX+25) > paddleX + 30))){
+                dir = 3;
+            }
+            else if(((ballX <= paddleX + 127) && ((ballX+25) > paddleX + 97))){
                 dir = 3;
             }
         }
@@ -115,6 +119,43 @@ void main()
             }
         }
     }
+    /*
+    int detectCollision(int x, int y, int direction){
+        int count = 0;
+        //struct Sprite tiles[40];
+        int distanceX = 0, distanceY = 0;
+        int isCollision = 0;
+        int dir = 0;
+        dir = direction;
+        for(int i = 0; i < 40; i++){
+            if ((y >= (tiles[i].y + 32)) && (y <= (tiles[i].y + 32))){
+                if(((x >= tiles[i].x) && (x <= (tiles[i].x + 127))) || (((x + 51) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
+                    uart_dec(tiles[i].x); uart_puts("\n");
+                    uart_dec(tiles[i].y);
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 1;
+                }
+            }else if (((y + 50) >= tiles[i].y) && ((y + 50) <= tiles[i].y)){
+                if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
+                    uart_dec(tiles[i].x); uart_puts("\n");
+                    uart_dec(tiles[i].y);
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
+                }
+            }else if(((x + 50) == tiles[i].x) || (x == tiles[i].x) || ((x + 50) == tiles[i].x + 127) || (x == tiles[i].x)){
+                if(((tiles[i].y >= y) && (tiles[i].y <= y + 50))){
+                    uart_dec(tiles[i].x); uart_puts("\n");
+                    uart_dec(tiles[i].y);
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 4;
+                }
+            }
+        }
+        return dir;
+    } */
 
     int detectCollision(int x, int y, int direction){
         int count = 0;
@@ -124,29 +165,34 @@ void main()
         int dir = 0;
         dir = direction;
         for(int i = 0; i < 40; i++){
-           if ((y >= (tiles[i].y + 32)) && (y <= (tiles[i].y + 32))){
-               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 51) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 1;
-               }
-           }else if (((y + 50) >= tiles[i].y) && ((y + 50) <= tiles[i].y)){
-               if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 3;
-               }
-           }else if(((x + 50) == tiles[i].x) || (x == tiles[i].x) || ((x + 50) == tiles[i].x + 127) || (x == tiles[i].x)){
-               if(((tiles[i].y >= y) && (tiles[i].y <= y + 50))){
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 4;
-               }
-           }
+            if ((y == (tiles[i].y + 30)) ){
+                if((((x+25) >= tiles[i].x) && ((x+25) <= (tiles[i].x + 150)))){
+                    uart_dec(tiles[i].x); uart_puts("\n");
+                    uart_dec(tiles[i].y); uart_puts("\n");
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 1;
+                }
+            }else if (((y + 50) == tiles[i].y) ){
+                if((((x+25) >= tiles[i].x) && ((x+25) <= tiles[i].x + 150))){
+                    uart_dec(tiles[i].x); uart_puts("\n");
+                    uart_dec(tiles[i].y); uart_puts("\n");
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
+                }
+            }else if(((x+50) == tiles[i].x) || (x == (tiles[i].x+150))){
+                if((((y+25) >= tiles[i].y) && ((y+25) <= (tiles[i].y + 30)))){
+                    uart_dec(tiles[i].x); uart_puts("\n");
+                    uart_dec(tiles[i].y); uart_puts("\n");
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 4;
+                }
+            }
         }
         return dir;
     }
-
     void draw_game()
     {
         int barX = 500, barFlag = 0, count = 0;
@@ -323,7 +369,7 @@ void main()
                 if (str[count] == 'd'){
                     if( barX <= 900){
                         move_paddle(str, barX);
-                        barX+=100;
+                        barX+=50;
                         draw_paddle(barX,700);
                         
                     }
@@ -332,7 +378,7 @@ void main()
                 if (str[count] == 'a'){
                     if(barX >= 0){
                         move_paddle(str, barX);
-                        barX-=100;
+                        barX-=50;
                         draw_paddle(barX,700);
                     }
                 }
