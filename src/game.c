@@ -306,7 +306,7 @@ void move_paddle(char* str, int barX){
     {
         for (int j = 700; j < 725; j++)
         {
-            for (int i = barX; i < barX + 200; i++)
+            for (int i = barX; i < barX + 50; i++)
             {
                 drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
                 // printf("Hello from for loop draw background");
@@ -320,7 +320,7 @@ void move_paddle(char* str, int barX){
     {
         for (int j = 700; j < 725; j++)
         {
-            for (int i = barX + 127; i > barX + 27; i--)
+            for (int i = barX + 127; i > barX + 77; i--)
             {
                 drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
                 // printf("Hello from for loop draw background");
@@ -393,7 +393,7 @@ void draw_background(){
 }
 
 void del_tile(int x, int y) {
-    for (int i = x; i < (x+150); i++) {
+    for (int i = x; i < (x+170); i++) {
         for (int j = y; j < (y+32); j++) {
             drawPixelARGB32(i,j,bkg_img[j * 1024 + i + x]);
         }
