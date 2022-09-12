@@ -478,6 +478,33 @@ void main()
         }
     }
 
+    // Comparing string function
+    int strCompare(char *arrayA, char *arrayB)
+    {
+        int count = 0, anw = 0;
+        // Looping all character in arrayB
+        while (arrayB[count] != '\0')
+        {
+            // Comparing character by character between arrayA and arrayB.
+            if (arrayA[count] == arrayB[count])
+            {
+                // Set value anw = 0 as true.
+                anw = 0;
+                // continue checking until while loop condition reached.
+                count++;
+            }
+            else
+            {
+                // Set value anw = 1 as false.
+                anw = 1;
+                // stop loop
+                break;
+            }
+        }
+        // return result/
+        return anw;
+    }
+
     // Direct Users to correct function corresponding to commands.
     int selectCommmand(char *array)
     {
