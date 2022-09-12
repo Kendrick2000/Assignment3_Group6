@@ -105,57 +105,13 @@ void main()
     }
 
     void deleteTileCoordinate(int position){
-        int tempX[40], tempY[40];
-        int count = 0;
-        for (int i = 0; i < 40; i++){
-            if(i == position){
-                i++;
-            }else{
-                tempX[count] = tiles[i].x;
-                tempY[count] = tiles[i].y;
-                tiles[count].x = tempX[count];
-                tiles[count].y = tempY[count];
-                count++;
-            }
+       int count = position;
+        while(tiles[count].x != '\0'){
+            tiles[count].x = tiles[count + 1].x;
+            tiles[count].y = tiles[count + 1].y;
+            count++;
         }
     }
-    /*
-    int detectCollision(int x, int y, int direction){
-        int count = 0;
-        //struct Sprite tiles[40];
-        int distanceX = 0, distanceY = 0;
-        int isCollision = 0;
-        int dir = 0;
-        dir = direction;
-        for(int i = 0; i < 40; i++){
-            if ((y >= (tiles[i].y + 32)) && (y <= (tiles[i].y + 32))){
-                if(((x >= tiles[i].x) && (x <= (tiles[i].x + 127))) || (((x + 51) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
-                    uart_dec(tiles[i].x); uart_puts("\n");
-                    uart_dec(tiles[i].y);
-                    del_tile(tiles[i].x, tiles[i].y);
-                    deleteTileCoordinate(i);
-                    dir = 1;
-                }
-            }else if (((y + 50) >= tiles[i].y) && ((y + 50) <= tiles[i].y)){
-                if(((x >= tiles[i].x) && (x <= tiles[i].x + 127)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
-                    uart_dec(tiles[i].x); uart_puts("\n");
-                    uart_dec(tiles[i].y);
-                    del_tile(tiles[i].x, tiles[i].y);
-                    deleteTileCoordinate(i);
-                    dir = 3;
-                }
-            }else if(((x + 50) == tiles[i].x) || (x == tiles[i].x) || ((x + 50) == tiles[i].x + 127) || (x == tiles[i].x)){
-                if(((tiles[i].y >= y) && (tiles[i].y <= y + 50))){
-                    uart_dec(tiles[i].x); uart_puts("\n");
-                    uart_dec(tiles[i].y);
-                    del_tile(tiles[i].x, tiles[i].y);
-                    deleteTileCoordinate(i);
-                    dir = 4;
-                }
-            }
-        }
-        return dir;
-    } */
 
     int detectCollision(int x, int y, int direction){
         int count = 0;
@@ -165,29 +121,63 @@ void main()
         int dir = 0;
         dir = direction;
         for(int i = 0; i < 40; i++){
-            if ((y == (tiles[i].y + 30)) ){
-                if((((x+25) >= tiles[i].x) && ((x+25) <= (tiles[i].x + 150)))){
-                    uart_dec(tiles[i].x); uart_puts("\n");
-                    uart_dec(tiles[i].y); uart_puts("\n");
+            if (((x > tiles[i].x) && (x < (tiles[i].x + 150))) || (((x + 50) > tiles[i].x) && ((x + 50) < (tiles[i].x + 150)))){
+                if (y == (tiles[i].y + 32)){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     dir = 1;
                 }
-            }else if (((y + 50) == tiles[i].y) ){
-                if((((x+25) >= tiles[i].x) && ((x+25) <= tiles[i].x + 150))){
-                    uart_dec(tiles[i].x); uart_puts("\n");
-                    uart_dec(tiles[i].y); uart_puts("\n");
+
+                if ((y + 50) == tiles[i].y){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
+                }   
+           }
+           else if (((x + 50) == tiles[i].x) && ((y + 50) == tiles[i].y)){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 2;
+            }
+            else if (((x + 50) == tiles[i].x) && (y == (tiles[i].y + 32))){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 4;
+            }
+            else if ((x == tiles[i].x) && ((y + 50) == tiles[i].y)){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 3;
+            }
+            else if ((x == (tiles[i].x + 150)) && (y == (tiles[i].y + 32))){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 1;
+            }
+            else if ((y <= tiles[i].y) && (y >= (tiles[i].y + 32))){
+                if((x + 50) == tiles[i].x){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                     dir = 2;
+                }
+
+                if(x == (tiles[i].x + 150)){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     dir = 3;
                 }
-            }else if(((x+50) == tiles[i].x) || (x == (tiles[i].x+150))){
-                if((((y+25) >= tiles[i].y) && ((y+25) <= (tiles[i].y + 30)))){
-                    uart_dec(tiles[i].x); uart_puts("\n");
-                    uart_dec(tiles[i].y); uart_puts("\n");
+            }
+            else if (((tiles[i].y >= y) && (tiles[i].y <= (y + 50)))){
+                if (x + 50 == tiles[i].x){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    dir = 4;
+                    dir = 2;
+                }
+
+                if (x == (tiles[i].x + 150)){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
                 }
             }
         }
@@ -488,443 +478,11 @@ void main()
         }
     }
 
-    // Comparing string function
-    int strCompare(char *arrayA, char *arrayB)
-    {
-        int count = 0, anw = 0;
-        // Looping all character in arrayB
-        while (arrayB[count] != '\0')
-        {
-            // Comparing character by character between arrayA and arrayB.
-            if (arrayA[count] == arrayB[count])
-            {
-                // Set value anw = 0 as true.
-                anw = 0;
-                // continue checking until while loop condition reached.
-                count++;
-            }
-            else
-            {
-                // Set value anw = 1 as false.
-                anw = 1;
-                // stop loop
-                break;
-            }
-        }
-        // return result/
-        return anw;
-    }
-
-    // Function display all information of all command in CLI.
-    void helpCommand(char *array)
-    {
-        // Condition to distinguish between help and help <command>.
-        if (array[4] == '\n')
-        {
-            // print out all command exist in the Bare OS.
-            uart_puts("\nFor more information on a specific command, type help command-name\n");
-            uart_puts("help <command_name>      Show full information of the command.\n");
-            uart_puts("help                     Show brief information of all commands.\n");
-            uart_puts("setcolor                 Set  text  color,  and/or  background  color  of  the console  to  one  of  the  following  color:  BLACK,  RED, GREEN, YELLOW, BLUE, PURPLE, CYAN, WHITE.\n");
-            uart_puts("brdev                    Show board revision.\n");
-            uart_puts("scrsize                  Set screen size. Must have options to set physical screen size (-p) or virtual screen size (-v), or both (by default).\n");
-            uart_puts("clk                      Show clock rate.\n");
-            uart_puts("ARM                      Show ARM Memory.\n");
-            uart_puts("draw                     Draw 6 rectangle with 6 different color(RED, GREEN, BLUE, PRUPLE, ORANGE).\n");
-            uart_puts("MAC                      Show MAC address.\n");
-            uart_puts("clear                    Clear terminal console screen.\n");
-        }
-        else
-        {
-            int count = 4, i = 0;
-            char command[50];
-            // looping through each character in array.
-            while (array[count] != '\n')
-            {
-                // uart_sendc(array[count]);
-                // Get specific command that users want to learn more informations.
-                command[i] = array[count];
-                // uart_sendc(command[i]);
-                i++;
-                count++;
-            }
-
-            // Find correct information to a corresponding to command.
-            if (strCompare(command, "setcolor") == 0)
-            {
-                uart_puts("Set text color only:                         setcolor -t <color>.\n");
-                uart_puts("Set background color only:                   setcolor -b <color>.\n");
-                uart_puts("Set color for both background and text:      setcolor -t <color> -b <color or setcolor -b <color> -t<color>.\n");
-                uart_puts("Accepted color and writing format:  Black,  Red, Green, Yellow, Blue, Purple, Cyan, White.\n");
-            }
-            else if (strCompare(command, "brdev") == 0)
-            {
-                uart_puts("Show board revision:                         brdev\n");
-            }
-            else if (strCompare(command, "scrsize") == 0)
-            {
-                uart_puts("Set screen size for virtual screen:          scrsize -v <width> <height>.\n");
-                uart_puts("Set screen size for physical screen:         scrsize -p <width> <height>.\n");
-                uart_puts("Set screen size for both screens:            scrsize -v <width> <height> -p <width> <height> or scrsize -p <width> <height> -v <width> <height\n");
-            }
-            else if (strCompare(command, "clk") == 0)
-            {
-                uart_puts("Show clock rate:                             clk\n");
-            }
-            else if (strCompare(command, "ARM") == 0)
-            {
-                uart_puts("Show ARM memory:                             ARM\n");
-            }
-            else if (strCompare(command, "draw") == 0)
-            {
-                uart_puts("Show drawed image:                           draw.\n");
-                uart_puts("Draw 6 rectangles with 6 different colors(RED, GREEN, BLUE, PRUPLE, ORANGE).\n");
-            }
-            else if (strCompare(command, "MAC") == 0)
-            {
-                uart_puts("Show MAC address:                            MAC\n");
-            }
-            else
-            {
-                uart_puts("Commnad name is not valid or not avaliable.\n");
-            }
-        }
-    }
-
-    // Clean CLI screen function.
-    void clear()
-    {
-        uart_puts("\e[1;1H\e[2J");
-    }
-
-    // Show clock rate of the board.
-    void showClockRate()
-    {
-        mbox[0] = 8 * 4;        // Message Buffer Size in bytes (8 elements * 4 bytes (32 bit) each)
-        mbox[1] = MBOX_REQUEST; // Message Request Code (this is a request message)
-        mbox[2] = 0x00030002;   // TAG Identifier: Get clock rate
-        mbox[3] = 8;            // Value buffer size in bytes (max of request and response lengths)
-        mbox[4] = 0;            // REQUEST CODE = 0
-        mbox[5] = 3;            // clock id: ARM system clock
-        mbox[6] = 0;            // clear output buffer (response data are mbox[5] & mbox[6])
-        mbox[7] = MBOX_TAG_LAST;
-
-        if (mbox_call(ADDR(mbox), MBOX_CH_PROP))
-        {
-            uart_puts("DATA: ARM clock rate = ");
-            uart_dec(mbox[6]);
-            uart_puts("\n");
-        }
-    }
-
-    // Show Board Revision.
-    void showBoardRevision()
-    {
-        mbox[0] = 8 * 4;        // Message Buffer Size in bytes (8 elements * 4 bytes (32 bit) each)
-        mbox[1] = MBOX_REQUEST; // Message Request Code (this is a request message)
-        mbox[2] = 0x00010002;   // TAG Identifier: Get board revision
-        mbox[3] = 32;           // Value buffer size in bytes (max of request and response lengths)
-        mbox[4] = 0;            // REQUEST CODE = 0
-        mbox[5] = 4;            // RESPOND LENGTH = 4
-        mbox[6] = 0;            // clear output buffer (response data are mbox[5] & mbox[6])
-        mbox[7] = MBOX_TAG_LAST;
-
-        if (mbox_call(ADDR(mbox), MBOX_CH_PROP))
-        {
-            uart_puts("DATA: Board Revision = ");
-            uart_dec(mbox[6]);
-            uart_puts("\n");
-        }
-    }
-
-    // Show Board Model.
-    void showARMMemory()
-    {
-        mbox[0] = 8 * 4;        // Message Buffer Size in bytes (8 elements * 4 bytes (32 bit) each)
-        mbox[1] = MBOX_REQUEST; // Message Request Code (this is a request message)
-        mbox[2] = 0x00010005;   // TAG Identifier: Get ARM Memory.
-        mbox[3] = 32;           // Value buffer size in bytes (max of request and response lengths)
-        mbox[4] = 0;            // REQUEST CODE = 0
-        mbox[5] = 8;            // RESPOND LENGTH = 4
-        mbox[6] = 0;            // clear output buffer (response data are mbox[5] & mbox[6])
-        mbox[7] = MBOX_TAG_LAST;
-
-        if (mbox_call(ADDR(mbox), MBOX_CH_PROP))
-        {
-            uart_puts("DATA: ARM Memory = ");
-            uart_dec(mbox[6]);
-            uart_puts("\n");
-        }
-    }
-
-    // Show MAC Address.
-    void showMACAddress()
-    {
-        mbox[0] = 8 * 4;        // Message Buffer Size in bytes (8 elements * 4 bytes (32 bit) each)
-        mbox[1] = MBOX_REQUEST; // Message Request Code (this is a request message)
-        mbox[2] = 0x00010003;   // TAG Identifier: Get MAC Address.
-        mbox[3] = 8;            // Value buffer size in bytes (max of request and response lengths)
-        mbox[4] = 0;            // REQUEST CODE = 0
-        mbox[5] = 6;            // RESPOND LENGTH = 6
-        mbox[6] = 0;            // clear output buffer (response data are mbox[5] & mbox[6])
-        mbox[7] = MBOX_TAG_LAST;
-
-        if (mbox_call(ADDR(mbox), MBOX_CH_PROP))
-        {
-            uart_puts("DATA: MAC Address = ");
-            uart_dec(mbox[6]);
-            uart_puts("\n");
-        }
-    }
-
-   
-
-    // Draw rectangle on the screen
-    void drawRectangle()
-    {
-        drawRectARGB32(100, 100, 400, 400, 0x00AA0000, 1); // RED
-        drawRectARGB32(150, 150, 400, 400, 0x0000BB00, 1); // GREEN
-        drawRectARGB32(200, 200, 400, 400, 0x000000CC, 1); // BLUE
-        drawRectARGB32(250, 250, 400, 400, 0x00FFFF00, 1); // YELLOW
-        drawRectARGB32(300, 300, 400, 400, 0x007F3FBF, 1); // PURPLE
-        drawRectARGB32(350, 350, 400, 400, 0x00F09D0E, 1); // ORANGE
-    }
-
-    // Set colors for texts and background.
-    void setColor(char *array)
-    {
-        int count = 0, i = 0, j = 0, check = 1;
-        char text[50], bGround[50];
-        // looping through each character in array.
-        while (array[count] != '\0')
-        {
-            // uart_sendc(array[count]);
-            // Conditions to check command set color for texts.
-            if ((array[count] == '-' && array[count + 1] == 't') && (array[count + 2] != '\0'))
-            {
-                // Variable to check is the command syntax correct or not.
-                check = 0;
-                // looping through the rest of the array or until hit next set color command for background.
-                while ((array[count] != '\0') && (array[count + 1] != '-'))
-                {
-                    // Get specific color from users command.
-                    text[i] = array[count + 2];
-                    // printf("%d ", count);
-                    // uart_sendc(text[i]);
-                    i++;
-                    count++;
-                }
-                // uart_puts("\n");
-                // Find correct color that users want to set for texts.
-                if (strCompare(text, "Black") == 0)
-                {
-                    uart_puts("\033[30m");
-                }
-                else if (strCompare(text, "Red") == 0)
-                {
-                    uart_puts("\033[31m");
-                }
-                else if (strCompare(text, "Green") == 0)
-                {
-                    uart_puts("\033[32m");
-                }
-                else if (strCompare(text, "Yellow") == 0)
-                {
-                    uart_puts("\033[33m");
-                }
-                else if (strCompare(text, "Blue") == 0)
-                {
-                    uart_puts("\033[34m");
-                }
-                else if (strCompare(text, "Purple") == 0)
-                {
-                    uart_puts("\033[35m");
-                }
-                else if (strCompare(text, "Cyan") == 0)
-                {
-                    uart_puts("\033[36m");
-                }
-                else if (strCompare(text, "White") == 0)
-                {
-                    uart_puts("\033[37m");
-                }
-                else
-                {
-                    uart_puts("Color is not valid.\n");
-                    break;
-                }
-            }
-
-            // Conditions to check command set color for background.
-            if ((array[count] == '-' && array[count + 1] == 'b') && (array[count + 2] != '\0'))
-            {
-                // Variable to check is the command syntax correct or not.
-                check = 0;
-                while ((array[count] != '\0') && (array[count + 1] != '-'))
-                {
-                    // Get specific color from users command.
-                    bGround[j] = array[count + 2];
-                    // uart_sendc(bGround[j]);
-                    j++;
-                    count++;
-                }
-                // uart_puts("\n");
-                // Find correct color that users want to set for background.
-                if (strCompare(bGround, "Black") == 0)
-                {
-                    uart_puts("\033[40m");
-                }
-                else if (strCompare(bGround, "Red") == 0)
-                {
-                    uart_puts("\033[41m");
-                }
-                else if (strCompare(bGround, "Green") == 0)
-                {
-                    uart_puts("\033[42m");
-                }
-                else if (strCompare(bGround, "Yellow") == 0)
-                {
-                    uart_puts("\033[43m");
-                }
-                else if (strCompare(bGround, "Blue") == 0)
-                {
-                    uart_puts("\033[44m");
-                }
-                else if (strCompare(bGround, "Purple") == 0)
-                {
-                    uart_puts("\033[45m");
-                }
-                else if (strCompare(bGround, "Cyan") == 0)
-                {
-                    uart_puts("\033[46m");
-                }
-                else if (strCompare(bGround, "White") == 0)
-                {
-                    uart_puts("\033[47m");
-                }
-                else
-                {
-                    uart_puts("Color is not valid.\n");
-                    break;
-                }
-            }
-            count++;
-        }
-        // Condition to display syntax error message to users.
-        if (check == 1)
-        {
-            uart_puts("Syntax error.\n");
-        }
-    }
-
     // Direct Users to correct function corresponding to commands.
     int selectCommmand(char *array)
     {
         int checkScrSize = 0;
-        // Condition to be taken to helpCommand function.
-        if (strCompare(array, "help") == 0)
-        {
-            helpCommand(array);
-
-            // Condition to be taken to clear function.
-        }
-        else if (strCompare(array, "clear") == 0)
-        {
-            // Extra condition to check syntax of users's input commands.
-            if (array[5] == '\n')
-            {
-                clear();
-            }
-            else
-            {
-                uart_puts("Command line syntax error.\n");
-            }
-
-            // Condition to be taken to showBoardRevision function.
-        }
-        else if (strCompare(array, "brdev") == 0)
-        {
-            // Extra condition to check syntax of users's input commands.
-            if (array[5] == '\n')
-            {
-                showBoardRevision();
-            }
-            else
-            {
-                uart_puts("Command line syntax error.\n");
-            }
-
-            // Condition to be taken to showClockRate function.
-        }
-        else if (strCompare(array, "clk") == 0)
-        {
-            // Extra condition to check syntax of users's input commands.
-            if (array[3] == '\n')
-            {
-                showClockRate();
-            }
-            else
-            {
-                uart_puts("Command line syntax error.\n");
-            }
-
-            // Condition to be taken to showARMMemory function.
-        }
-        else if (strCompare(array, "ARM") == 0)
-        {
-            // Extra condition to check syntax of users's input commands.
-            if (array[3] == '\n')
-            {
-                showARMMemory();
-            }
-            else
-            {
-                uart_puts("Command line syntax error.\n");
-            }
-
-            // Condition to be taken to showMACAddress function.
-        }
-        else if (strCompare(array, "MAC") == 0)
-        {
-            // Extra condition to check syntax of users's input commands.
-            if (array[3] == '\n')
-            {
-                showMACAddress();
-            }
-            else
-            {
-                uart_puts("Command line syntax error.\n");
-            }
-
-            // Condition to be taken to drawRectangle function.
-        }
-        else if (strCompare(array, "draw") == 0)
-        {
-            // Extra condition to check syntax of users's input commands.
-            if (array[4] == '\n')
-            {
-                drawRectangle();
-            }
-            else
-            {
-                uart_puts("Command line syntax error.\n");
-            }
-
-            // Condition to be taken to setColor function.
-        }
-        else if (strCompare(array, "setcolor") == 0)
-        {
-            setColor(array);
-
-            // Condition to be taken to scrsize function.
-        }
-        else if (strCompare(array, "scrsize") == 0)
-        {
-            // return value checkScrSize when users call scrsize command.
-            checkScrSize = 1;
-            // setScreenSize(array);
-        }
-        else if (strCompare(array, "img") == 0)
+        if (strCompare(array, "img") == 0)
         {
             draw_image();
         }
@@ -942,13 +500,6 @@ void main()
         else if (strCompare(array, "game") == 0)
         {
             draw_game();
-            // draw_backGround();
-            // draw_pixelBall();
-            // draw_blueTile();
-            // Note: greenTile turn to blue
-            // draw_greenTile();
-            // draw_yellowTile();
-            // draw_redTile();
         }
         else
         {
