@@ -66,7 +66,10 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.uIUcSxBKnT/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
+
+
 VSCODE_PIPE_LOGGING = true
+
 # environment
 PWD = /Users/kendrick/Documents/Embedded 3/Assignment3_Group6
 # environment
@@ -163,7 +166,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
+
 VSCODE_PID = 1617
+
 # variable set hash-table stats:
 # Load=75/1024=7%, Rehash=0, Collisions=2/108=2%
 
@@ -172,6 +177,7 @@ VSCODE_PID = 1617
 # No pattern-specific variable values.
 
 # Directories
+
 
 # . (device 16777232, inode 6415319): 11 files, no impossibilities.
 # ./src (device 16777232, inode 6415490): 24 files, no impossibilities.
@@ -241,7 +247,9 @@ src/printf.c:
 # Not a target:
 src/game.c:
 #  Implicit rule search has been done.
+
 #  Last modified 2022-09-12 18:51:44
+
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -273,7 +281,9 @@ src/timer.c:
 # Not a target:
 src/framebf.c:
 #  Implicit rule search has been done.
+
 #  Last modified 2022-09-08 20:10:25
+
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -294,7 +304,9 @@ object/mbox.o: src/mbox.c
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
+
 #  Last modified 2022-09-12 19:03:35
+
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -338,7 +350,9 @@ run:
 object/game.o: src/game.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `game'
+
 #  Last modified 2022-09-12 18:51:44
+
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -391,6 +405,7 @@ object/timer.o: src/timer.c
 
 kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/mbox.o object/printf.o object/timer.o object/uart.o
 #  Implicit rule search has not been done.
+
 #  Last modified 2022-09-12 19:03:47
 #  File has been updated.
 #  Successfully updated.
@@ -404,7 +419,9 @@ kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/m
 object/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
+
 #  Last modified 2022-09-12 19:03:47
+
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -436,5 +453,6 @@ src/mbox.c:
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
 # Finished Make data base on Mon Sep 12 19:04:39 2022
+
 
  
