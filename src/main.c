@@ -101,18 +101,11 @@ void main()
     }
 
     void deleteTileCoordinate(int position){
-        int tempX[40], tempY[40];
-        int count = 0;
-        for (int i = 0; i < 40; i++){
-            if(i == position){
-                i++;
-            }else{
-                tempX[count] = tiles[i].x;
-                tempY[count] = tiles[i].y;
-                tiles[count].x = tempX[count];
-                tiles[count].y = tempY[count];
-                count++;
-            }
+        int count = position;
+        while(tiles[count].x != '\0'){
+            tiles[count].x = tiles[count + 1].x;
+            tiles[count].y = tiles[count + 1].y;
+            count++;
         }
     }
 
@@ -123,56 +116,65 @@ void main()
         int dir = 0;
         dir = direction;
         for(int i = 0; i < 40; i++){
-            if ((y >= tiles[i].y) && (y <= (tiles[i].y + 32))){
-               if(((x >= tiles[i].x) && (x <= tiles[i].x + 150)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x))){
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 1;
-               }
-           }
-           else if (((y + 50) >= tiles[i].y) && ((y + 50) <= (tiles[i].y + 32)))
-           {
-               if(((x >= tiles[i].x) && (x <= tiles[i].x + 150)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x)))
-               {
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 3;
-               }
-           }
-           else if ((x == tiles[i].x) || (x + 50 == tiles[i].x) || (x == tiles[i].x + 150) || (x + 50 == tiles[i].x + 150))
-           {
-               if ((y >= tiles[i].y) && (y <= tiles[i].y + 32))
-               {
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 4;
-               }
-
-               if (((y + 50) >= tiles[i].y) && ((y + 50) <= tiles[i].y + 32))
-               {
-                   del_tile(tiles[i].x, tiles[i].y);
-                   deleteTileCoordinate(i);
-                   dir = 4;
-               }
-           }
-           else if (((x >= tiles[i].x) && (x <= tiles[i].x + 150)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x)))
-           {
-                if (((y + 50) >= tiles[i].y) && ((y + 50) <= (tiles[i].y + 32)))
-                {
-                    del_tile(tiles[i].x, tiles[i].y);
-                    deleteTileCoordinate(i);
-                    dir = 3;
-                }   
-           }
-           else if (((x >= tiles[i].x) && (x <= tiles[i].x + 150)) || (((x + 50) >= tiles[i].x) && ((x + 50) <= tiles[i].x)))
-           {
-                if ((y >= tiles[i].y) && (y <= (tiles[i].y + 32)))
-                {
+            if (((x > tiles[i].x) && (x < (tiles[i].x + 150))) || (((x + 50) > tiles[i].x) && ((x + 50) < (tiles[i].x + 150)))){
+                if (y == (tiles[i].y + 32)){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     dir = 1;
-                } 
-           }
+                }
+
+                if ((y + 50) == tiles[i].y){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
+                }
+            }
+            else if (((x + 50) == tiles[i].x) && ((y + 50) == tiles[i].y)){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 2;
+            }
+            else if (((x + 50) == tiles[i].x) && (y == (tiles[i].y + 32))){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 4;
+            }
+            else if ((x == tiles[i].x) && ((y + 50) == tiles[i].y)){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 3;
+            }
+            else if ((x == (tiles[i].x + 150)) && (y == (tiles[i].y + 32))){
+                del_tile(tiles[i].x, tiles[i].y);
+                deleteTileCoordinate(i);
+                dir = 1;
+            }
+            else if ((y <= tiles[i].y) && (y >= (tiles[i].y + 32))){
+                if((x + 50) == tiles[i].x){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 2;
+                }
+
+                if(x == (tiles[i].x + 150)){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
+                }
+            }
+            else if (((tiles[i].y >= y) && (tiles[i].y <= (y + 50)))){
+                if (x + 50 == tiles[i].x){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 2;
+                }
+
+                if (x == (tiles[i].x + 150)){
+                    del_tile(tiles[i].x, tiles[i].y);
+                    deleteTileCoordinate(i);
+                    dir = 3;
+                }
+            }
         }
         return dir;
     }
@@ -188,7 +190,6 @@ void main()
         char str[10000];
         draw_background();
         draw_paddle(barX, 700);
-
         // draw_pixelBall(traceX, traceY);
         while (1)
         {
@@ -259,6 +260,8 @@ void main()
                     }
                 }
                 isInitial = 1;
+                // direction = detectCollision(ballX, ballY, direction);
+
             }
             // draw_pixelBall(500, 650);
             // draw_paddle(450, 700);
@@ -335,7 +338,7 @@ void main()
                 else
                 {
                     // ballX-=5;
-                    ballY--;
+                    ballY++;
                 }
                 direction = detectCollision(ballX, ballY, direction);
                 // isCollision = detectCollision(ballX, ballY);                
