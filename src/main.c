@@ -90,7 +90,13 @@ void main()
     }
 
     //Function detect collision between the ball and the paddle.
-    //NOTE FOR KENDRICK: explaine direction 1,2,3,4 in compass (North, West, East, South).
+    /*
+    direction 1: x++ y++ -> South East
+    direction 2: x-- y-- -> North West
+    direction 3: x++ y-- -> North East
+    direction 4: x-- y++ -> South West
+    Other direction is based on the these four direction. However, the increasement/ drecreasement step is 2 instead
+    of 1*/
     int collisionWithPaddle(int ballX, int ballY, int paddleX, int direction)
     {
         //Delare variable dir, pred_dir.
