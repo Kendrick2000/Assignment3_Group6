@@ -121,8 +121,9 @@ void main()
         int dir = 0;
         dir = direction;
         for(int i = 0; i < 40; i++){
-            if (((x > tiles[i].x) && (x < (tiles[i].x + 150))) || (((x + 50) > tiles[i].x) && ((x + 50) < (tiles[i].x + 150)))){
-                if (y == (tiles[i].y + 32)){
+            // Collision on the top and bottom of the tiles
+            if (((x > tiles[i].x) && (x < (tiles[i].x + 150))) || (((x + 50) > tiles[i].x) && ((x + 50) < (tiles[i].x + 150)))){ 
+                if (y == (tiles[i].y + 32)){            
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     dir = 1;
@@ -134,27 +135,31 @@ void main()
                     dir = 3;
                 }   
            }
+           // Collision in the top left corner of the tile
            else if (((x + 50) == tiles[i].x) && ((y + 50) == tiles[i].y)){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 dir = 2;
             }
-            else if (((x + 50) == tiles[i].x) && (y == (tiles[i].y + 32))){
+            // Collision in the bottom left corner of the tile
+            else if (((x + 50) == tiles[i].x) && (y == (tiles[i].y + 30))){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 dir = 4;
             }
+            // Collision in the top left corner of the tile
             else if ((x == tiles[i].x) && ((y + 50) == tiles[i].y)){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 dir = 3;
             }
-            else if ((x == (tiles[i].x + 150)) && (y == (tiles[i].y + 32))){
+            // Collision in the bottom right corner of the tile
+            else if ((x == (tiles[i].x + 150)) && (y == (tiles[i].y + 30))){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 dir = 1;
             }
-            else if ((y <= tiles[i].y) && (y >= (tiles[i].y + 32))){
+            else if ((y <= tiles[i].y) && (y >= (tiles[i].y + 30))){
                 if((x + 50) == tiles[i].x){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
