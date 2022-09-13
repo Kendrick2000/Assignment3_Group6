@@ -82,24 +82,53 @@ void main()
     }
 
     
-
     int collisionWithPaddle(int ballX, int ballY, int paddleX, int direction)
     {
         int dir = 0;
+        int pre_dir = 0;
         dir = direction;
-        if ((ballY + 50 == 700) && (((ballX+25) >= paddleX) && ((ballX+25) <= paddleX + 127)))
+        pre_dir = dir;
+        if ((ballY + 50 == 700) && (((ballX+50) >= paddleX) && ((ballX+50) <= paddleX + 127)))
         {
             // uart_puts("Hello from collision");
             // uart_puts("\n");
-            if((((ballX+25) >= paddleX) && ((ballX+25) <= paddleX + 30))){
-                dir = 2;
+            if((((ballX+50) >= paddleX) && (ballX <= (paddleX + 40)))){  
+                if (pre_dir == 2)
+                    dir = 3;                       
+                else if (pre_dir == 3)
+                    dir = 2; 
+                else dir = 2;
+                
+                uart_dec(pre_dir);
+                uart_dec("\n");  
+                uart_dec(dir);                                 
+                // dir = 2;
             }
-            else if(((ballX <= paddleX + 97) && ((ballX+25) > paddleX + 30))){
-                dir = 3;
+            else if(((ballX <= (paddleX + 80)) && (ballX > (paddleX + 40)))){
+                if (pre_dir == 2)
+                    dir = 3;                       
+                else if (pre_dir == 3)
+                    dir = 2;
+                else dir = 3;
+                //pre_dir = dir;
+                uart_dec(pre_dir);
+                uart_puts("\n");  
+                uart_dec(dir);
+                //dir = 3;
             }
-            else if(((ballX <= paddleX + 127) && ((ballX+25) > paddleX + 97))){
-                dir = 3;
+            else if(((ballX <= (paddleX + 127)) && (ballX > (paddleX + 80)))){
+                if (pre_dir == 9)
+                    dir = 10;                       
+                else if (pre_dir == 10)
+                    dir = 9; 
+                else dir = 9;
+                //pre_dir = dir;
+                uart_dec(pre_dir);
+                uart_dec("\n");  
+                uart_dec(dir);
+                //dir = 9;
             }
+            pre_dir = dir; 
         }
         return dir;
     }
@@ -118,73 +147,177 @@ void main()
         //struct Sprite tiles[40];
         int distanceX = 0, distanceY = 0;
         int isCollision = 0;
-        int dir = 0;
+        int dir = 0; 
+        int pre_dir = 0;
         dir = direction;
+        pre_dir = dir;
         for(int i = 0; i < 40; i++){
             // Collision on the top and bottom of the tiles
             if (((x > tiles[i].x) && (x < (tiles[i].x + 150))) || (((x + 50) > tiles[i].x) && ((x + 50) < (tiles[i].x + 150)))){ 
-                if (y == (tiles[i].y + 32)){            
+                if (y == (tiles[i].y + 30)){            
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    dir = 1;
+                    score += 3;
+                    if (pre_dir == 7) {
+                        dir = 5;                       
+                    }
+                    else if (pre_dir == 5) {
+                        dir = 7;                       
+                    }
+                    else if (pre_dir == 4) {
+                        dir = 1;                       
+                    }
+                    else if (pre_dir == 1) {
+                        dir = 4;                       
+                    }
+                    else
+                        dir = 1;
+                    
                 }
 
                 if ((y + 50) == tiles[i].y){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    dir = 3;
+                    score += 3;
+                    if (pre_dir == 9) {
+                        dir = 10;                       
+                    }
+                    else if (pre_dir == 10) {
+                        dir = 9;                       
+                    }
+                    else
+                        dir = 3;
+                    
                 }   
-           }
-           // Collision in the top left corner of the tile
-           else if (((x + 50) == tiles[i].x) && ((y + 50) == tiles[i].y)){
+            }
+            // Collision in the top left corner of the tile
+            else if (((x + 50) == tiles[i].x) && ((y + 50) == tiles[i].y)){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                dir = 2;
+                score += 3;
+                if (pre_dir == 9) {
+                    dir = 10;                       
+                }
+                else if (pre_dir == 10) {
+                    dir = 9;                       
+                }
+                else
+                    dir = 2;
+                
             }
             // Collision in the bottom left corner of the tile
             else if (((x + 50) == tiles[i].x) && (y == (tiles[i].y + 30))){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                dir = 4;
+                score += 3;
+                if (pre_dir == 7) {
+                    dir = 5;                       
+                }
+                else if (pre_dir == 5) {
+                    dir = 7;                       
+                }
+                else if (pre_dir == 4) {
+                    dir = 1;                       
+                }
+                else if (pre_dir == 1) {
+                    dir = 4;                       
+                }
+                else
+                    dir = 4;       
             }
             // Collision in the top left corner of the tile
             else if ((x == tiles[i].x) && ((y + 50) == tiles[i].y)){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                dir = 3;
+                score += 3;
+                if (pre_dir == 9) {
+                    dir = 10;                       
+                }
+                else if (pre_dir == 10) {
+                    dir = 9;                       
+                }
+                else
+                    dir = 3;               
             }
             // Collision in the bottom right corner of the tile
             else if ((x == (tiles[i].x + 150)) && (y == (tiles[i].y + 30))){
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                dir = 1;
+                score += 3;
+                if (pre_dir == 7) {
+                    dir = 5;                       
+                }
+                else if (pre_dir == 5) {
+                    dir = 7;                       
+                }
+                else if (pre_dir == 4) {
+                    dir = 1;                       
+                }
+                else if (pre_dir == 1) {
+                    dir = 4;                       
+                }
+                else
+                    dir = 1;              
             }
             else if ((y <= tiles[i].y) && (y >= (tiles[i].y + 30))){
                 if((x + 50) == tiles[i].x){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                     dir = 2;
+                    score += 3;
+                    if (pre_dir == 9) {
+                    dir = 10;                       
+                    }
+                    else if (pre_dir == 10) {
+                        dir = 9;                       
+                    }
+                    else
+                        dir = 2;                  
                 }
 
                 if(x == (tiles[i].x + 150)){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    dir = 3;
+                    score += 3;
+                    if (pre_dir == 9) {
+                        dir = 10;                       
+                    }
+                    else if (pre_dir == 10) {
+                        dir = 9;                       
+                    }
+                    else
+                        dir = 3;                    
                 }
             }
             else if (((tiles[i].y >= y) && (tiles[i].y <= (y + 50)))){
                 if (x + 50 == tiles[i].x){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    dir = 2;
+                    score += 3;
+                    if (pre_dir == 9) {
+                        dir = 10;                       
+                    }
+                    else if (pre_dir == 10) {
+                        dir = 9;                       
+                    }
+                    else
+                        dir = 2;                   
                 }
 
                 if (x == (tiles[i].x + 150)){
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    dir = 3;
+                    score += 3;
+                    if (pre_dir == 9) {
+                        dir = 10;                       
+                    }
+                    else if (pre_dir == 10) {
+                        dir = 9;                       
+                    }
+                    else
+                        dir = 3;                   
                 }
             }
+            pre_dir = dir;
         }
         return dir;
     }
@@ -195,6 +328,7 @@ void main()
         int traceX = 0, traceY = 0;
         int direction = 0;
         int i = 0; 
+        int pre_dir = 0;
         int isCollision = 0, isInitial = 0;
         char str[10000];
         draw_background();
@@ -280,32 +414,92 @@ void main()
                 traceY = ballY + 51;
                 draw_pixelBall(ballX, ballY);
                 direction = collisionWithPaddle(ballX, ballY, barX, direction);
+                pre_dir = direction;
                 // printf(" %d %d d%d ", ballX, ballY,direction);
                 // printf("\n");
                 if (((ballY == 0) && (955 - ballX <= 477)) || (direction == 4))
                 {
-                    direction = 4;
+                    if (pre_dir == 4) 
+                        direction = 1;
+                    else if (pre_dir == 1)
+                        direction = 4;
+                    else if (pre_dir == 5) 
+                        direction = 7;
+                    else if (pre_dir == 7)
+                        direction = 5;
+                    else direction = 4;
+                    
                 }
                 else if (((ballY == 0) && (955 - ballX > 477)) || (direction == 1))
                 {
-                    direction = 1;
+                    if (pre_dir == 4) 
+                        direction = 1;
+                    else if (pre_dir == 1)
+                        direction = 4;
+                    else if (pre_dir == 5) 
+                        direction = 7;
+                    else if (pre_dir == 7)
+                        direction = 5;
+                    else direction = 1;
+                    
+                    
                 }
                 else if (((ballX == 0) && (736 - ballY > 368)) || (direction == 3))
                 {
-                    direction = 3;
+                    if (pre_dir == 3) 
+                        direction = 2;
+                    else if (pre_dir == 2)
+                        direction = 3;
+                    else if (pre_dir == 9) 
+                        direction = 10;
+                    else if (pre_dir == 10)
+                        direction = 9;
+                    else direction = 3;
+                    
                 }
                 else if (((ballX == 0) && (736 - ballY <= 368)) || (direction == 1))
                 {
-                    direction = 1;
+                    if (pre_dir == 4) 
+                        direction = 1;
+                    else if (pre_dir == 1)
+                        direction = 4;
+                    else if (pre_dir == 5) 
+                        direction = 7;
+                    else if (pre_dir == 7)
+                        direction = 5;
+                    else direction = 1;
+                    
+                    //direction = 1;
                 }
                 else if (((ballX == 955) && (736 - ballY > 368)) || (direction == 2))
                 {
-                    direction = 2;
+                    if (pre_dir == 3) 
+                        direction = 2;
+                    else if (pre_dir == 2)
+                        direction = 3;
+                    else if (pre_dir == 9) 
+                        direction = 10;
+                    else if (pre_dir == 10)
+                        direction = 9;
+                    else direction = 2;
+                    
+                    //direction = 2;
                 }
                 else if (((ballX == 955) && (736 - ballY <= 368)) || (direction == 4))
                 {
-                    direction = 4;
+                    if (pre_dir == 4) 
+                        direction = 1;
+                    else if (pre_dir == 1)
+                        direction = 4;
+                    else if (pre_dir == 5) 
+                        direction = 7;
+                    else if (pre_dir == 7)
+                        direction = 5;
+                    else direction = 4;
+                    
+                    
                 }
+                pre_dir = direction;
 
                 if (direction == 1)
                 {
@@ -339,6 +533,60 @@ void main()
                     ballX--;
                     ballY++;
                     if (ballX == 0)
+                    {
+                        direction = 0;
+                    }
+                }
+                else if (direction == 5)
+                {
+                    ballX = ballX + 2;
+                    ballY++;
+                    if (ballX == 955)
+                    {
+                        direction = 0;
+                    }
+                }
+                else if (direction == 6)
+                {
+                    ballX++;
+                    ballY = ballY + 2;
+                    if (ballX == 955)
+                    {
+                        direction = 0;
+                    }
+                }
+                else if (direction == 7)
+                {
+                    ballX = ballX - 2;
+                    ballY++;
+                    if (ballX == 0)
+                    {
+                        direction = 0;
+                    }
+                }
+                else if (direction == 8)
+                {
+                    ballX++;
+                    ballY = ballY - 2;
+                    if (ballX == 955 || ballY == 0)
+                    {
+                        direction = 0;
+                    }
+                }
+                else if (direction == 9)
+                {
+                    ballX += 2;
+                    ballY--;
+                    if (ballX == 955 || ballY == 0)
+                    {
+                        direction = 0;
+                    }
+                }
+                else if (direction == 10)
+                {
+                    ballX -= 2;
+                    ballY--;
+                    if (ballX == 0 || ballY == 0)
                     {
                         direction = 0;
                     }
