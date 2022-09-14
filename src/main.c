@@ -106,50 +106,48 @@ void main()
         /*In case the function is dectect no collision between the ball and the paddle, it will return the same current
         direction of the ball.*/
         dir = direction;
-        pre_dir = dir;
         /*Condition to check if the bottom of the ball is on the same y axis with the top of the paddle and stay within
         the length of the paddle.*/
-        if ((ballY + 50 == 700) && (((ballX+50) >= paddleX) && ((ballX+50) <= paddleX + 127)))
+        if (((ballX > paddleX) && (ballX < paddleX + 127)) || (((ballX + 50) > paddleX) && (ballX + 50 < paddleX + 127)))
         {
-            // uart_puts("Hello from collision");
-            // uart_puts("\n");
-            if((((ballX+50) >= paddleX) && (ballX <= (paddleX + 40)))){  
-                if (pre_dir == 2)
-                    dir = 3;                       
-                else if (pre_dir == 3)
-                    dir = 2; 
-                else dir = 2;
-                
-                uart_dec(pre_dir);
-                uart_dec("\n");  
-                uart_dec(dir);                                 
-                // dir = 2;
+            // uart_dec(dir);
+            if (ballY + 50 == 700){
+                //Condition to decide direction whether the ball collide with which part of the paddle will bounce back.
+                //If the ball hit the first 30 pixels of the paddle.   
+                if((((ballX+50) >= paddleX) && ((ballX+50) <= (paddleX + 40)))){
+                    //Direction the ball will bounce back.
+                    uart_puts("Far Left");
+                    if (dir == 1){
+                        dir = 9;  
+                    }                     
+                    else if (dir == 4){
+                        dir = 10; 
+                    }
+                }
+                //If the ball hit the middle part of the paddle (from pixle 30th - 97th).
+                else if(((ballX < (paddleX + 87)) && ((ballX+50) > (paddleX + 40)))){
+                    //Direction the ball will bounce back. 
+                    uart_puts("Middle Part"); 
+                    if (dir == 1){
+                        dir = 3;
+                    }                       
+                    else if (dir == 4){
+                        dir = 2;
+                    }
+                }
+                //If the ball hit the last 30 pixels of the paddle.
+                else if(((ballX <= (paddleX + 127)) && ((ballX+50) >= (paddleX + 87)))){
+                    //Direction the ball will bounce back.
+                    uart_puts("Far Right");
+                    if (dir == 1){
+                        dir = 9; 
+                    }                      
+                    else if (dir == 4){
+                        dir = 10;
+                    }
+                }
             }
-            else if(((ballX <= (paddleX + 80)) && (ballX > (paddleX + 40)))){
-                if (pre_dir == 2)
-                    dir = 3;                       
-                else if (pre_dir == 3)
-                    dir = 2;
-                else dir = 3;
-                //pre_dir = dir;
-                uart_dec(pre_dir);
-                uart_puts("\n");  
-                uart_dec(dir);
-                //dir = 3;
-            }
-            else if(((ballX <= (paddleX + 127)) && (ballX > (paddleX + 80)))){
-                if (pre_dir == 9)
-                    dir = 10;                       
-                else if (pre_dir == 10)
-                    dir = 9; 
-                else dir = 9;
-                //pre_dir = dir;
-                uart_dec(pre_dir);
-                uart_dec("\n");  
-                uart_dec(dir);
-                //dir = 9;
-            }
-            pre_dir = dir; 
+            // pre_dir = dir; 
         }
         return dir;
     }
@@ -378,7 +376,7 @@ void main()
         int direction = 0;
         int i = 0; 
         int pre_dir = 0;
-        int isCollision = 0, isInitial = 0;
+        int isCollision = 0, isInitial = 0, isMidAir = 0;
         char str[10000];
         //Draw image background.
         draw_background();
@@ -487,103 +485,66 @@ void main()
                 /*Get direction from function collisionWithPaddle function for the ball change direction when it hit 
                 the paddle.*/
                 direction = collisionWithPaddle(ballX, ballY, barX, direction);
-                pre_dir = direction;
+
                 //divide all three side of the screen frame into half(the screen frame will be called as wall).
                 /*Check if the ball hit the top wall, and the ball hit left side of the wall.*/
-                if (((ballY == 0) && (955 - ballX <= 477)) || (direction == 4))
-                {
-                    if (pre_dir == 4) 
-                        direction = 1;
-                    else if (pre_dir == 1)
+                if ((ballY == 0)){
+                    
+                    if (direction == 2)
+                    {
                         direction = 4;
-                    else if (pre_dir == 5) 
-                        direction = 7;
-                    else if (pre_dir == 7)
-                        direction = 5;
-                    else direction = 4;
+                    }
+                    else if (direction == 3)
+                    {
+                        direction = 1;
+                    }
+                    else if (direction == 6)
+                    {
+                        /* code */
+                    }
                     
                 }
-                //Checking if the ball hit the top wall, and right side of the wall. 
-                else if (((ballY == 0) && (955 - ballX > 477)) || (direction == 1))
+                else if ((ballX == 0))
                 {
-                    if (pre_dir == 4) 
+                    if (direction == 4)
+                    {
                         direction = 1;
-                    else if (pre_dir == 1)
-                        direction = 4;
-                    else if (pre_dir == 5) 
-                        direction = 7;
-                    else if (pre_dir == 7)
-                        direction = 5;
-                    else direction = 1;
-                    
-                    
+                    }
+                    else if (direction == 2)
+                    {
+                        direction = 3; 
+                    }
                 }
-                //Checking if the ball hit the left wall, and lower line of the wall.
-                else if (((ballX == 0) && (736 - ballY > 368)) || (direction == 3))
+                else if ((ballX == 955))
                 {
-                    if (pre_dir == 3) 
+                    if (direction == 1)
+                    {
+                        direction = 4;
+                    }
+                    else if (direction == 3)
+                    {
                         direction = 2;
-                    else if (pre_dir == 2)
-                        direction = 3;
-                    else if (pre_dir == 9) 
-                        direction = 10;
-                    else if (pre_dir == 10)
-                        direction = 9;
-                    else direction = 3;
-                    
+                    }
                 }
-                //Checking if the ball hit left wall, and heigher line of the wall. 
-                else if (((ballX == 0) && (736 - ballY <= 368)) || (direction == 1))
-                {
-                    if (pre_dir == 4) 
-                        direction = 1;
-                    else if (pre_dir == 1)
-                        direction = 4;
-                    else if (pre_dir == 5) 
-                        direction = 7;
-                    else if (pre_dir == 7)
-                        direction = 5;
-                    else direction = 1;
-                    
-                    //direction = 1;
-                }
-                //Checking if the ball hit right wall, and lower line of the wall.
-                else if (((ballX == 955) && (736 - ballY > 368)) || (direction == 2))
-                {
-                    if (pre_dir == 3) 
-                        direction = 2;
-                    else if (pre_dir == 2)
-                        direction = 3;
-                    else if (pre_dir == 9) 
-                        direction = 10;
-                    else if (pre_dir == 10)
-                        direction = 9;
-                    else direction = 2;
-                    
-                    //direction = 2;
-                }
-                //Checking if the ball hit right wall, and hiegher line of the wall.
-                else if (((ballX == 955) && (736 - ballY <= 368)) || (direction == 4))
-                {
-                    if (pre_dir == 4) 
-                        direction = 1;
-                    else if (pre_dir == 1)
-                        direction = 4;
-                    else if (pre_dir == 5) 
-                        direction = 7;
-                    else if (pre_dir == 7)
-                        direction = 5;
-                    else direction = 4;
-                    
-                    
-                }
-                pre_dir = direction;
-
+                // else if ((direction == 7) && (isMidAir == 0))
+                // {
+                //     uart_puts("hello");
+                //     ballY-=5;
+                // }
+                // else if ((direction == 8) && (isMidAir == 0))
+                // {
+                //     uart_puts("hello");
+                //     ballY+=5;
+                // }
+                
+                
+                
                 //Condition to let the ball fly in direction 1.
                 if (direction == 1)
                 {
                     ballX++;
                     ballY++;
+                    // isMidAir = 1;
                     if (ballX == 955)
                     {
                         direction = 0;
@@ -594,9 +555,10 @@ void main()
                 {
                     ballX--;
                     ballY--;
-                    if (ballX == 0 || ballY == 0)
+                    // isMidAir = 1;
+                    if ((ballX == 0) || (ballY == 0))
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 //Condition to let the ball fly in direction 3.
@@ -604,9 +566,10 @@ void main()
                 {
                     ballX++;
                     ballY--;
+                    // isMidAir = 1;
                     if (ballX == 955 || ballY == 0)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 //Condition to let the ball fly in direction 4.
@@ -614,18 +577,19 @@ void main()
                 {
                     ballX--;
                     ballY++;
+                    // isMidAir = 1;
                     if (ballX == 0)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 else if (direction == 5)
                 {
                     ballX = ballX + 2;
                     ballY++;
-                    if (ballX == 955)
+                    if (ballX == 956)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 else if (direction == 6)
@@ -634,7 +598,7 @@ void main()
                     ballY = ballY + 2;
                     if (ballX == 955)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 else if (direction == 7)
@@ -643,7 +607,7 @@ void main()
                     ballY++;
                     if (ballX == 0)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 else if (direction == 8)
@@ -652,7 +616,7 @@ void main()
                     ballY = ballY - 2;
                     if (ballX == 955 || ballY == 0)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 else if (direction == 9)
@@ -661,7 +625,7 @@ void main()
                     ballY--;
                     if (ballX == 955 || ballY == 0)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 else if (direction == 10)
@@ -670,7 +634,7 @@ void main()
                     ballY--;
                     if (ballX == 0 || ballY == 0)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 /*the ball fly directly upward as begining of the game, or after returned when players faild to catch 
@@ -678,10 +642,15 @@ void main()
                 else
                 {
                     ballY--;
+                    if (ballY == 0)
+                    {
+                        continue;
+                    }
                 }
+                uart_dec(ballX);
                 //Get direction from function detectCollision if the ball hit tiles.
-                direction = detectCollision(ballX, ballY, direction);
-                //Slow down the running speed of the program to allow hummand can see the ball.              
+                direction = detectCollision(ballX, ballY, direction);    
+                //Slow down the running speed of the program to allow hummand can see the ball.
                 wait_msec(4000); 
             }
             else
