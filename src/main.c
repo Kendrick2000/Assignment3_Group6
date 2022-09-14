@@ -118,10 +118,10 @@ void main()
                     //Direction the ball will bounce back.
                     uart_puts("Far Left");
                     if (dir == 1){
-                        dir = 9;  
+                        dir = 10;  
                     }                     
                     else if (dir == 4){
-                        dir = 10; 
+                        dir = 9; 
                     }
                 }
                 //If the ball hit the middle part of the paddle (from pixle 30th - 97th).
@@ -498,13 +498,8 @@ void main()
                     {
                         direction = 1;
                     }
-                    else if (direction == 6)
-                    {
-                        /* code */
-                    }
-                    
                 }
-                else if ((ballX == 0))
+                else if ((ballX == 0) || (ballX == 1))
                 {
                     if (direction == 4)
                     {
@@ -514,8 +509,13 @@ void main()
                     {
                         direction = 3; 
                     }
+                    else if (direction == 10)
+                    {
+                        direction = 3;
+                    }
+                    
                 }
-                else if ((ballX == 955))
+                else if ((ballX == 955) || (ballX == 954))
                 {
                     if (direction == 1)
                     {
@@ -525,6 +525,11 @@ void main()
                     {
                         direction = 2;
                     }
+                    else if (direction == 9)
+                    {
+                        direction = 2;
+                    }
+                    
                 }
                 // else if ((direction == 7) && (isMidAir == 0))
                 // {
@@ -547,7 +552,7 @@ void main()
                     // isMidAir = 1;
                     if (ballX == 955)
                     {
-                        direction = 0;
+                        continue;
                     }
                 }
                 //Condition to let the ball fly in direction 2.
@@ -647,7 +652,8 @@ void main()
                         continue;
                     }
                 }
-                uart_dec(ballX);
+                // uart_dec(ballX);
+                // uart_puts(" ");
                 //Get direction from function detectCollision if the ball hit tiles.
                 direction = detectCollision(ballX, ballY, direction);    
                 //Slow down the running speed of the program to allow hummand can see the ball.
