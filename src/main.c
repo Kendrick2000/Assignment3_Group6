@@ -99,7 +99,7 @@ void main()
     of 1*/
     int collisionWithPaddle(int ballX, int ballY, int paddleX, int direction)
     {
-        //Delare variable dir, pred_dir.
+        //Delare variable dir, pre_dir.
         int dir = 0;
         int pre_dir = 0;
         //set dir to be equal with direction.
@@ -113,10 +113,10 @@ void main()
             // uart_dec(dir);
             if (ballY + 50 == 700){
                 //Condition to decide direction whether the ball collide with which part of the paddle will bounce back.
-                //If the ball hit the first 30 pixels of the paddle.   
+                //If the ball hit the first 40 pixels of the paddle.   
                 if((((ballX+50) >= paddleX) && ((ballX+50) <= (paddleX + 40)))){
                     //Direction the ball will bounce back.
-                    uart_puts("Far Left");
+                    uart_puts("Far Left \n");
                     if (dir == 1){
                         dir = 10;  
                     }                     
@@ -135,7 +135,7 @@ void main()
                         dir = 2;
                     }
                 }
-                //If the ball hit the last 30 pixels of the paddle.
+                //If the ball hit the rightmost pixels of the paddle.
                 else if(((ballX <= (paddleX + 127)) && ((ballX+50) >= (paddleX + 87)))){
                     //Direction the ball will bounce back.
                     uart_puts("Far Right");
@@ -181,27 +181,22 @@ void main()
         for(int i = 0; i < 40; i++){
             // Collision on the top and bottom of the tiles
             if (((x > tiles[i].x) && (x < (tiles[i].x + 150))) || (((x + 50) > tiles[i].x) && ((x + 50) < (tiles[i].x + 150)))){
-                /*Check is the ball hit a tile from bottom up.*/ 
+                /*Check if the ball hits a tile from bottom up.*/ 
                 if (y == (tiles[i].y + 30)){   
                     //Call function delete tile for visually and in the tiles array.         
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     score += 3;
-                    if (pre_dir == 7) {
-                        dir = 5;                       
-                    }
-                    else if (pre_dir == 5) {
-                        dir = 7;                       
-                    }
-                    else if (pre_dir == 4) {
-                        dir = 1;                       
-                    }
-                    else if (pre_dir == 1) {
-                        dir = 4;                       
-                    }
+                    if (pre_dir == 9) 
+                        dir = 5;                                         
+                    else if (pre_dir == 3) 
+                        dir = 1;                                         
+                    else if (pre_dir == 2) 
+                        dir = 4;                                         
+                    else if (pre_dir == 10) 
+                        dir = 7;                                          
                     else
-                        dir = 1;
-                    
+                        dir = 1;                    
                 }
 
                 /*Check is the ball hit a tile from top down.*/
@@ -210,12 +205,14 @@ void main()
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     score += 3;
-                    if (pre_dir == 9) {
-                        dir = 10;                       
-                    }
-                    else if (pre_dir == 10) {
-                        dir = 9;                       
-                    }
+                    if (pre_dir == 1) 
+                        dir = 3;                       
+                    else if (pre_dir == 5) 
+                        dir = 9;                                          
+                    else if (pre_dir == 4) 
+                        dir = 2;                                          
+                    else if (pre_dir == 7) 
+                        dir = 10;                                          
                     else
                         dir = 3;
                     
@@ -227,15 +224,16 @@ void main()
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 score += 3;
-                if (pre_dir == 9) {
-                    dir = 10;                       
-                }
-                else if (pre_dir == 10) {
-                    dir = 9;                       
-                }
+                if (pre_dir == 1) 
+                    dir = 3;            
+                else if (pre_dir == 5) 
+                    dir = 9;                                      
+                else if (pre_dir == 4)
+                    dir = 2;                       
+                else if (pre_dir == 7) 
+                    dir = 10;                                      
                 else
-                    dir = 2;
-                
+                    dir = 2;                
             }
             // Collision in the bottom left corner of the tile
             else if (((x + 50) == tiles[i].x) && (y == (tiles[i].y + 30))){
@@ -243,18 +241,14 @@ void main()
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 score += 3;
-                if (pre_dir == 7) {
-                    dir = 5;                       
-                }
-                else if (pre_dir == 5) {
-                    dir = 7;                       
-                }
-                else if (pre_dir == 4) {
-                    dir = 1;                       
-                }
-                else if (pre_dir == 1) {
-                    dir = 4;                       
-                }
+                if (pre_dir == 9) 
+                    dir = 5;                                         
+                else if (pre_dir == 3) 
+                    dir = 1;                                         
+                else if (pre_dir == 2) 
+                    dir = 4;                                         
+                else if (pre_dir == 10) 
+                    dir = 7;                                          
                 else
                     dir = 4;       
             }
@@ -264,12 +258,14 @@ void main()
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 score += 3;
-                if (pre_dir == 9) {
-                    dir = 10;                       
-                }
-                else if (pre_dir == 10) {
-                    dir = 9;                       
-                }
+                if (pre_dir == 1) 
+                    dir = 3;            
+                else if (pre_dir == 5) 
+                    dir = 9;                                      
+                else if (pre_dir == 4)
+                    dir = 2;                       
+                else if (pre_dir == 7) 
+                    dir = 10;                                      
                 else
                     dir = 3;               
             }
@@ -279,22 +275,18 @@ void main()
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
                 score += 3;
-                if (pre_dir == 7) {
-                    dir = 5;                       
-                }
-                else if (pre_dir == 5) {
-                    dir = 7;                       
-                }
-                else if (pre_dir == 4) {
-                    dir = 1;                       
-                }
-                else if (pre_dir == 1) {
-                    dir = 4;                       
-                }
+                if (pre_dir == 9) 
+                    dir = 5;                                         
+                else if (pre_dir == 3) 
+                    dir = 1;                                         
+                else if (pre_dir == 2) 
+                    dir = 4;                                         
+                else if (pre_dir == 10) 
+                    dir = 7;                                          
                 else
                     dir = 1;              
             }
-            //Checking if the ball hit tile/s with partila of the ball from side to side.
+            //Checking if the ball hit tile/s with partial of the ball from side to side.
             else if ((y <= tiles[i].y) && (y >= (tiles[i].y + 30))){
                 //Checking if partial of the ball hit tile/s from the left side of the tile.
                 if((x + 50) == tiles[i].x){
@@ -302,12 +294,14 @@ void main()
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     score += 3;
-                    if (pre_dir == 9) {
-                    dir = 10;                       
-                    }
-                    else if (pre_dir == 10) {
-                        dir = 9;                       
-                    }
+                    if (pre_dir == 9) 
+                        dir = 10;                                          
+                    else if (pre_dir == 1) 
+                        dir = 4;
+                    else if (pre_dir == 3) 
+                        dir = 2;  
+                    else if (pre_dir == 5) 
+                        dir = 7;                                        
                     else
                         dir = 2;                  
                 }
@@ -318,12 +312,14 @@ void main()
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     score += 3;
-                    if (pre_dir == 9) {
-                        dir = 10;                       
-                    }
-                    else if (pre_dir == 10) {
-                        dir = 9;                       
-                    }
+                    if (pre_dir == 2) 
+                        dir = 3;                                           
+                    else if (pre_dir == 10) 
+                        dir = 9;   
+                    else if (pre_dir == 7) 
+                        dir = 5;  
+                    else if (pre_dir == 4) 
+                        dir = 1;                                      
                     else
                         dir = 3;                    
                 }
@@ -335,12 +331,14 @@ void main()
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     score += 3;
-                    if (pre_dir == 9) {
-                        dir = 10;                       
-                    }
-                    else if (pre_dir == 10) {
-                        dir = 9;                       
-                    }
+                    if (pre_dir == 9) 
+                        dir = 10;                                          
+                    else if (pre_dir == 1) 
+                        dir = 4;
+                    else if (pre_dir == 3) 
+                        dir = 2;  
+                    else if (pre_dir == 5) 
+                        dir = 7;                                        
                     else
                         dir = 2;                   
                 }
@@ -350,12 +348,14 @@ void main()
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
                     score += 3;
-                    if (pre_dir == 9) {
-                        dir = 10;                       
-                    }
-                    else if (pre_dir == 10) {
-                        dir = 9;                       
-                    }
+                    if (pre_dir == 2) 
+                        dir = 3;                                           
+                    else if (pre_dir == 10) 
+                        dir = 9;   
+                    else if (pre_dir == 7) 
+                        dir = 5;  
+                    else if (pre_dir == 4) 
+                        dir = 1;                                      
                     else
                         dir = 3;                   
                 }
@@ -488,49 +488,46 @@ void main()
 
                 //divide all three side of the screen frame into half(the screen frame will be called as wall).
                 /*Check if the ball hit the top wall, and the ball hit left side of the wall.*/
-                if ((ballY == 0)){
-                    
-                    if (direction == 2)
-                    {
-                        direction = 4;
-                    }
-                    else if (direction == 3)
-                    {
+                if ((ballY == 0)) {                  
+                    if (direction == 2)                    
+                        direction = 4;                    
+                    else if (direction == 3)                   
                         direction = 1;
-                    }
+                    else if (direction == 10)                   
+                        direction = 7;
+                    else if (direction == 9)                   
+                        direction = 5;   
+                    else 
+                        direction = 1;                
                 }
                 else if ((ballX == 0) || (ballX == 1))
                 {
-                    if (direction == 4)
-                    {
-                        direction = 1;
-                    }
-                    else if (direction == 2)
-                    {
-                        direction = 3; 
-                    }
-                    else if (direction == 10)
-                    {
-                        direction = 3;
-                    }
-                    
+                    if (direction == 4)                    
+                        direction = 1;                   
+                    else if (direction == 2)                   
+                        direction = 3;                    
+                    else if (direction == 10)                   
+                        direction = 9;  
+                    else if (direction == 7)                   
+                        direction = 5;
+                    else 
+                        direction = 1;                        
                 }
                 else if ((ballX == 955) || (ballX == 954))
                 {
-                    if (direction == 1)
-                    {
-                        direction = 4;
-                    }
-                    else if (direction == 3)
-                    {
+                    if (direction == 1)                   
+                        direction = 4;                    
+                    else if (direction == 3)                   
+                        direction = 2;                   
+                    else if (direction == 9)                   
+                        direction = 10;
+                    else if (direction == 5)                   
+                        direction = 7;
+                    else 
                         direction = 2;
-                    }
-                    else if (direction == 9)
-                    {
-                        direction = 2;
-                    }
                     
                 }
+                
                 // else if ((direction == 7) && (isMidAir == 0))
                 // {
                 //     uart_puts("hello");
@@ -542,8 +539,7 @@ void main()
                 //     ballY+=5;
                 // }
                 
-                
-                
+                             
                 //Condition to let the ball fly in direction 1.
                 if (direction == 1)
                 {
