@@ -121,7 +121,7 @@ void main()
                         dir = 10;  
                     }                     
                     else if (dir == 4){
-                        dir = 9; 
+                        dir = 10; 
                     }
                 }
                 //If the ball hit the middle part of the paddle (from pixle 30th - 97th).
