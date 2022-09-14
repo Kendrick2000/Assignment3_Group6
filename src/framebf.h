@@ -8,5 +8,5 @@ void drawChar(int x, int y, char c, unsigned char attr);
 void drawString(int x, int y, char *s, unsigned int attr);
 void drawChar32x32(int x, int y, char c, unsigned char attr);
 void drawString32x32(int x, int y, char *s, unsigned int attr);
-void drawCharLarge(int x, int y, char c, unsigned char attr);
-void drawStringLarge(int x, int y, char *s, unsigned int attr);
+void drawCharWelcome(int x, int y, char c, unsigned char attr);
+void drawStringWelcome(int x, int y, char *s, unsigned int attr);

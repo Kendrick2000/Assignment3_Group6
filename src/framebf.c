@@ -198,25 +198,84 @@ void drawString32x32(int x, int y, char *s, unsigned char attr)
     }
 }
 
-void drawCharLarge(unsigned char ch, int x, int y, unsigned char attr)
+void drawCharWelcome(unsigned char ch, int x, int y, unsigned char attr)
 {
     unsigned char *glyph = (unsigned char *)&font + (ch < FONT_NUMGLYPHS ? ch : 0) * FONT_BPG;
 
-    for (int i=0;i<FONT_HEIGHT;i++) {
-	for (int j=0;j<FONT_WIDTH;j++) {
-	    unsigned char mask = 1 << j;
-	    unsigned char col = (*glyph & mask) ? attr & 0x0f : 0x00;
+    for (int i = 0; i < FONT_HEIGHT; i++) {
+        for (int j = 0; j < FONT_WIDTH; j++) {
+            unsigned char mask = 1 << j;
+            unsigned char col = (*glyph & mask) ? attr & 0x0f : 0x00;
 
-	    drawPixel(x+8*j, y+8*i, col);
-        drawPixel(x+8*j, y+8*i + 1, col);
-       	drawPixel(x+8*j +1, y+8*i, col);
-       	drawPixel(x+8*j+1, y+8*i+1, col);
-	}
-	glyph += FONT_BPL;
+            drawPixel(x+8*j, y+8*i, col);
+            drawPixel(x+8*j, y+8*i + 1, col);
+            drawPixel(x+8*j + 1, y+8*i, col);
+            drawPixel(x+8*j + 1, y+8*i + 1, col);
+
+            //drawPixel(x+8*j, y+8*i, col);
+            drawPixel(x+8*j, y+8*i + 2, col);
+            drawPixel(x+8*j + 2, y+8*i, col);
+            drawPixel(x+8*j + 2, y+8*i+2, col);
+            drawPixel(x+8*j + 1, y+8*i + 2, col);
+            drawPixel(x+8*j + 2, y+8*i + 1, col);
+            
+
+            drawPixel(x+8*j, y+8*i + 3, col);
+            drawPixel(x+8*j + 3, y+8*i, col);
+            drawPixel(x+8*j + 3, y+8*i+3, col);
+            drawPixel(x+8*j + 1, y+8*i + 3, col);
+            drawPixel(x+8*j + 3, y+8*i + 1, col);
+
+            drawPixel(x+8*j, y+8*i + 4, col);
+            drawPixel(x+8*j + 4, y+8*i, col);
+            drawPixel(x+8*j + 4, y+8*i+4, col);
+            drawPixel(x+8*j + 1, y+8*i + 4, col);
+            drawPixel(x+8*j + 4, y+8*i + 1, col);
+
+            drawPixel(x+8*j, y+8*i + 5, col);
+            drawPixel(x+8*j + 5, y+8*i, col);
+            drawPixel(x+8*j + 5, y+8*i+5, col);
+            drawPixel(x+8*j + 8, y+8*i + 5, col);
+            drawPixel(x+8*j + 5, y+8*i + 8, col);
+
+            drawPixel(x+8*j + 5, y+8*i + 2, col);
+            drawPixel(x+8*j + 2, y+8*i + 5, col);          
+
+            drawPixel(x+8*j  + 5, y+8*i + 3, col);
+            drawPixel(x+8*j + 3, y+8*i  + 5, col);            
+
+            drawPixel(x+8*j + 5, y+8*i + 4, col);
+            drawPixel(x+8*j + 4, y+8*i + 5, col);
+            
+            drawPixel(x+8*j, y+8*i + 5, col);
+            drawPixel(x+8*j + 5, y+8*i, col);
+            drawPixel(x+8*j + 5, y+8*i+5, col);
+            drawPixel(x+8*j + 8, y+8*i + 5, col);
+            drawPixel(x+8*j + 5, y+8*i + 8, col);
+
+            drawPixel(x+8*j, y+8*i + 6, col);
+            drawPixel(x+8*j + 6, y+8*i, col);
+            drawPixel(x+8*j + 6, y+8*i+6, col);
+            drawPixel(x+8*j + 8, y+8*i + 6, col);
+            drawPixel(x+8*j + 6, y+8*i + 8, col);
+
+            drawPixel(x+8*j, y+8*i + 7, col);
+            drawPixel(x+8*j + 7, y+8*i, col);
+            drawPixel(x+8*j + 7, y+8*i+7, col);
+            drawPixel(x+8*j + 8, y+8*i + 7, col);
+            drawPixel(x+8*j + 7, y+8*i + 8, col);
+
+            drawPixel(x+8*j, y+8*i + 8, col);
+            drawPixel(x+8*j + 8, y+8*i, col);
+            drawPixel(x+8*j + 8, y+8*i+8, col);
+            drawPixel(x+8*j + 8, y+8*i + 8, col);
+            drawPixel(x+8*j + 8, y+8*i + 8, col);
+        }
+        glyph += FONT_BPL;
     }
 }
 
-void drawStringLarge(int x, int y, char *s, unsigned char attr)
+void drawStringWelcome(int x, int y, char *s, unsigned char attr)
 {
     while (*s) {
        if (*s == '\r') {
@@ -224,7 +283,7 @@ void drawStringLarge(int x, int y, char *s, unsigned char attr)
        } else if(*s == '\n') {
           x = 0; y += FONT_HEIGHT*8;
        } else {
-	  drawCharLarge(*s, x, y, attr);
+	  drawCharWelcome(*s, x, y, attr);
           x += FONT_WIDTH*8;
        }
        s++;

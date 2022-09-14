@@ -10,3 +10,4 @@ void del_tile(int x, int y);
 void eraseSprite(int x, int y, int spr_width, int spr_height);
 void drawSprite(int x, int y);
 void move_paddle(char* str, int barX);
+void welcomeGame();
