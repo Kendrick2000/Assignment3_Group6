@@ -117,34 +117,32 @@ void main()
                 if((((ballX+50) >= paddleX) && ((ballX+50) <= (paddleX + 40)))){
                     //Direction the ball will bounce back.
                     uart_puts("Far Left \n");
-                    if (dir == 1){
-                        dir = 10;  
-                    }                     
-                    else if (dir == 4){
-                        dir = 10; 
-                    }
+                    if (dir == 1)
+                        dir = 10;                       
+                    else if (dir == 4)
+                        dir = 9; 
+                    else 
+                    
                 }
                 //If the ball hit the middle part of the paddle (from pixle 30th - 97th).
                 else if(((ballX < (paddleX + 87)) && ((ballX+50) > (paddleX + 40)))){
                     //Direction the ball will bounce back. 
                     uart_puts("Middle Part"); 
-                    if (dir == 1){
-                        dir = 3;
-                    }                       
-                    else if (dir == 4){
+                    if (dir == 1)
+                        dir = 3;                                    
+                    else if (dir == 4)
                         dir = 2;
-                    }
+                    
                 }
                 //If the ball hit the rightmost pixels of the paddle.
                 else if(((ballX <= (paddleX + 127)) && ((ballX+50) >= (paddleX + 87)))){
                     //Direction the ball will bounce back.
                     uart_puts("Far Right");
-                    if (dir == 1){
-                        dir = 9; 
-                    }                      
-                    else if (dir == 4){
+                    if (dir == 1)
+                        dir = 9;                                     
+                    else if (dir == 4)
                         dir = 10;
-                    }
+                    
                 }
             }
             // pre_dir = dir; 
