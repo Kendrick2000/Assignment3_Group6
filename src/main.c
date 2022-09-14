@@ -8,6 +8,7 @@
 #include "game.h"
 #include "timer.h"
 
+#define MAX_SIZE 20
 //struct for tiles
 struct Sprite {
     int x;
@@ -47,25 +48,25 @@ void main()
               "\n\n");
 
     //Display all members name. 
-    drawStringLarge(50, 20, "EEET2490", 0x003498DB);
-    drawStringLarge(50, 100, "Bare OS", 0x003498DB);
+    drawStringWelcome(250, 200, "EEET2490", 0x003498DB);
+    drawStringWelcome(250, 280, "Bare OS", 0x003498DB);
 
-    drawString32x32(50, 200, "Uyen Nguyen - s3751882", 0x003498DB);
-    drawString32x32(50, 220, "Khang Truong - s3751882", 0x00AF601A);
-    drawString32x32(50, 240, "Daniil Shlee - s3751882", 0x00BB8FCE);
-    drawString32x32(50, 260, "Kiet Park - s3751882", 0x00E74C3C);
+    drawString32x32(250, 400, "Uyen Nguyen - s3751882", 0x003498DB);
+    drawString32x32(250, 420, "Khang Truong - s3814172", 0x00AF601A);
+    drawString32x32(250, 440, "Daniil Shlee - s3414755", 0x00BB8FCE);
+    drawString32x32(250, 460, "Kiet Park - s3681475", 0x00E74C3C);
 
     //Make the program stop for 1500 seconds.
     wait_msec(1500000);
 
     // Delete font letters by writing them again in black
-    drawStringLarge(50, 20, "EEET2490", 0x0);
-    drawStringLarge(50, 100, "Bare OS", 0x0);
+    drawStringWelcome(250, 200, "EEET2490", 0x0);
+    drawStringWelcome(250, 280, "Bare OS", 0x0);
 
-    drawString32x32(50, 200, "Uyen Nguyen - s3751882", 0x0);
-    drawString32x32(50, 220, "Khang Truong - s3751882", 0x0);
-    drawString32x32(50, 240, "Daniil Shlee - s3751882", 0x0);
-    drawString32x32(50, 260, "Kiet Park - s3751882", 0x0);
+    drawString32x32(250, 400, "Uyen Nguyen - s3751882", 0x0);
+    drawString32x32(250, 420, "Khang Truong - s3814172", 0x0);
+    drawString32x32(250, 440, "Daniil Shlee - s3414755", 0x0);
+    drawString32x32(250, 460, "Kiet Park - s3681475", 0x0);
 
     framebf_release();
     framebf_init();
@@ -118,10 +119,11 @@ void main()
                     //Direction the ball will bounce back.
                     uart_puts("Far Left \n");
                     if (dir == 1)
-                        dir = 10;                       
+                        dir = 10;                                        
                     else if (dir == 4)
                         dir = 9; 
-                    else 
+                    else dir = 10;
+
                     
                 }
                 //If the ball hit the middle part of the paddle (from pixle 30th - 97th).
@@ -129,9 +131,12 @@ void main()
                     //Direction the ball will bounce back. 
                     uart_puts("Middle Part"); 
                     if (dir == 1)
-                        dir = 3;                                    
+                        dir = 3;                                        
                     else if (dir == 4)
                         dir = 2;
+                    else 
+                        dir = 3;
+
                     
                 }
                 //If the ball hit the rightmost pixels of the paddle.
@@ -139,10 +144,11 @@ void main()
                     //Direction the ball will bounce back.
                     uart_puts("Far Right");
                     if (dir == 1)
-                        dir = 9;                                     
+                        dir = 9;                                          
                     else if (dir == 4)
                         dir = 10;
-                    
+                    else 
+                        dir = 9;
                 }
             }
             // pre_dir = dir; 
@@ -184,7 +190,7 @@ void main()
                     //Call function delete tile for visually and in the tiles array.         
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    score += 3;
+                    score += 5;
                     if (pre_dir == 9) 
                         dir = 5;                                         
                     else if (pre_dir == 3) 
@@ -202,7 +208,7 @@ void main()
                     //Call function delete tile for visually and in the tiles array.
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    score += 3;
+                    score += 5;
                     if (pre_dir == 1) 
                         dir = 3;                       
                     else if (pre_dir == 5) 
@@ -221,7 +227,7 @@ void main()
                 //Call function delete tile for visually and in the tiles array.
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                score += 3;
+                score += 5;
                 if (pre_dir == 1) 
                     dir = 3;            
                 else if (pre_dir == 5) 
@@ -238,7 +244,7 @@ void main()
                 //Call function delete tile for visually and in the tiles array.
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                score += 3;
+                score += 5;
                 if (pre_dir == 9) 
                     dir = 5;                                         
                 else if (pre_dir == 3) 
@@ -255,7 +261,7 @@ void main()
                 //Call function delete tile for visually and in the tiles array.
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                score += 3;
+                score += 5;
                 if (pre_dir == 1) 
                     dir = 3;            
                 else if (pre_dir == 5) 
@@ -272,7 +278,7 @@ void main()
                 //Call function delete tile for visually and in the tiles array.
                 del_tile(tiles[i].x, tiles[i].y);
                 deleteTileCoordinate(i);
-                score += 3;
+                score += 5;
                 if (pre_dir == 9) 
                     dir = 5;                                         
                 else if (pre_dir == 3) 
@@ -291,7 +297,7 @@ void main()
                     //Call function delete tile for visually and in the tiles array.
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    score += 3;
+                    score += 5;
                     if (pre_dir == 9) 
                         dir = 10;                                          
                     else if (pre_dir == 1) 
@@ -309,7 +315,7 @@ void main()
                     //Call function delete tile for visually and in the tiles array.
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    score += 3;
+                    score += 5;
                     if (pre_dir == 2) 
                         dir = 3;                                           
                     else if (pre_dir == 10) 
@@ -324,11 +330,11 @@ void main()
             }
             //Checking if the ball hit tile/s fully side to side.
             else if (((tiles[i].y >= y) && (tiles[i].y <= (y + 50)))){
-                if (x + 50 == tiles[i].x){
+                if (x + 50 == tiles[i].x) {
                     //Call function delete tile for visually and in the tiles array.
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    score += 3;
+                    score += 5;
                     if (pre_dir == 9) 
                         dir = 10;                                          
                     else if (pre_dir == 1) 
@@ -345,7 +351,8 @@ void main()
                     //Call function delete tile for visually and in the tiles array.
                     del_tile(tiles[i].x, tiles[i].y);
                     deleteTileCoordinate(i);
-                    score += 3;
+                    score += 5;
+                    
                     if (pre_dir == 2) 
                         dir = 3;                                           
                     else if (pre_dir == 10) 
@@ -362,6 +369,27 @@ void main()
         }
         //return any value dir have.
         return dir;
+    }
+    // Display decimal number on screen, modified from uart_dec()
+    char displayDec(int num) {      
+        char str[33] = ""; 
+        int i, rem, len = 0, n; 
+    
+        n = num; 
+        while (n != 0) { 
+            len++; 
+            n /= 10; 
+        }   
+        if (num == 0) 
+            len = 1;    
+        for (i = 0; i < len; i++) { 
+            rem = num % 10; 
+            num = num / 10; 
+            str[len - (i + 1)] = rem + '0'; 
+        } 
+        str[len] = '\0'; 
+    
+        drawString32x32(930,10,str,0x00E74C3C);
     }
 
     //Function start game
@@ -386,7 +414,9 @@ void main()
         {
             //Display score that player currently have on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
-            drawString32x32(930,10,score + "0",0x00E74C3C);
+            displayDec(score);
+            //uart_dec(myscore);
+            //drawChar32x32(930,10,myscore,0x00E74C3C);
             //Condition to make sure that all tiles only drew once at the begining of the game.
             if(isInitial == 0){
                 //Using loop as pointer, point to to exact coordinate to draw tiles.
@@ -872,6 +902,8 @@ void main()
         }
         else if (strCompare(array, "game") == 0)
         {
+            welcomeGame();
+            wait_msec(10000000);
             draw_game();
         }
         else

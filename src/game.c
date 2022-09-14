@@ -329,7 +329,8 @@ void draw_greenTile(int x, int y)
         y++;
         for (int i = 0; i < 150; i++)
         {
-            drawPixelARGB32(i + x, y, greentile[j * 150 + i]);
+            if (greentile[j * 150 + i] != 0x00)
+                drawPixelARGB32(i + x, y, greentile[j * 150 + i]);
         }
     }
 }
@@ -342,7 +343,8 @@ void draw_blueTile(int x, int y)
         y++;
         for (int i = 0; i < 150; i++)
         {
-            drawPixelARGB32(i + x, y, bluetile[j * 150 + i]);
+            if (bluetile[j * 150 + i] != 0x00)
+                drawPixelARGB32(i + x, y, bluetile[j * 150 + i]);
         }
     }
 }
@@ -355,7 +357,8 @@ void draw_yellowTile(int x, int y)
         y++;
         for (int i = 0; i < 150; i++)
         {
-            drawPixelARGB32(i + x, y, yellowtile[j * 150 + i]);
+            if (yellowtile[j * 150 + i] != 0x00)
+                drawPixelARGB32(i + x, y, yellowtile[j * 150 + i]);
         }
     }
 }
@@ -369,7 +372,8 @@ void draw_redTile(int x, int y)
         y++;
         for (int i = 0; i < 150; i++)
         {
-            drawPixelARGB32(i + x, y, redtile[j * 150 + i]);
+            if (redtile[j * 150 + i] != 0x00)
+                drawPixelARGB32(i + x, y, redtile[j * 150 + i]);
         }
     }
 }
@@ -416,4 +420,12 @@ void eraseSprite(int x, int y, int spr_width, int spr_height) {
             offsetX = 0;                                                        //Reset the horizontal offset (back to x=0 in the image)
         }       
     }
+}
+
+void welcomeGame() {
+    //draw_background();
+    drawStringWelcome(300, 300, "ARKANOID", 0x00E74C3C);
+    drawString32x32(100, 400, "Press 'a' to move paddle to the left", 0x00BB8FCE);
+    drawString32x32(100, 420, "Press 'd' to move paddle to the right", 0x00BB8FCE);
+    drawString32x32(100, 440, "Game will start as soon as you press one of the 2 keys", 0x00BB8FCE);
 }
