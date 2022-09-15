@@ -11,3 +11,6 @@ void eraseSprite(int x, int y, int spr_width, int spr_height);
 void drawSprite(int x, int y);
 void move_paddle(char* str, int barX);
 void welcomeGame();
+void draw_greyBrick(int x, int y);
+char displayDec(int num, int x, int y);
+void draw_gameOver();
