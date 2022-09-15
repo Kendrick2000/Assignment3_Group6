@@ -156,6 +156,154 @@ void main()
         return dir;
     }
 
+    int collisionWithBrick(int ballX, int ballY, int brickX, int brickY, int direction)
+    {
+        //Delare variable dir, pre_dir.
+        int dir = 0;
+        int pre_dir = 0;
+        //set dir to be equal with direction.
+        /*In case the function is dectect no collision between the ball and the paddle, it will return the same current
+        direction of the ball.*/
+        dir = direction;
+        /*Condition to check if the bottom of the ball is on the same y axis with the top of the brick and stay within
+        the length of the brick.*/
+        if (((ballX > brickX) && (ballX < brickX + 240)) || (((ballX + 50) > brickX) && (ballX + 50 < brickX + 240)))
+        {
+            // uart_dec(dir);
+            if (ballY + 50 == brickY){
+                //Condition to decide direction whether the ball collide with which part of the paddle will bounce back.
+                //If the ball hit the first 60 pixels of the brick.   
+                if((((ballX+50) >= brickX) && ((ballX+50) <= (brickX + 80)))){
+                    //Direction the ball will bounce back.
+                    if (dir == 1)
+                        dir = 3;                                        
+                    else if (dir == 4)
+                        dir = 10; 
+                    else dir = 10;                   
+                }
+                //If the ball hit the middle part of the brick (from pixle 80 - 160).
+                else if(((ballX < (brickX + 160)) && ((ballX+50) > (brickX + 80)))){
+                    //Direction the ball will bounce back.                      
+                    if (dir == 1)
+                        dir = 3;                                        
+                    else if (dir == 4)
+                        dir = 2;
+                    else 
+                        dir = 3;                    
+                }
+                //If the ball hit the rightmost pixels of the brick.
+                else if(((ballX <= (brickX + 240)) && ((ballX+50) >= (brickX + 160)))){
+                    //Direction the ball will bounce back.
+                    if (dir == 1)
+                        dir = 9;                                          
+                    else if (dir == 4)
+                        dir = 10;
+                    else 
+                        dir = 9;
+                }
+            }
+            /*Condition to check if the bottom of the ball is on the same y axis with the bottom of the brick and stay within
+            the length of the brick.*/
+            // uart_dec(dir);
+               
+            if (ballY == (brickY + 20)){
+                //Condition to decide direction whether the ball collide with which part of the paddle will bounce back.
+                //If the ball hit the first 100 pixels of the brick.   
+                if((((ballX+50) >= brickX) && ((ballX+50) <= (brickX + 80)))){
+                    //Direction the ball will bounce back.
+                    //uart_puts("Far Left \n");
+                    if (dir == 10)
+                        dir = 7;                                        
+                    else if (dir == 9)
+                        dir = 5; 
+                    else dir = 7;                   
+                }
+                //If the ball hit the middle part of the paddle (from pixle 100 - 200).
+                else if(((ballX < (brickX + 160)) && ((ballX+50) > (brickX + 80)))){
+                    // Direction the ball will bounce back. 
+                    // uart_puts("Middle Part"); 
+                    if (dir == 2)
+                        dir = 4;                                        
+                    else if (dir == 3)
+                        dir = 1;
+                    else 
+                        dir = 4;                   
+                }
+                //If the ball hit the rightmost pixels of the brick.
+                else if(((ballX <= (brickX + 240)) && ((ballX+50) >= (brickX + 160)))){
+                    //Direction the ball will bounce back.
+                    //uart_puts("Far Right");
+                    if (dir == 9)
+                        dir = 5;                                          
+                    else if (dir == 3)
+                        dir = 1;
+                    else 
+                        dir = 5;
+                }
+            }
+            
+            // pre_dir = dir; 
+        }
+        //Checking if the ball hit tile/s with partial of the ball from side to side.
+        else if ((ballY <= (brickY + 20)) && (ballY >= brickY)){
+            //Checking if partial of the ball hit brick from the left side of the tile.
+            if((ballX + 50) == brickX) {
+                if (dir == 9) 
+                    dir = 10;                                          
+                else if (dir == 1) 
+                    dir = 4;
+                else if (dir == 3) 
+                    dir = 2;  
+                else if (dir == 5) 
+                    dir = 7;                                        
+                else
+                    dir = 2;                  
+            }
+
+            //Checking if partial of the ball hit brick from the right side of the tile.
+            if(ballX == (brickX + 240)) {
+                if (dir == 2) 
+                    dir = 3;                                           
+                else if (dir == 10) 
+                    dir = 9;   
+                else if (dir == 7) 
+                    dir = 5;  
+                else if (dir == 4) 
+                    dir = 1;                                      
+                else
+                    dir = 3;                    
+            }
+        }
+        //Checking if the ball hit brick fully side to side.
+        else if (((brickY >= ballY) && (brickY <= (ballY + 50)))){
+            if (ballX + 50 == brickX) {
+                if (dir == 9) 
+                    dir = 10;                                          
+                else if (dir == 1) 
+                    dir = 4;
+                else if (dir == 3) 
+                    dir = 2;  
+                else if (dir == 5) 
+                    dir = 7;                                        
+                else
+                    dir = 2;                   
+            }
+
+            if (ballX == (brickX + 240)){
+                if (dir == 2) 
+                    dir = 3;                                           
+                else if (dir == 10) 
+                    dir = 9;   
+                else if (dir == 7) 
+                    dir = 5;  
+                else if (dir == 4) 
+                    dir = 1;                                      
+                else
+                    dir = 3;                   
+            }
+        }
+        return dir;
+    }
     //Function delete tiles coordinate in tiles array create in global. 
     void deleteTileCoordinate(int position){
         /*Declare variable count and set equal to position of a specific tiles that has been dectected as collided in 
@@ -370,27 +518,7 @@ void main()
         //return any value dir have.
         return dir;
     }
-    // Display decimal number on screen, modified from uart_dec()
-    char displayDec(int num) {      
-        char str[33] = ""; 
-        int i, rem, len = 0, n; 
     
-        n = num; 
-        while (n != 0) { 
-            len++; 
-            n /= 10; 
-        }   
-        if (num == 0) 
-            len = 1;    
-        for (i = 0; i < len; i++) { 
-            rem = num % 10; 
-            num = num / 10; 
-            str[len - (i + 1)] = rem + '0'; 
-        } 
-        str[len] = '\0'; 
-    
-        drawString32x32(930,10,str,0x00E74C3C);
-    }
 
     //Function start game
     void draw_game()
@@ -414,7 +542,7 @@ void main()
         {
             //Display score that player currently have on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
-            displayDec(score);
+            displayDec(score, 930, 10);
             //uart_dec(myscore);
             //drawChar32x32(930,10,myscore,0x00E74C3C);
             //Condition to make sure that all tiles only drew once at the begining of the game.
@@ -621,11 +749,11 @@ void main()
                         continue;
                     }
                 }
+                // Fall straight downwards
                 else if (direction == 6)
                 {
-                    ballX++;
-                    ballY = ballY + 2;
-                    if (ballX == 955)
+                    ballY++;
+                    if (ballY == 955)
                     {
                         continue;
                     }
@@ -680,7 +808,7 @@ void main()
                 // uart_puts(" ");
                 //Get direction from function detectCollision if the ball hit tiles.
                 direction = detectCollision(ballX, ballY, direction);    
-                //Slow down the running speed of the program to allow hummand can see the ball.
+                //Slow down the running speed of the program to allow hummand to see the ball.
                 wait_msec(4000); 
             }
             else
@@ -728,6 +856,417 @@ void main()
             }
         }
     }
+
+    void draw_level2() {
+        //Declare variables: barX, ballX, ballY, traceX, traceY, direction, i, isCollision, isInitial and str array. 
+        int barX = 500, count = 0;
+        int ballX = 500, ballY = 650;
+        int leftbrickX = 130, rightbrickX = 690;
+        int leftbrickY = 340, rightbrickY = 340;
+        int traceX = 0, traceY = 0;
+        int direction = 0;
+        int i = 0; 
+        int pre_dir = 0;
+        int isInitial = 0;
+        char str[10000];
+        //Draw image background.
+        draw_background();
+        //Draw initial paddle with possition 500, 700.
+        draw_paddle(barX, 700);
+        draw_greyBrick(leftbrickX,leftbrickY);
+        draw_greyBrick(rightbrickX,rightbrickY);
+
+        //Run the game.
+        while (1)
+        {
+            //Display score that player currently has on top right corrner.
+            drawString32x32(800,10,"Score: ",0x00E74C3C);
+            displayDec(score, 930, 10);
+
+            //Condition to make sure that all tiles only drew once at the begining of the game.
+            if(isInitial == 0){
+                //Using loop as pointer, point to to exact coordinate to draw tiles.
+                //x value as value of x-axis and y value as value of y-axis.
+                //+=170 or +=32 as step to get to the exact location faster then ++ or having more condition.
+                for (int x = 90; x < 400; x += 170)
+                {
+                    for (int y = 50; y < 280; y += 32)
+                    {
+                        //Condition to draw all tiles in a column at correct position.
+                        if (y == 50)
+                        {
+                            //Draw yellow tile at position any x, and y = 50.
+                            draw_yellowTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 82)
+                        {
+                            //Draw red tile at position any x, and y = 82.
+                            draw_redTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 114)
+                        {
+                            //Draw blue tile at position any x, and y = 114.
+                            draw_blueTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 146)
+                        {
+                            //Draw green tile at position any x, and y = 146.
+                            draw_greenTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 178)
+                        {
+                            //Draw yellow tile at position any x, and y = 178.
+                            draw_yellowTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 210)
+                        {
+                            //Draw blue tile at position any x, and y = 210.
+                            draw_blueTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 242)
+                        {
+                            //Draw green tile at position any x, and y = 242.
+                            draw_greenTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 274)
+                        {
+                            //Draw red tile at position any x, and y = 274.
+                            draw_redTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                    }
+                }
+                // Draw the tiles on the right column
+                for (int x = 650; x < 950; x += 170)
+                {
+                    for (int y = 50; y < 280; y += 32)
+                    {
+                        //Condition to draw all tiles in a column at correct position.
+                        if (y == 50)
+                        {
+                            //Draw yellow tile at position any x, and y = 50.
+                            draw_yellowTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 82)
+                        {
+                            //Draw red tile at position any x, and y = 82.
+                            draw_redTile(x, y);
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 114)
+                        {
+                            //Draw blue tile at position any x, and y = 114.
+                            draw_blueTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 146)
+                        {
+                            //Draw green tile at position any x, and y = 146.
+                            draw_greenTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 178)
+                        {
+                            //Draw yellow tile at position any x, and y = 178.
+                            draw_yellowTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 210)
+                        {
+                            //Draw blue tile at position any x, and y = 210.
+                            draw_blueTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 242)
+                        {
+                            //Draw green tile at position any x, and y = 242.
+                            draw_greenTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                        else if (y == 274)
+                        {
+                            //Draw red tile at position any x, and y = 274.
+                            draw_redTile(x, y);
+                            //saving the tile corrdinate to tiles array.
+                            tiles[i].x = x;
+                            tiles[i].y = y;
+                            i++;
+                        }
+                    }
+                }
+                /*Set isinitial as 1. It's mean that initial run has been completed and the program is not allowed to
+                run this loop again during game play.*/
+                isInitial = 1;
+            }
+
+            //Condition to maintance the ball stay with the frame screen. 
+            if ((ballX <= 955 && ballX >= 0) && (ballY <= 786 && ballY >= 0))
+            {
+                //Called draw_pixelBall constantly with coordinate value of ballX and ballY.
+                draw_pixelBall(ballX, ballY);
+                /*Get direction from function collisionWithPaddle function for the ball change direction when it hit 
+                the paddle.*/
+                direction = collisionWithPaddle(ballX, ballY, barX, direction);
+
+                //divide all three side of the screen frame into half(the screen frame will be called as wall).
+                /*Check if the ball hit the top wall, and the ball hit left side of the wall.*/
+                if ((ballY == 0)) {                  
+                    if (direction == 2)                    
+                        direction = 4;                    
+                    else if (direction == 3)                   
+                        direction = 1;
+                    else if (direction == 10)                   
+                        direction = 7;
+                    else if (direction == 9)                   
+                        direction = 5;   
+                    else 
+                        direction = 1;                
+                }
+                else if ((ballX == 0) || (ballX == 1))
+                {
+                    if (direction == 4)                    
+                        direction = 1;                   
+                    else if (direction == 2)                   
+                        direction = 3;                    
+                    else if (direction == 10)                   
+                        direction = 9;  
+                    else if (direction == 7)                   
+                        direction = 5;
+                    else 
+                        direction = 1;                        
+                }
+                else if ((ballX == 955) || (ballX == 954))
+                {
+                    if (direction == 1)                   
+                        direction = 4;                    
+                    else if (direction == 3)                   
+                        direction = 2;                   
+                    else if (direction == 9)                   
+                        direction = 10;
+                    else if (direction == 5)                   
+                        direction = 7;
+                    else 
+                        direction = 2;
+                    
+                }
+                
+                        
+                //Condition to let the ball fly in direction 1.
+                if (direction == 1)
+                {
+                    ballX++;
+                    ballY++;
+                    // isMidAir = 1;
+                    if (ballX == 955)
+                    {
+                        continue;
+                    }
+                }
+                //Condition to let the ball fly in direction 2.
+                else if (direction == 2)
+                {
+                    ballX--;
+                    ballY--;
+                    // isMidAir = 1;
+                    if ((ballX == 0) || (ballY == 0))
+                    {
+                        continue;
+                    }
+                }
+                //Condition to let the ball fly in direction 3.
+                else if (direction == 3)
+                {
+                    ballX++;
+                    ballY--;
+                    // isMidAir = 1;
+                    if (ballX == 955 || ballY == 0)
+                    {
+                        continue;
+                    }
+                }
+                //Condition to let the ball fly in direction 4.
+                else if (direction == 4)
+                {
+                    ballX--;
+                    ballY++;
+                    // isMidAir = 1;
+                    if (ballX == 0)
+                    {
+                        continue;
+                    }
+                }
+                else if (direction == 5)
+                {
+                    ballX = ballX + 2;
+                    ballY++;
+                    if (ballX == 956)
+                    {
+                        continue;
+                    }
+                }
+                // Fall straight downwards
+                else if (direction == 6)
+                {
+                    ballY++;
+                    if (ballY == 955)
+                    {
+                        continue;
+                    }
+                }
+                else if (direction == 7)
+                {
+                    ballX = ballX - 2;
+                    ballY++;
+                    if (ballX == 0)
+                    {
+                        continue;
+                    }
+                }
+                else if (direction == 8)
+                {
+                    ballX++;
+                    ballY = ballY - 2;
+                    if (ballX == 955 || ballY == 0)
+                    {
+                        continue;
+                    }
+                }
+                else if (direction == 9)
+                {
+                    ballX += 2;
+                    ballY--;
+                    if (ballX == 955 || ballY == 0)
+                    {
+                        continue;
+                    }
+                }
+                else if (direction == 10)
+                {
+                    ballX -= 2;
+                    ballY--;
+                    if (ballX == 0 || ballY == 0)
+                    {
+                        continue;
+                    }
+                }
+                /*the ball fly directly upward as begining of the game, or after returned when players faild to catch 
+                the ball with the paddle.*/ 
+                else
+                {
+                    ballY--;
+                    if (ballY == 0)
+                    {
+                        continue;
+                    }
+                }
+                // uart_dec(ballX);
+                // uart_puts(" ");
+                direction = collisionWithBrick(ballX, ballY, leftbrickX, leftbrickY, direction);
+                direction = collisionWithBrick(ballX, ballY, rightbrickX, rightbrickY, direction);
+                //Get direction from function detectCollision if the ball hit tiles.
+                direction = detectCollision(ballX, ballY, direction);    
+                //Slow down the running speed of the program to allow hummand can see the ball.
+                wait_msec(3000); 
+            }
+            else
+            {
+                //reset ballX to 500, ballY to 650 and direction to 0 when the ball drop of from the screen.
+                ballX = 500;
+                ballY = 650;
+                direction = 0;
+            }
+
+            //Get keyboard input with function getUart.
+            str[count] = getUart();
+            if (str[count] != '\0'){
+                //Checking if the keyboard input at the moment is d, then the paddle will move right.
+                if (str[count] == 'd'){
+                    if( barX <= 900){
+                        //Call move_paddle function to cover the trace of the paddle when it move.
+                        move_paddle(str, barX);
+                        //Pluse barX to 50 pixels as step of the paddle.
+                        barX+=50;
+                        //Re-draw paddle at new location, 50 pixels to the right.
+                        draw_paddle(barX,700);
+                        
+                    }
+                }
+
+                //Checking if the keyboard input at the moment is a, then the paddle will move left.
+                if (str[count] == 'a'){
+                    if(barX >= 0){
+                        //Call move_paddle function to cover the trace of the paddle when it move.
+                        move_paddle(str, barX);
+                        //Pluse barX to 50 pixels as step of the paddle.
+                        barX-=50;
+                        //Re-draw paddle at new location, 50 pixels to the left.
+                        draw_paddle(barX,700);
+                    }
+                }
+            }
+
+            //Stop the game.
+            if (str[count] == 'c')
+            {
+                count++;
+                break;
+            }
+        
+        }
+
+    }
+
 
     //Function display video. 
     void draw_video()
@@ -903,8 +1442,10 @@ void main()
         else if (strCompare(array, "game") == 0)
         {
             welcomeGame();
-            wait_msec(10000000);
-            draw_game();
+            wait_msec(3000000);
+            draw_gameOver();
+            wait_msec(3000000);
+            draw_level2();
         }
         else
         {
@@ -955,6 +1496,16 @@ void main()
         // read each char
         str[count] = uart_getc();
         uart_sendc(str[count]);
+
+        /*/ Check for backspace
+        if (str[count] != '\b') {
+            uart_sendc(str[count]);
+            count++;
+        } else if (str[count] == '\b' && count > 0) {
+            uart_sendc(str[count]);
+        }
+        */
+
         // Detect "Enter" key-press.
         if (str[count] == '\n')
         {
@@ -967,8 +1518,16 @@ void main()
         }
         else
         {
-            // continue reading users input if users hasn't pressed enter.
-            count++;
+            if ( (str[count] == '\b') ) {            // If user types backspace, delete a character
+				
+                if(count > 0){
+                    uart_puts("\x20\b");
+                    count--;
+                } 
+            }
+            else 
+                // continue reading users input if users hasn't pressed enter.
+                count++;
         }
     }
 }
