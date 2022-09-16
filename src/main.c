@@ -22,6 +22,7 @@ void main()
     //Declare variables int for count, score and array of tiles with type "Sprite". 
     int count = 0;
     int score = 0;
+    int lives = 3;
     struct Sprite tiles[40];
 
     //initial uart and framebf.
@@ -565,7 +566,6 @@ void main()
         int traceX = 0, traceY = 0;
         int direction = 0;
         int i = 0; 
-        int lives = 3;
         int pre_dir = 0;
         int isInitial = 0;
         char str[10000];
@@ -577,11 +577,13 @@ void main()
         draw_greyBrick(rightbrickX,rightbrickY);
 
         //Run the game.
-        while ((score != 200) && (lives > 0))
+        while ((lives > 0))
         {
             //Display score that player currently has on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
             displayDec(score, 930, 10);
+            drawString32x32(10 , 10, "Lives: ", 0x00E74C3C);
+            displayDec(lives, 130, 10);
 
             //Condition to make sure that all tiles only drew once at the begining of the game.
             if(isInitial == 0){
@@ -990,7 +992,6 @@ void main()
         int traceX = 0, traceY = 0;
         int direction = 0;
         int i = 0; 
-        int lives = 3;
         int pre_dir = 0;
         int isCollision = 0, isInitial = 0, isMidAir = 0;
         char str[10000];
@@ -1317,6 +1318,7 @@ void main()
                 draw_gameOver(score);
                 if (uart_getc() == 'r')
                 {
+                    score = 0;
                     draw_game();
                 }
                 
@@ -1326,6 +1328,7 @@ void main()
             {
                 clear_screen();
                 winGame(score);
+                score = 0;
                 if (uart_getc())
                 {
                     draw_level2();
@@ -1487,6 +1490,103 @@ void main()
         return anw;
     }
 
+    // Function display all information of all command in CLI.
+    void helpCommand(char *array)
+    {
+        // Condition to distinguish between help and help <command>.
+        if (array[4] == '\n')
+        {
+            // print out all command exist in the Bare OS.
+            uart_puts("\nFor more information on a specific command, type help command-name\n");
+            uart_puts("help <command_name>      Show full information of the command.\n");
+            uart_puts("help                     Show brief information of all commands.\n");
+            uart_puts("setcolor                 Set  text  color,  and/or  background  color  of  the console  to  one  of  the  following  color:  BLACK,  RED, GREEN, YELLOW, BLUE, PURPLE, CYAN, WHITE.\n");
+            uart_puts("brdev                    Show board revision.\n");
+            uart_puts("scrsize                  Set screen size. Must have options to set physical screen size (-p) or virtual screen size (-v), or both (by default).\n");
+            uart_puts("clk                      Show clock rate.\n");
+            uart_puts("ARM                      Show ARM Memory.\n");
+            uart_puts("draw                     Draw 6 rectangle with 6 different color(RED, GREEN, BLUE, PRUPLE, ORANGE).\n");
+            uart_puts("MAC                      Show MAC address.\n");
+            uart_puts("clear                    Clear terminal console screen.\n");
+            uart_puts("img                      Display a small image.\n");
+            uart_puts("video                    Display a small video.\n");
+            uart_puts("image                    Display a big image.\n");
+            uart_puts("game                     Play ARKANOID game.\n");
+        }
+        else
+        {
+            int count = 4, i = 0;
+            char command[50];
+            // looping through each character in array.
+            while (array[count] != '\n')
+            {
+                // uart_sendc(array[count]);
+                // Get specific command that users want to learn more informations.
+                command[i] = array[count];
+                // uart_sendc(command[i]);
+                i++;
+                count++;
+            }
+
+            // Find correct information to a corresponding to command.
+            if (strCompare(command, "setcolor") == 0)
+            {
+                uart_puts("Set text color only:                         setcolor -t <color>.\n");
+                uart_puts("Set background color only:                   setcolor -b <color>.\n");
+                uart_puts("Set color for both background and text:      setcolor -t <color> -b <color or setcolor -b <color> -t<color>.\n");
+                uart_puts("Accepted color and writing format:  Black,  Red, Green, Yellow, Blue, Purple, Cyan, White.\n");
+            }
+            else if (strCompare(command, "brdev") == 0)
+            {
+                uart_puts("Show board revision:                         brdev\n");
+            }
+            else if (strCompare(command, "scrsize") == 0)
+            {
+                uart_puts("Set screen size for virtual screen:          scrsize -v <width> <height>.\n");
+                uart_puts("Set screen size for physical screen:         scrsize -p <width> <height>.\n");
+                uart_puts("Set screen size for both screens:            scrsize -v <width> <height> -p <width> <height> or scrsize -p <width> <height> -v <width> <height\n");
+            }
+            else if (strCompare(command, "clk") == 0)
+            {
+                uart_puts("Show clock rate:                             clk\n");
+            }
+            else if (strCompare(command, "ARM") == 0)
+            {
+                uart_puts("Show ARM memory:                             ARM\n");
+            }
+            else if (strCompare(command, "draw") == 0)
+            {
+                uart_puts("Show drawed image:                           draw.\n");
+                uart_puts("Draw 6 rectangles with 6 different colors(RED, GREEN, BLUE, PRUPLE, ORANGE).\n");
+            }
+            else if (strCompare(command, "MAC") == 0)
+            {
+                uart_puts("Show MAC address:                            MAC\n");
+            }
+            else if (strCompare(command, "img"))
+            {
+                uart_puts("Display an image.                            img\n");
+            }
+            else if (strCompare(command, "video"))
+            {
+                uart_puts("Display a video.                             video\n");
+            }
+            else if (strCompare(command, "image"))
+            {
+                uart_puts("Display a big image                          image");
+                uart_puts("users can scroll by pressing 'w' for scroll up and 's' for scroll down.");
+            }
+            else if (strCompare(command, "game"))
+            {
+                uart_puts("Playing ARKANOID game on BareOS");
+            }
+            else
+            {
+                uart_puts("Commnad name is not valid or not avaliable.\n");
+            }
+        }
+    }
+
     // Direct Users to correct function corresponding to commands.
     int selectCommmand(char *array)
     {
@@ -1502,7 +1602,7 @@ void main()
                 draw_video();
             }
         }
-        else if (strCompare(array, "Image") == 0)
+        else if (strCompare(array, "image") == 0)
         {
             drawLargeImage();
         }
@@ -1511,6 +1611,10 @@ void main()
            welcomeGame();
            uart_getc();
            draw_game();
+        }
+        else if (strCompare(array, "help") == 0)
+        {
+            helpCommand(array);
         }
         else
         {
