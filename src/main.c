@@ -959,11 +959,13 @@ void main()
             
             if (lives == 0)
             {
+                clear_screen();
                 draw_gameOver(score);
             }
 
             if (score == 200)
             {
+                clear_screen();
                 winGame(score);
             }
         }
