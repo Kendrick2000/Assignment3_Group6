@@ -339,7 +339,7 @@ void move_paddle(char* str, int barX){
         {
             for (int i = barX + 127; i > barX + 77; i--)
             {
-                //Draw background image on top of paddle trace 
+                //Draw background image to cover paddle trace 
                 drawPixelARGB32(i, j, bkg_img[j * 1024 + i + barX]);
             }
         }
