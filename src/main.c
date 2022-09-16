@@ -577,7 +577,7 @@ void main()
         draw_greyBrick(rightbrickX,rightbrickY);
 
         //Run the game.
-        while ((lives > 0))
+        while ((score >= 200 && score <= 360) &&(lives > 0))
         {
             //Display score that player currently has on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
@@ -1001,7 +1001,7 @@ void main()
         draw_paddle(barX, 700);
 
         //Run the game.
-        while ((score != 200) && (lives > 0))
+        while ((score <= 200) && (lives > 0))
         {
             //Display score that player currently have on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
@@ -1318,7 +1318,7 @@ void main()
                 draw_gameOver(score);
                 if (uart_getc() == 'r')
                 {
-                    score = 0;
+                    lives = 3;
                     draw_game();
                 }
                 
@@ -1328,7 +1328,7 @@ void main()
             {
                 clear_screen();
                 winGame(score);
-                score = 0;
+                lives = 3;
                 if (uart_getc())
                 {
                     draw_level2();
