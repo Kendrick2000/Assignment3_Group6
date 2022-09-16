@@ -512,7 +512,7 @@ void draw_gameOver(int finalScore) {
 
 void winGame(int score){
     drawStringWelcome(200, 180, "WINNER!!!", 0x00E74C3C);
-    drawString32x32(300, 280, "Congratulation, you have won", 0x00BB8FCE);
+    drawString32x32(300, 280, "Congratulation, you won", 0x00BB8FCE);
     drawString32x32(300, 300, "Press any key to level up.", 0x00BB8FCE);
     drawString32x32(300, 400, "Total score: ", 0x00E74C3C);
     displayDec(score, 500, 400);
