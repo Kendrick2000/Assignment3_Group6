@@ -1497,13 +1497,6 @@ void main()
             uart_puts("\nFor more information on a specific command, type help command-name\n");
             uart_puts("help <command_name>      Show full information of the command.\n");
             uart_puts("help                     Show brief information of all commands.\n");
-            uart_puts("setcolor                 Set  text  color,  and/or  background  color  of  the console  to  one  of  the  following  color:  BLACK,  RED, GREEN, YELLOW, BLUE, PURPLE, CYAN, WHITE.\n");
-            uart_puts("brdev                    Show board revision.\n");
-            uart_puts("scrsize                  Set screen size. Must have options to set physical screen size (-p) or virtual screen size (-v), or both (by default).\n");
-            uart_puts("clk                      Show clock rate.\n");
-            uart_puts("ARM                      Show ARM Memory.\n");
-            uart_puts("draw                     Draw 6 rectangle with 6 different color(RED, GREEN, BLUE, PRUPLE, ORANGE).\n");
-            uart_puts("MAC                      Show MAC address.\n");
             uart_puts("clear                    Clear terminal console screen.\n");
             uart_puts("img                      Display a small image.\n");
             uart_puts("video                    Display a small video.\n");
