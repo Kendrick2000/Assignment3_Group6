@@ -121,9 +121,7 @@ void main()
                         dir = 10;                                        
                     else if (dir == 4)
                         dir = 9; 
-                    else dir = 10;
-
-                    
+                    else dir = 10;                    
                 }
                 //If the ball hit the middle part of the paddle (from pixle 30th - 97th).
                 else if(((ballX < (paddleX + 87)) && ((ballX+50) > (paddleX + 40)))){
@@ -133,9 +131,7 @@ void main()
                     else if (dir == 4)
                         dir = 2;
                     else 
-                        dir = 3;
-
-                    
+                        dir = 3;                   
                 }
                 //If the ball hit the rightmost pixels of the paddle.
                 else if(((ballX <= (paddleX + 127)) && ((ballX+50) >= (paddleX + 87)))){
@@ -206,7 +202,6 @@ void main()
         the length of the brick.*/
         if (((ballX > brickX) && (ballX < brickX + 240)) || (((ballX + 50) > brickX) && (ballX + 50 < brickX + 240)))
         {
-            // uart_dec(dir);
             if (ballY + 50 == brickY){
                 //Condition to decide direction whether the ball collide with which part of the paddle will bounce back.
                 //If the ball hit the first 60 pixels of the brick.   
@@ -248,7 +243,6 @@ void main()
                 //If the ball hit the first 100 pixels of the brick.   
                 if((((ballX+50) >= brickX) && ((ballX+50) <= (brickX + 80)))){
                     //Direction the ball will bounce back.
-                    //uart_puts("Far Left \n");
                     if (dir == 10)
                         dir = 7;                                        
                     else if (dir == 9)
@@ -258,7 +252,6 @@ void main()
                 //If the ball hit the middle part of the paddle (from pixle 100 - 200).
                 else if(((ballX < (brickX + 160)) && ((ballX+50) > (brickX + 80)))){
                     // Direction the ball will bounce back. 
-                    // uart_puts("Middle Part"); 
                     if (dir == 2)
                         dir = 4;                                        
                     else if (dir == 3)
@@ -269,7 +262,6 @@ void main()
                 //If the ball hit the rightmost pixels of the brick.
                 else if(((ballX <= (brickX + 240)) && ((ballX+50) >= (brickX + 160)))){
                     //Direction the ball will bounce back.
-                    //uart_puts("Far Right");
                     if (dir == 9)
                         dir = 5;                                          
                     else if (dir == 3)
@@ -799,8 +791,7 @@ void main()
                     else if (direction == 5)                   
                         direction = 7;
                     else 
-                        direction = 2;
-                    
+                        direction = 2;                   
                 }
                 
                         
@@ -809,7 +800,6 @@ void main()
                 {
                     ballX++;
                     ballY++;
-                    // isMidAir = 1;
                     if (ballX == 955)
                     {
                         continue;
@@ -820,7 +810,6 @@ void main()
                 {
                     ballX--;
                     ballY--;
-                    // isMidAir = 1;
                     if ((ballX == 0) || (ballY == 0))
                     {
                         continue;
@@ -831,7 +820,6 @@ void main()
                 {
                     ballX++;
                     ballY--;
-                    // isMidAir = 1;
                     if (ballX == 955 || ballY == 0)
                     {
                         continue;
@@ -842,7 +830,6 @@ void main()
                 {
                     ballX--;
                     ballY++;
-                    // isMidAir = 1;
                     if (ballX == 0)
                     {
                         continue;
@@ -944,8 +931,7 @@ void main()
                         //Pluse barX to 50 pixels as step of the paddle.
                         barX+=50;
                         //Re-draw paddle at new location, 50 pixels to the right.
-                        draw_paddle(barX,700);
-                        
+                        draw_paddle(barX,700);                      
                     }
                 }
 
@@ -1007,8 +993,7 @@ void main()
             displayDec(score, 930, 10);
             drawString32x32(10 , 10, "Lives: ", 0x00E74C3C);
             displayDec(lives, 130, 10);
-            //uart_dec(myscore);
-            //drawChar32x32(930,10,myscore,0x00E74C3C);
+
             //Condition to make sure that all tiles only drew once at the begining of the game.
             if(isInitial == 0){
                 //Using loop as pointer, point to to exact coordinate to draw tiles.
@@ -1146,8 +1131,7 @@ void main()
                     else if (direction == 5)                   
                         direction = 7;
                     else 
-                        direction = 2;
-                    
+                        direction = 2;                   
                 }
                              
                 //Condition to let the ball fly in direction 1.
@@ -1155,7 +1139,6 @@ void main()
                 {
                     ballX++;
                     ballY++;
-                    // isMidAir = 1;
                     if (ballX == 955)
                     {
                         continue;
@@ -1166,7 +1149,6 @@ void main()
                 {
                     ballX--;
                     ballY--;
-                    // isMidAir = 1;
                     if ((ballX == 0) || (ballY == 0))
                     {
                         continue;
@@ -1177,7 +1159,6 @@ void main()
                 {
                     ballX++;
                     ballY--;
-                    // isMidAir = 1;
                     if (ballX == 955 || ballY == 0)
                     {
                         continue;
@@ -1188,7 +1169,6 @@ void main()
                 {
                     ballX--;
                     ballY++;
-                    // isMidAir = 1;
                     if (ballX == 0)
                     {
                         continue;
@@ -1283,7 +1263,7 @@ void main()
                     if( barX <= 900){
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
-                        //Pluse barX to 50 pixels as step of the paddle.
+                        //Plus barX to 50 pixels as step of the paddle.
                         barX+=50;
                         //Re-draw paddle at new location, 50 pixels to the right.
                         draw_paddle(barX,700);
@@ -1318,8 +1298,7 @@ void main()
                 if (uart_getc() == 'r')
                 {
                     draw_game();
-                }
-                
+                }             
             }
 
             if (score == 200)
@@ -1329,8 +1308,7 @@ void main()
                 if (uart_getc())
                 {
                     draw_level2();
-                }
-                
+                }               
             }
         }
     }
@@ -1562,15 +1540,6 @@ void main()
         str[count] = uart_getc();
         uart_sendc(str[count]);
 
-        /*/ Check for backspace
-        if (str[count] != '\b') {
-            uart_sendc(str[count]);
-            count++;
-        } else if (str[count] == '\b' && count > 0) {
-            uart_sendc(str[count]);
-        }
-        */
-
         // Detect "Enter" key-press.
         if (str[count] == '\n')
         {
@@ -1583,8 +1552,7 @@ void main()
         }
         else
         {
-            if ( (str[count] == '\b') ) {            // If user types backspace, delete a character
-				
+            if ( (str[count] == '\b') ) {            // If user types backspace, delete a character				
                 if(count > 0){
                     uart_puts("\x20\b");
                     count--;
