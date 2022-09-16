@@ -1319,6 +1319,7 @@ void main()
                 if (uart_getc() == 'r')
                 {
                     lives = 3;
+                    score = 0;
                     draw_game();
                 }
                 
