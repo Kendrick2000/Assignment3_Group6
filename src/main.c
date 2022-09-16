@@ -927,7 +927,7 @@ void main()
             if (str[count] != '\0'){
                 //Checking if the keyboard input at the moment is d, then the paddle will move right.
                 if (str[count] == 'd'){
-                    if(barX <= 840){
+                    if((barX + 127) <= 977){
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
                         //Pluse barX to 50 pixels as step of the paddle.
@@ -947,14 +947,14 @@ void main()
 
                 //Checking if the keyboard input at the moment is a, then the paddle will move left.
                 if (str[count] == 'a'){
-                    if(barX >= 50){
+                    if(barX >= 10){
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
                         //Pluse barX to 50 pixels as step of the paddle.
                         barX-=50;
                         //Re-draw paddle at new location, 50 pixels to the left.
                         draw_paddle(barX,700);
-                    } 
+                    }
                     else {
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
@@ -962,7 +962,7 @@ void main()
                         barX = 0;
                         //Re-draw paddle at new location, 50 pixels to the left.
                         draw_paddle(barX,700);                        
-                    } 
+                    }  
                 }
             }
 
@@ -981,7 +981,7 @@ void main()
                 {
                     lives = 3;
                     score = 0;
-                    draw_game();
+                    // draw_game();
                 }  
             }
 
@@ -1287,20 +1287,21 @@ void main()
             if (str[count] != '\0'){
                 //Checking if the keyboard input at the moment is d, then the paddle will move right.
                 if (str[count] == 'd'){
-                    if( barX <= 900){
+                    if( barX + 127 <= 977){
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
                         //Plus barX to 50 pixels as step of the paddle.
                         barX+=50;
+                        uart_dec(barX + 127);
+                        uart_puts(" ");
                         //Re-draw paddle at new location, 50 pixels to the right.
                         draw_paddle(barX,700);
-                        
                     }
                 }
 
                 //Checking if the keyboard input at the moment is a, then the paddle will move left.
                 if (str[count] == 'a'){
-                    if(barX >= 0){
+                    if(barX >= 10){
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
                         //Pluse barX to 50 pixels as step of the paddle.
@@ -1527,41 +1528,7 @@ void main()
             }
 
             // Find correct information to a corresponding to command.
-            if (strCompare(command, "setcolor") == 0)
-            {
-                uart_puts("Set text color only:                         setcolor -t <color>.\n");
-                uart_puts("Set background color only:                   setcolor -b <color>.\n");
-                uart_puts("Set color for both background and text:      setcolor -t <color> -b <color or setcolor -b <color> -t<color>.\n");
-                uart_puts("Accepted color and writing format:  Black,  Red, Green, Yellow, Blue, Purple, Cyan, White.\n");
-            }
-            else if (strCompare(command, "brdev") == 0)
-            {
-                uart_puts("Show board revision:                         brdev\n");
-            }
-            else if (strCompare(command, "scrsize") == 0)
-            {
-                uart_puts("Set screen size for virtual screen:          scrsize -v <width> <height>.\n");
-                uart_puts("Set screen size for physical screen:         scrsize -p <width> <height>.\n");
-                uart_puts("Set screen size for both screens:            scrsize -v <width> <height> -p <width> <height> or scrsize -p <width> <height> -v <width> <height\n");
-            }
-            else if (strCompare(command, "clk") == 0)
-            {
-                uart_puts("Show clock rate:                             clk\n");
-            }
-            else if (strCompare(command, "ARM") == 0)
-            {
-                uart_puts("Show ARM memory:                             ARM\n");
-            }
-            else if (strCompare(command, "draw") == 0)
-            {
-                uart_puts("Show drawed image:                           draw.\n");
-                uart_puts("Draw 6 rectangles with 6 different colors(RED, GREEN, BLUE, PRUPLE, ORANGE).\n");
-            }
-            else if (strCompare(command, "MAC") == 0)
-            {
-                uart_puts("Show MAC address:                            MAC\n");
-            }
-            else if (strCompare(command, "img"))
+            if (strCompare(command, "img"))
             {
                 uart_puts("Display an image.                            img\n");
             }
