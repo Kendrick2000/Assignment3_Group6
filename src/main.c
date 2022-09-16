@@ -977,12 +977,20 @@ void main()
             {
                 clear_screen();
                 draw_gameOver(score);
+                if (uart_getc() == 'r')
+                {
+                    lives = 3;
+                    score = 0;
+                    draw_game();
+                }  
             }
 
             if (score == 360)
             {
                 clear_screen();
                 winGame(score);
+                score = 0;
+                break;
             }
         }
     }
@@ -1600,7 +1608,7 @@ void main()
         {
            welcomeGame();
            uart_getc();
-           draw_level2();
+           draw_game();
         }
         else if (strCompare(array, "help") == 0)
         {
