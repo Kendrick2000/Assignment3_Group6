@@ -507,7 +507,7 @@ void main()
                 }
             }
             //Checking if the ball hit tile/s fully side to side.
-            else if (((tiles[i].y >= y) && (tiles[i].y <= (y + 50)))){
+            else if (((tiles[i].y >= y) && (tiles[i].y <= (y + 50))) || (((tiles[i].y + 30) >= y) && ((tiles[i].y + 30) <=  (y + 50)))){
                 if (x + 50 == tiles[i].x) {
                     //Call function delete tile for visually and in the tiles array.
                     del_tile(tiles[i].x, tiles[i].y);
@@ -569,7 +569,7 @@ void main()
         draw_greyBrick(rightbrickX,rightbrickY);
 
         //Run the game.
-        while ((score >= 200 && score <= 360) &&(lives > 0))
+        while ((score >= 200 && score <= 360) && (lives > 0))
         {
             //Display score that player currently has on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
@@ -959,11 +959,13 @@ void main()
             
             if (lives == 0)
             {
+                clear_screen();
                 draw_gameOver(score);
             }
 
-            if (score == 200)
+            if (score == 360)
             {
+                clear_screen();
                 winGame(score);
             }
         }
@@ -1589,7 +1591,7 @@ void main()
         {
            welcomeGame();
            uart_getc();
-           draw_game();
+           draw_level2();
         }
         else if (strCompare(array, "help") == 0)
         {
