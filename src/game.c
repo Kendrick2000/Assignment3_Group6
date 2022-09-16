@@ -403,13 +403,24 @@ void draw_redTile(int x, int y)
     }
 }
 
-//Function draw background.
-void draw_background(){
-    for (int j = 0; j < 768; j++)
-    {
+void clear_screen(){
+    for (int j = 0; j < 768; j++){
         for (int i = 0; i < 1024; i++)
         {
-            drawPixelARGB32(i, j, bkg_img[j * 1024 + i]);
+            drawPixelARGB32(i, j, 0x00);
+        }
+        
+    }
+}
+
+//Function draw background.
+void draw_background(int x, int y){
+    for (int j = y; j < 768; j++)
+    {
+        y++;
+        for (int i = 0; i < 1024; i++)
+        {
+            drawPixelARGB32(i + x, y, bkg_img[j * 1024 + i]);
         }
     }
 }
@@ -491,7 +502,18 @@ void welcomeGame() {
 }
 
 void draw_gameOver(int finalScore) {
-    drawStringWelcome(270, 280, "GAME OVER!!!",0x00BB8FCE);
-    drawString32x32(350, 400, "Total score: ", 0x00E74C3C);
-    displayDec(finalScore, 550, 400);
+    drawStringWelcome(170, 180, "GAME OVER!!!",0x00BB8FCE);
+    drawString32x32(300, 280, "Better luck next time",0x003498DB);
+    drawString32x32(300, 300, "Press 'r' to play again",0x003498DB);
+    drawString32x32(300, 320, "Press 'c' to quit game",0x003498DB);
+    drawString32x32(300, 400, "Total score: ", 0x00E74C3C);
+    displayDec(finalScore, 500, 400); 
+}
+
+void winGame(int score){
+    drawStringWelcome(200, 180, "WINNER!!!", 0x00E74C3C);
+    drawString32x32(300, 280, "Congratulation, you have won", 0x00BB8FCE);
+    drawString32x32(300, 300, "Press any key to level up.", 0x00BB8FCE);
+    drawString32x32(300, 400, "Total score: ", 0x00E74C3C);
+    displayDec(score, 500, 400);
 }
