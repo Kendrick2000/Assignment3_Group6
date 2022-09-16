@@ -14,3 +14,5 @@ void welcomeGame();
 void draw_greyBrick(int x, int y);
 char displayDec(int num, int x, int y);
 void draw_gameOver();
+void winGame(int score);
+void clear_screen();
