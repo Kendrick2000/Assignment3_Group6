@@ -562,7 +562,7 @@ void main()
         int isInitial = 0;
         char str[10000];
         //Draw image background.
-        draw_background();
+        draw_background(0,0);
         //Draw initial paddle with possition 500, 700.
         draw_paddle(barX, 700);
         draw_greyBrick(leftbrickX,leftbrickY);
@@ -992,7 +992,7 @@ void main()
         int isCollision = 0, isInitial = 0, isMidAir = 0;
         char str[10000];
         //Draw image background.
-        draw_background();
+        draw_background(0,0);
         //Draw initial paddle with possition 500, 700.
         draw_paddle(barX, 700);
 
@@ -1275,9 +1275,7 @@ void main()
                         //Call move_paddle function to cover the trace of the paddle when it move.
                         move_paddle(str, barX);
                         //Plus barX to 50 pixels as step of the paddle.
-                        barX+=50;
-                        uart_dec(barX + 127);
-                        uart_puts(" ");
+                        barX+=50;_
                         //Re-draw paddle at new location, 50 pixels to the right.
                         draw_paddle(barX,700);
                     }
