@@ -935,14 +935,6 @@ void main()
                         //Re-draw paddle at new location, 50 pixels to the right.
                         draw_paddle(barX,700);                      
                     }
-                    else {
-                        //Call move_paddle function to cover the trace of the paddle when it move.
-                        move_paddle(str, barX);
-                        //Pluse barX to 50 pixels as step of the paddle.
-                        barX = 890;
-                        //Re-draw paddle at new location, 50 pixels to the right.
-                        draw_paddle(barX,700);                      
-                    }
                 }
 
                 //Checking if the keyboard input at the moment is a, then the paddle will move left.
@@ -955,14 +947,6 @@ void main()
                         //Re-draw paddle at new location, 50 pixels to the left.
                         draw_paddle(barX,700);
                     }
-                    else {
-                        //Call move_paddle function to cover the trace of the paddle when it move.
-                        move_paddle(str, barX);
-                        //Pluse barX to 50 pixels as step of the paddle.
-                        barX = 0;
-                        //Re-draw paddle at new location, 50 pixels to the left.
-                        draw_paddle(barX,700);                        
-                    }  
                 }
             }
 
