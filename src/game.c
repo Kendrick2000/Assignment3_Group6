@@ -391,7 +391,6 @@ void draw_yellowTile(int x, int y)
 //Function draw red tile at wanted position.
 void draw_redTile(int x, int y)
 {
-    // framebf_init(redTilePhysicalWidth, redTilePhysicalHeight, redTileVirtualWidth, redTileVirtualHeight);
     for (int j = 0; j < 30; j++)
     {
         y++;
