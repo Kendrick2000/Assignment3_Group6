@@ -25,7 +25,7 @@ void main()
     int lives = 3;
     struct Sprite tiles[40];
 
-    //initial uart and framebf.
+    //initial uart and framebf
     uart_init();
     framebf_init();
 
