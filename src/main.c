@@ -579,7 +579,7 @@ void main()
         rightbrick.direction = 0;
 
         //Run the game.
-        while (1)
+        while ((score >= 360 && score <= 520) && (lives > 0))
         {
             //Display score that player currently has on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
@@ -996,11 +996,11 @@ void main()
                 {
                     lives = 3;
                     score = 0;
-                    // draw_game();
+                    draw_level3();
                 }  
             }
 
-            if (score == 360)
+            if (score == 520)
             {
                 clear_screen();
                 winGame(score);
@@ -1426,7 +1426,7 @@ void main()
                 {
                     lives = 3;
                     score = 0;
-                    // draw_game();
+                    draw_level2();
                 }  
             }
 
@@ -1434,8 +1434,11 @@ void main()
             {
                 clear_screen();
                 winGame(score);
-                score = 0;
-                break;
+                lives = 3;
+                if (uart_getc())
+                {
+                    draw_level3();
+                }               
             }
         }
     }
@@ -2016,10 +2019,9 @@ void main()
         }
         else if (strCompare(array, "game") == 0)
         {
-           /*welcomeGame();
+           welcomeGame();
            uart_getc();
-           draw_game();*/
-           draw_level3();
+           draw_game();
         }
         else if (strCompare(array, "help") == 0)
         {
