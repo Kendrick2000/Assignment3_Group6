@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Mon Sep 19 19:18:10 2022
+# Make data base, printed on Mon Sep 19 20:30:17 2022
 
 # Variables
 
@@ -16,7 +16,6 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
- 
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -46,7 +45,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:/opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/hl/pr335lpj58g7j_cbhgv48rn00000gn/T/vscode-ipc-40691c8b-b062-43b9-b35e-cbe9a58f63b2.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/hl/pr335lpj58g7j_cbhgv48rn00000gn/T/vscode-ipc-5c7c1122-5a51-4562-ab06-53492584e105.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -123,7 +122,6 @@ VSCODE_IPC_HOOK = /Users/kendrick/Library/Application Support/Code/1.67.2-main.s
 MallocNanoZone = 0
 # makefile
 MAKEFLAGS = Rrqp
- 
 # environment
 MFLAGS = -Rrqp
 # automatic
@@ -158,6 +156,7 @@ SUFFIXES :=
 OFILES = $(CFILES:$(SRC_DIR)/%.c=$(OBJECT_DIR)/%.o)
 # environment
 MAKELEVEL := 0
+ 
 # environment
 LANG = C
 # environment
@@ -238,7 +237,7 @@ src/printf.c:
 # Not a target:
 src/game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-19 16:14:22
+#  Last modified 2022-09-19 20:29:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -247,7 +246,7 @@ src/game.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-19 19:03:44
+#  Last modified 2022-09-19 20:30:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -270,7 +269,6 @@ src/timer.c:
 # Not a target:
 src/framebf.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2022-09-15 09:10:08
 #  File has been updated.
 #  Successfully updated.
@@ -292,7 +290,7 @@ object/mbox.o: src/mbox.c
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-19 19:02:18
+#  Last modified 2022-09-19 20:30:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -336,7 +334,7 @@ run:
 object/game.o: src/game.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `game'
-#  Last modified 2022-09-19 16:14:22
+#  Last modified 2022-09-19 20:29:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -388,7 +386,7 @@ object/timer.o: src/timer.c
 
 kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/mbox.o object/printf.o object/timer.o object/uart.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-09-19 19:03:35
+#  Last modified 2022-09-19 20:30:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -401,7 +399,7 @@ kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/m
 object/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-09-19 19:03:35
+#  Last modified 2022-09-19 20:30:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -426,12 +424,13 @@ src/mbox.c:
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
+ 
 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Sep 19 19:18:10 2022
+# Finished Make data base on Mon Sep 19 20:30:17 2022
 
  
