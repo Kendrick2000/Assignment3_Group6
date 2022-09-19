@@ -555,10 +555,6 @@ void main()
         //Declare variables: barX, ballX, ballY, traceX, traceY, direction, i, isCollision, isInitial and str array. 
         int barX = 500, count = 0;
         int ballX = 500, ballY = 650;
-        int leftbrickX = 35, rightbrickX = 735; // note lai so 465    
-        int leftbrickY = 375, rightbrickY = 125;
-        int leftbrickDir = 1;
-        int rightbrickDir = 0;
         int traceX = 0, traceY = 0;
         int direction = 0;
         int i = 0; 
