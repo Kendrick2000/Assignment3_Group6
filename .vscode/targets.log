@@ -1,219 +1,165 @@
-make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 3.81
 # Copyright (C) 2006  Free Software Foundation, Inc.
 # This is free software; see the source for copying conditions.
 # There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-# This program built for i386-pc-mingw32
+# This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Mon Sep 19 11:31:01 2022
+# Make data base, printed on Mon Sep 19 16:20:02 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
 ?F = $(notdir $?)
-# makefile
-MAKEFLAGS = Rrqp
+# environment
+VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
-# makefile (from `makefile', line 2)
+# makefile (from `Makefile', line 2)
 OBJECT_DIR = ./object
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
-# environment
-HOMEDRIVE = C:
 # automatic
 @F = $(notdir $@)
-# automatic
-^D = $(patsubst %/,%,$(dir $^))
 # makefile
-CURDIR := d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6
-# default
-SHELL := C:/Program Files (x86)/WinAVR 20100110/utils/bin/sh.exe
-# environment
-WINDIR = C:\WINDOWS
+CURDIR := /Users/kendrick/Documents/Embedded 3/Assignment3_Group6
+# makefile
+SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-ONEDRIVE = C:\Users\Uyen Nguyen\OneDrive
+_ = /usr/bin/make
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
 # environment
-QSYS_ROOTDIR = C:\intelFPGA_lite\18.1\quartus\sopc_builder\bin
-# environment
-PUBLIC = C:\Users\Public
-# environment
-PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
-# makefile (from `makefile', line 1)
-MAKEFILE_LIST :=  makefile
-# environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
-# environment
-TMP = C:\Users\UYENNG~1\AppData\Local\Temp
-# makefile (from `makefile', line 8)
-GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib
-# makefile (from `makefile', line 5)
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 5)
 CFILES = $(wildcard $(SRC_DIR)/*.c)
 # environment
-PROGRAMW6432 = C:\Program Files
+__CFBundleIdentifier = com.microsoft.VSCode
 # environment
-PROGRAMDATA = C:\ProgramData
+INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_CWD = D:\Users\Uyen Nguyen\AppData\Local\Microsoft VS Code
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/hl/pr335lpj58g7j_cbhgv48rn00000gn/T/vscode-ipc-a0a3a75a-4cee-48fc-b5ac-6f40ba2ab539.sock
 # environment
-PATH = C:\Program Files (x86)\WinAVR 20100110\bin;C:\Program Files (x86)\WinAVR 20100110\utils\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\MinGW\bin;D:\Users\Uyen Nguyen\Downloads\bin;D:\Users\Uyen Nguyen\Schoolwork\Matlab\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\nodejs\;C:\Program Files (x86)\dotnet\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Uyen Nguyen\AppData\Local\Programs\Python\Python37\;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\Microsoft\WindowsApps;C:\Users\Uyen Nguyen\AppData\Local\GitHubDesktop\bin;D:\Users\Uyen Nguyen\Downloads\modelsim_ase\win32aloem;D:\Users\Uyen Nguyen\AppData\Local\Microsoft VS Code\bin;C:\Users\Uyen Nguyen\AppData\Roaming\npm;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;C:\Program Files (x86)\gcc-arm-10.3-2021.07-mingw-w64-i686-aarch64-none-elf\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\qemu;
+VSCODE_CWD = /
 # environment
-NIDAQMXSWITCHDIR = C:\Program Files (x86)\National Instruments\NI-DAQ\Switch\
+PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 # environment
-COMMONPROGRAMW6432 = C:\Program Files\Common Files
-# environment
-NIEXTCCOMPILERSUPP = C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\
-# environment
-PROCESSOR_ARCHITECTURE = x86
-# environment
-USERPROFILE = C:\Users\Uyen Nguyen
-# environment
-ALLUSERSPROFILE = C:\ProgramData
-# environment
-SOPC_KIT_NIOS2 = D:\Users\Uyen Nguyen\Downloads\nios2eds
-# environment
-NUMBER_OF_PROCESSORS = 4
+VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
-# makefile (from `makefile', line 9)
+# makefile (from `Makefile', line 9)
 LDFLAGS = -nostdlib
 # default
-.FEATURES := target-specific order-only second-expansion else-if archives
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.evRJi6AU6S/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11600_LOKXFUROSATIYXFC
+VSCODE_PIPE_LOGGING = true
 # environment
-COMPUTERNAME = LYNN-LAPTOP
+PWD = /Users/kendrick/Documents/Embedded 3/Assignment3_Group6
 # environment
-PROGRAMFILES = C:\Program Files (x86)
-# environment
-DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# makefile (from `Makefile', line 8)
+GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-AVR32_HOME = C:\Program Files (x86)\WinAVR 20100110
-# environment
-USERNAME = Uyen Nguyen
-# environment
-MGLS_LICENSE_FILE = 1717@sglprdsstlic01.rmit.edu.vn
-# environment
-KMP_DUPLICATE_LIB_OK = TRUE
+MANPATH = /opt/homebrew/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = C:\Users\Uyen Nguyen\AppData\Roaming\SPB_Data
+HOME = /Users/kendrick
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\Uyen Nguyen\AppData\Roaming\Code\CachedData\74b1f979648cc44d385a2286793c226e611f59e7
+VSCODE_CODE_CACHE_PATH = /Users/kendrick/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+# environment
+LOGNAME = kendrick
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
-# environment
-LOGONSERVER = \\LYNN-LAPTOP
-# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
 # environment
-USERDOMAIN = LYNN-LAPTOP
+XPC_FLAGS = 0x0
 # default
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
+# environment
+SHLVL = 1
 # default
 MAKE_VERSION := 3.81
+# environment
+USER = kendrick
 # makefile
 .DEFAULT_GOAL := all
-# environment
-PROGRAMFILES(X86) = C:\Program Files (x86)
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# environment
-LOCALAPPDATA = C:\Users\Uyen Nguyen\AppData\Local
-# environment
-PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\PowerShell\Modules\
 # default
-MAKE_COMMAND := make.exe
-# environment
-PROCESSOR_ARCHITEW6432 = AMD64
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
+ 
 .VARIABLES := 
+# environment
+TMPDIR = /var/folders/hl/pr335lpj58g7j_cbhgv48rn00000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
-# environment
-OS = Windows_NT
-# environment
-VSCODE_IPC_HOOK = \\.\pipe\517ef9b32b3ccddb640778aa351b4db2-1.71.2-main-sock
-# environment
-HOMEPATH = \Users\Uyen Nguyen
-# environment
-COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
-# environment
-PROMPT = $P$G
+VSCODE_IPC_HOOK = /Users/kendrick/Library/Application Support/Code/1.67.2-main.sock
+# makefile
+MAKEFLAGS = Rrqp
 # environment
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-SYSTEMROOT = C:\WINDOWS
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.274132.274138
+# environment
+HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-APPDATA = C:\Users\Uyen Nguyen\AppData\Roaming
+HOMEBREW_REPOSITORY = /opt/homebrew
 # environment
-TEMP = C:\Users\UYENNG~1\AppData\Local\Temp
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
-COMSPEC = C:\WINDOWS\system32\cmd.exe
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# environment
-QUARTUS_ROOTDIR = D:\Users\Uyen Nguyen\Downloads\quartus
-# makefile (from `makefile', line 3)
+# makefile (from `Makefile', line 3)
 SRC_DIR = ./src
 # automatic
 <F = $(notdir $<)
-# environment
-MKL_SERIAL = YES
 # environment
 LC_ALL = C
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# environment
-SYSTEMDRIVE = C:
-# environment
-SESSIONNAME = Console
-# environment
-PROCESSOR_REVISION = 8e0a
-# environment
-MOZ_PLUGIN_PATH = C:\Program Files (x86)\Foxit Software\Foxit Reader\plugins\
-# makefile (from `makefile', line 6)
+# makefile (from `Makefile', line 6)
 OFILES = $(CFILES:$(SRC_DIR)/%.c=$(OBJECT_DIR)/%.o)
 # environment
 MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-PROCESSOR_LEVEL = 6
-# environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
-# environment
-VSCODE_PID = 11600
-# environment
-USERDOMAIN_ROAMINGPROFILE = LYNN-LAPTOP
+VSCODE_PID = 965
 # variable set hash-table stats:
-# Load=100/1024=10%, Rehash=0, Collisions=10/129=8%
+# Load=72/1024=7%, Rehash=0, Collisions=2/105=2%
 
 # Pattern-specific Variable Values
 
@@ -221,19 +167,16 @@ USERDOMAIN_ROAMINGPROFILE = LYNN-LAPTOP
 
 # Directories
 
-# . (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6, mtime 1663429645): 12 files, no impossibilities.
-# ./src (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6/src, mtime 1663429645): 24 files, no impossibilities.
-# C:\Program Files (x86)\WinAVR 20100110\bin (key C:/Program Files (x86)/WinAVR 20100110/bin, mtime 1571999078): 75 files, no impossibilities.
-# C:\Program Files (x86)\WinAVR 20100110\utils\bin (key C:/Program Files (x86)/WinAVR 20100110/utils/bin, mtime 1571999094): 99 files, no impossibilities so far.
-# src (key d:/Users/Uyen Nguyen/Schoolwork/EEET2490 - Embedded OS/asm3/Assignment3_Group6/src, mtime 1663429645) 
-: 24 files, no impossibilities.
+# . (device 16777232, inode 6415319): 12 files, no impossibilities.
+# ./src (device 16777232, inode 6415490): 24 files, no impossibilities.
+# src (device 16777232, inode 6415490): 24 files, no impossibilities.
 
-# 234 files, no impossibilities in 5 directories.
+# 60 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
 object/%.o: ./src/%.c
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
@@ -244,12 +187,12 @@ object/%.o: ./src/%.c
 object/uart.o: src/uart.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `uart'
-#  Last modified 2022-09-04 18:06:50
+#  Last modified 2022-09-19 11:34:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
@@ -264,43 +207,44 @@ all: kernel8.img
 
 object/boot.o: src/boot.S
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-31 17:04:48
+#  Last modified 2022-09-19 11:34:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 14):
+#  commands to execute (from `Makefile', line 14):
 	aarch64-none-elf-gcc $(GCCFLAGS) -c $< -o $@
 	
 
 # Not a target:
-.DEFAULT:
+src/printf.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 10:13:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
-src/printf.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-30 16:48:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 src/game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-17 12:43:14
+ 
+#  Last modified 2022-09-19 16:14:22
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-src/framebf.c:
+Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-16 11:57:05
+#  Last modified 2022-09-19 16:19:48
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -314,16 +258,16 @@ test: all run
 # Not a target:
 src/timer.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-04 18:06:50
+#  Last modified 2022-09-04 19:48:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-makefile:
+src/framebf.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-17 12:43:25
+#  Last modified 2022-09-15 09:10:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -332,26 +276,26 @@ makefile:
 object/mbox.o: src/mbox.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mbox'
-#  Last modified 2022-09-08 13:38:34
+#  Last modified 2022-09-19 13:21:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-17 22:47:25
+#  Last modified 2022-09-19 16:19:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-.SUFFIXES:
+.DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -359,19 +303,19 @@ src/main.c:
 object/printf.o: src/printf.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `printf'
-#  Last modified 2022-08-30 16:48:53
+#  Last modified 2022-09-19 11:34:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
 # Not a target:
 src/uart.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-04 18:06:50
+#  Last modified 2022-09-04 17:10:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -381,31 +325,31 @@ run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 27):
-	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial null -serial stdio
+#  commands to execute (from `Makefile', line 27):
+	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial null -serial stdio
 	
 
 object/game.o: src/game.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `game'
-#  Last modified 2022-09-17 22:47:25
+#  Last modified 2022-09-19 16:14:22
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
 object/framebf.o: src/framebf.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `framebf'
-#  Last modified 2022-09-16 12:23:28
+#  Last modified 2022-09-19 13:21:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
@@ -413,39 +357,39 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 24):
+#  commands to execute (from `Makefile', line 24):
 	rm *.img .\build\kernel8.elf .\build\*.o
-	
-
-object/timer.o: src/timer.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `timer'
-#  Last modified 2022-09-04 18:06:50
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
-	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
 # Not a target:
 src/boot.S:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-30 16:48:53
+#  Last modified 2022-08-21 13:05:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/mbox.o object/printf.o object/timer.o object/uart.o
-#  Implicit rule search has not been done.
-#  Last modified 2022-09-17 22:47:25
+object/timer.o: src/timer.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `timer'
+#  Last modified 2022-09-19 11:34:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 20):
+#  commands to execute (from `Makefile', line 17):
+	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
+	
+
+kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/mbox.o object/printf.o object/timer.o object/uart.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-09-19 16:19:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 20):
 	aarch64-none-elf-ld $(LDFLAGS) $(OBJECT_DIR)/boot.o $(OFILES) -T $(SRC_DIR)/link.ld -o $(OBJECT_DIR)/kernel8.elf
 	aarch64-none-elf-objcopy -O binary $(OBJECT_DIR)/kernel8.elf kernel8.img
 	
@@ -453,26 +397,27 @@ kernel8.img: object/boot.o object/framebf.o object/game.o object/main.o object/m
 object/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-09-17 22:47:25
+#  Last modified 2022-09-19 16:19:38
 #  File has been updated.
 #  Successfully updated.
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 17):
+#  commands to execute (from `Makefile', line 17):
 	aarch64-none-elf-gcc $(CFLAGS) -c $< -o $@
 	
 
 # Not a target:
 src/mbox.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 17:53:18
+#  Last modified 2022-09-08 20:10:25
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=24/1024=2%, Rehash=0, Collisions=0/69=0%
+# Load=24/1024=2%, Rehash=0, Collisions=3/70=4%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -484,6 +429,6 @@ src/mbox.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Sep 19 11:31:01 2022
+# Finished Make data base on Mon Sep 19 16:20:02 2022
 
  
