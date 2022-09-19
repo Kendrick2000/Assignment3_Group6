@@ -447,29 +447,51 @@ void del_tile(int x, int y) {
     }
 }
 
-void eraseSprite(int x, int y, int spr_width, int spr_height) {
-
-    int totalPixels = spr_width * spr_height;
-    //int topLeftX = x-(spr_width/2); //Top left corner of the sprite, x-coord
-    //int topLeftY = y-(spr_height/2); //Top left corner of the sprite, y-coord. RPI follows the "Downwards Y-axis is positive" convention. I.e. to go up on the screen, you SUBTRACT from y coord values.
-    int offsetX = 0;                                                        //X- Offset of the sprite pixel cunting from top left corner
-    int offsetY = 0;
-
-    for (int i = 0; i < (totalPixels); i++) {                                   //For every pixel of the image,       
-        int xoffs = x + offsetX;
-        int yoffs = y + offsetY;
-
-
-        // if (sprite[i]!=0x00) {                                                  //(bar fully black pixels)...
-        //     drawPixelARGB32(xoffs,yoffs,background[(yoffs*BCK_WIDTH)+xoffs]);   //Draw that pixel on the framebuffer
-        // }             
-        offsetX++;                                                              //After drawing, step to the pixel to the right      
-        if ((i%spr_width == 0) && (i != 0)) {                                       //IF the horizontal offset = horisontal size of the image, then
-            offsetY += 1;                                                       //Step DOWN the pixel row                        
-            offsetX = 0;                                                        //Reset the horizontal offset (back to x=0 in the image)
-        }       
+/**
+ * @brief draw brick from right to left and vice versa
+ * 
+ * @param brickX integer
+ * @param brickY integer
+ * @param direction integer
+ */
+void draw_moving_brick(int *brickX, int *brickY, int direction) {
+    //Call del_brick_trace function to cover the trace of the brick when it move.
+    del_brick_trace(*brickX, *brickY, direction);                          
+    if (direction == 1) { // Move from left to right       
+        *brickX += 1; 
+    } else {    // Move from right to left                                    
+        *brickX -= 1;
     }
+    //Re-draw brick at new location
+    draw_greyBrick(*brickX, *brickY);
+    wait_msec(10);    
 }
+
+void del_brick_trace(int brickX, int brickY, int direction) 
+{    
+    if (direction == 1) {
+        for (int j = brickY; j < (brickY + 21); j++)            // Dimension of brick is 240x20
+        {
+            for (int i = brickX; i < brickX + 1; i++)           // Deleting part is 2x20
+            {
+                //Draw background image on top of brick trace 
+                drawPixelARGB32(i, j, bkg_img[j * 1024 + i]);
+                wait_msec(10);
+            }
+        }        
+    } else {
+        for (int j = brickY; j < (brickY + 21); j++)
+        {
+            for (int i = (brickX + 241); i > brickX + 239; i--)
+            {
+                //Draw background image to cover paddle trace 
+                drawPixelARGB32(i, j, bkg_img[j * 1024 + i]);
+                wait_msec(10);
+            }
+        }
+    }   
+}
+
 
 // Display decimal number on screen, modified from uart_dec()
 char displayDec(int num, int x, int y) {      
