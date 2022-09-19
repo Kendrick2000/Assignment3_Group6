@@ -21,8 +21,8 @@ void main()
 {
     //Declare variables int for count, score and array of tiles with type "Sprite". 
     int count = 0;
-    int score = 0;
-    int lives = 3;
+    int score = 360;
+    int life = 3;
     struct Sprite tiles[40];
     struct Sprite leftbrick;
     struct Sprite rightbrick;
@@ -579,13 +579,13 @@ void main()
         rightbrick.direction = 0;
 
         //Run the game.
-        while ((score >= 360 && score <= 520) && (lives > 0))
+        while ((life > 0))
         {
             //Display score that player currently has on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
             displayDec(score, 930, 10);
-            drawString32x32(10 , 10, "Lives: ", 0x00E74C3C);
-            displayDec(lives, 130, 10);
+            drawString32x32(800 , 30, "lives: ", 0x00E74C3C);
+            displayDec(life, 930, 30);
 
             // change direction of left brick
             if (leftbrick.x == 35) {
@@ -801,7 +801,7 @@ void main()
                     else 
                         direction = 1;                
                 }
-                else if ((ballX == 0))
+                else if ((ballX == 0) || (ballX == 1))
                 {
                     if (direction == 4)                    
                         direction = 1;                   
@@ -814,7 +814,7 @@ void main()
                     else 
                         direction = 1;                        
                 }
-                else if ((ballX == 955))
+                else if ((ballX == 955) || (ballX == 954))
                 {
                     if (direction == 1)                   
                         direction = 4;                    
@@ -898,7 +898,7 @@ void main()
                 else if (direction == 8)
                 {
                     ballX++;
-                    //ballY = ballY - 2;
+                    ballY = ballY - 2;
                     if (ballX == 955 || ballY == 0)
                     {
                         continue;
@@ -943,7 +943,7 @@ void main()
             }
             else
             {
-                lives--;
+                life--;
                 //reset ballX to 500, ballY to 650 and direction to 0 when the ball drop of from the screen.
                 ballX = 500;
                 ballY = 650;
@@ -988,19 +988,19 @@ void main()
                 break;
             }
             
-            if (lives == 0)
+            if (life == 0)
             {
                 clear_screen();
                 draw_gameOver(score);
                 if (uart_getc() == 'r')
                 {
-                    lives = 3;
-                    score = 0;
+                    life = 3;
+                    score = 360;
                     draw_level3();
                 }  
             }
 
-            if (score == 520)
+            if (score == 550)
             {
                 clear_screen();
                 winGame(score);
@@ -1030,13 +1030,13 @@ void main()
         draw_greyBrick(rightbrickX,rightbrickY);
 
         //Run the game.
-        while ((score >= 200 && score <= 360) && (lives > 0))
+        while ((score >= 200 && score <= 360) && (life > 0))
         {
             //Display score that player currently has on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
             displayDec(score, 930, 10);
-            drawString32x32(10 , 10, "Lives: ", 0x00E74C3C);
-            displayDec(lives, 130, 10);
+            drawString32x32(800 , 30, "lives: ", 0x00E74C3C);
+            displayDec(life, 930, 30);
 
             //Condition to make sure that all tiles only drew once at the begining of the game.
             if(isInitial == 0){
@@ -1243,7 +1243,7 @@ void main()
                     else 
                         direction = 1;                        
                 }
-                else if ((ballX == 955) || (ballX == 954))
+                else if ((ballX == 955) || (ballX == 955))
                 {
                     if (direction == 1)                   
                         direction = 4;                    
@@ -1373,7 +1373,7 @@ void main()
             }
             else
             {
-                lives--;
+                life--;
                 //reset ballX to 500, ballY to 650 and direction to 0 when the ball drop of from the screen.
                 ballX = 500;
                 ballY = 650;
@@ -1418,14 +1418,14 @@ void main()
                 break;
             }
             
-            if (lives == 0)
+            if (life == 0)
             {
                 clear_screen();
                 draw_gameOver(score);
                 if (uart_getc() == 'r')
                 {
-                    lives = 3;
-                    score = 0;
+                    life = 3;
+                    score = 200;
                     draw_level2();
                 }  
             }
@@ -1434,7 +1434,7 @@ void main()
             {
                 clear_screen();
                 winGame(score);
-                lives = 3;
+                life = 3;
                 if (uart_getc())
                 {
                     draw_level3();
@@ -1461,13 +1461,13 @@ void main()
         draw_paddle(barX, 700);
 
         //Run the game.
-        while ((score <= 200) && (lives > 0))
+        while ((score <= 200) && (life > 0))
         {
             //Display score that player currently have on top right corrner.
             drawString32x32(800,10,"Score: ",0x00E74C3C);
             displayDec(score, 930, 10);
-            drawString32x32(10 , 10, "Lives: ", 0x00E74C3C);
-            displayDec(lives, 130, 10);
+            drawString32x32(800 , 30, "lives: ", 0x00E74C3C);
+            displayDec(life, 930, 30);
 
             //Condition to make sure that all tiles only drew once at the begining of the game.
             if(isInitial == 0){
@@ -1720,7 +1720,7 @@ void main()
             }
             else
             {
-                lives--;
+                life--;
                 //reset ballX to 500, ballY to 650 and direction to 0 when the ball drop of from the screen.
                 ballX = 500;
                 ballY = 650;
@@ -1765,13 +1765,13 @@ void main()
                 break;
             }
 
-            if (lives == 0)
+            if (life == 0)
             {
                 clear_screen();
                 draw_gameOver(score);
                 if (uart_getc() == 'r')
                 {
-                    lives = 3;
+                    life = 3;
                     score = 0;
                     draw_game();
                 }             
@@ -1781,7 +1781,7 @@ void main()
             {
                 clear_screen();
                 winGame(score);
-                lives = 3;
+                life = 3;
                 if (uart_getc())
                 {
                     draw_level2();
@@ -2019,9 +2019,11 @@ void main()
         }
         else if (strCompare(array, "game") == 0)
         {
-           welcomeGame();
-           uart_getc();
-           draw_game();
+        //    welcomeGame();
+        //    uart_getc();
+        //    draw_game();
+            draw_level3();
+
         }
         else if (strCompare(array, "help") == 0)
         {
